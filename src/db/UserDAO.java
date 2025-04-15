@@ -1,7 +1,5 @@
 package db;
 
-import org.sqlite.core.DB;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +11,7 @@ public class UserDAO {
     public static void insertUser(String email, String passwordHash) {
         String sql = "Insert INTO users(email, password_hash) VALUES(?, ?)";
 
-        try (Connection conn = db.DBConnector();
+        try (Connection conn = db.DBConnector.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email);
             pstmt.setString(2, passwordHash);
