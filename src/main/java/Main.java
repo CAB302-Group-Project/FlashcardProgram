@@ -8,9 +8,5 @@ public class Main {
         if (conn != null) {
             System.out.println("Connection successful!");
         }
-
-        UserDAO.insertUser("test@example.com", "hashed_password_123");
-
-        UserDAO.getAllUsers();
     }
 }
