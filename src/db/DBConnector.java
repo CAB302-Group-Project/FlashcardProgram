@@ -17,6 +17,12 @@ public class DBConnector {
         } catch (SQLException e) {
             System.err.println("Connection failed: " + e.getMessage());
         }
+        try {
+            Class.forName("org.sqlite.JDBC");
+            System.out.println("Driver manually loaded!");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Driver NOT found: " + e.getMessage());
+        }
         return conn;
     }
 }
