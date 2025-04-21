@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane prefHeight="290.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.DashboardController">
+    <Label fx:id="textWelcome" layoutX="22.0" layoutY="25.0" text="Hello, " />
+    <Button fx:id="btnLogout" layoutX="22.0" layoutY="51.0" mnemonicParsing="false" text="Log Out" />
+</Pane>
