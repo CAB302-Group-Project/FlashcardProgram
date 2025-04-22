@@ -3,10 +3,12 @@ package db;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class DBInit {
+public class DBInit
+{
     public static void main(String[] args) {
         try (Connection conn = DBConnector.connect();
-             Statement stmt = conn.createStatement()) {
+             Statement stmt = conn.createStatement())
+        {
 
             // Users table
             stmt.execute("""
@@ -39,6 +41,7 @@ public class DBInit {
                     back TEXT NOT NULL,
                     media_type TEXT DEFAULT 'text',
                     difficulty TEXT DEFAULT 'medium',
+                    image_path TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (deck_id) REFERENCES decks(id) ON DELETE CASCADE
                 );
@@ -64,7 +67,9 @@ public class DBInit {
 
             System.out.println("All tables created successfully!");
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
