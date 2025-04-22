@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import db.DBInit;
+
 public class App extends Application implements Initializable {
     @FXML
     private Button btnLogin;
@@ -29,7 +31,7 @@ public class App extends Application implements Initializable {
 
     private Stage stage;
 
-    private String token;
+    private Session session;
 
     @Override
     public void init() {
@@ -39,6 +41,10 @@ public class App extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
+        this.session = new Session();
+
+        String[] args = {};
+        DBInit.main(args);
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
         fxmlLoader.setController(this);
@@ -63,11 +69,6 @@ public class App extends Application implements Initializable {
                 navigate("register");
             }
         });
-    }
-
-    public String getEmail() {
-        // TODO: Parse token and get email
-        return token;
     }
 
     public void alert(String message) {
@@ -101,8 +102,8 @@ public class App extends Application implements Initializable {
         return appInstance;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public Session getSession() {
+        return session;
     }
 
     public static void main(String[] args) {

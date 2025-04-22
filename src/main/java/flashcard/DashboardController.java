@@ -19,13 +19,14 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String email = App.getAppInstance().getEmail();
+        Session session = App.getAppInstance().getSession();
+        String email = session.getEmail();
         textWelcome.setText("Welcome, " + email);
 
         btnLogout.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                App.getAppInstance().setToken(null);
+                session.logout();
                 App.getAppInstance().navigate("login");
             }
         });
