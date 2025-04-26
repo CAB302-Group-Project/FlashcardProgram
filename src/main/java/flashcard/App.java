@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import db.DBInit;
+import session.Session;
 
 public class App extends Application implements Initializable {
     @FXML
@@ -77,7 +78,7 @@ public class App extends Application implements Initializable {
         dialog.initOwner(stage);
         VBox dialogVbox = new VBox(20);
         dialogVbox.getChildren().add(new Text(message));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        Scene dialogScene = new Scene(dialogVbox, 250, 50);
         dialog.setScene(dialogScene);
         dialog.show();
     }
@@ -86,6 +87,18 @@ public class App extends Application implements Initializable {
         FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
         if (page.equals("main")) {
             loader.setController(this);
+        }
+
+        boolean valid = true;
+        if (!page.equals("main") && !page.equals("login") && !page.equals("register")) {
+            valid = session.checkToken();
+        }
+
+        if (!valid) {
+            System.out.println("Page requires logged in user");
+            App.getAppInstance().alert("Token had expire");
+            session.logout();
+            return;
         }
 
         try {
