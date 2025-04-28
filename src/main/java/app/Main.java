@@ -1,3 +1,5 @@
+package app;
+
 import db.DBConnector;
 import java.sql.Connection;
 

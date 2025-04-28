@@ -1,6 +1,7 @@
 module com.example.flashcardai {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     opens com.example.flashcardai.app to javafx.fxml;
     opens com.example.flashcardai.controllers to javafx.fxml;
