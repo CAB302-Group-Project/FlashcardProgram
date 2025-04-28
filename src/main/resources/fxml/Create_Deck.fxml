@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fbecb2" height="120.0" layoutX="85.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="39.0" layoutX="85.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="110.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Document">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc6cf" height="120.0" layoutX="240.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="39.0" layoutX="240.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="268.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keywords">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#b2fbb7" height="120.0" layoutX="398.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="39.0" layoutX="398.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="447.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PDF">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="69.0" fitWidth="77.0" layoutX="115.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/document.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="69.0" fitWidth="77.0" layoutX="272.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/forms_7710723.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="69.0" fitWidth="77.0" layoutX="428.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/file-pdf.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
+      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="4.0" layoutY="6.0">
+         <image>
+            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="226.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Deck">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="241.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Creation Option">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="560.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/user%20(2).png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

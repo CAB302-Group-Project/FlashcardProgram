@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
+      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="4.0" layoutY="6.0">
+         <image>
+            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="188.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Flashcards">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="290.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Topic">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="230.0" layoutX="152.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Line endX="126.99996948242188" layoutX="325.0" layoutY="305.0" startX="-173.00001525878906" />
+      <Line endX="100.0" layoutX="88.0" layoutY="329.0" startX="71.80001831054688" />
+      <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="159.0" layoutY="329.0" startX="-0.266693115234375" />
+      <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="169.0" layoutY="339.0" startX="-0.266693115234375" />
+      <Line endX="100.0" layoutX="345.0" layoutY="329.0" startX="71.80001831054688" />
+      <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="435.0" layoutY="340.0" startX="-0.266693115234375" />
+      <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="445.0" layoutY="329.0" startX="-0.266693115234375" />
+      <Text layoutX="195.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" />
+      <Text layoutX="385.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" />
+      <Text layoutX="302.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
+      <Text layoutX="276.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="315.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Button layoutX="264.0" layoutY="273.0" mnemonicParsing="false" text="Show Answer" />
+      <Button layoutX="179.0" layoutY="361.0" mnemonicParsing="false" text="Easy" />
+      <Button layoutX="273.0" layoutY="361.0" mnemonicParsing="false" text="Medium" />
+      <Button layoutX="384.0" layoutY="361.0" mnemonicParsing="false" text="Hard" />
+      <Button layoutX="524.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #687DF7;" text="Edit Deck" textFill="WHITE" />
+      <TextArea layoutX="173.0" layoutY="217.0" prefHeight="52.0" prefWidth="258.0" />
+      <ImageView fitHeight="82.0" fitWidth="142.0" layoutX="230.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="557.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/user%20(2).png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
