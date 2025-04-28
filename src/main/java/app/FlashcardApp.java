@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.stage.Stage; // <-- also make sure you import this!
 
 public class FlashcardApp extends Application {
 
     @Override
-    public void start(primaryStage) {
+    public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
 
@@ -25,6 +25,7 @@ public class FlashcardApp extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }

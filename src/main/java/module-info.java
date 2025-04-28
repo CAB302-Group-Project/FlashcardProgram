@@ -3,11 +3,9 @@ module com.example.flashcardai {
     requires javafx.fxml;
     requires java.sql;
 
-    opens com.example.flashcardai.app to javafx.fxml;
-    opens com.example.flashcardai.controllers to javafx.fxml;
-    opens com.example.flashcardai.models to javafx.fxml;
+    opens app to javafx.graphics, javafx.fxml;
+    opens db to javafx.fxml;
 
-    exports com.example.flashcardai.app;
-    exports com.example.flashcardai.controllers;
-    exports com.example.flashcardai.models;
+    exports app;
+    exports db;
 }
