@@ -1,4 +1,4 @@
-package flashcard.Crypto;
+package com.example.flashcardai.crypto;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

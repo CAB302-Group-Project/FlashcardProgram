@@ -1,4 +1,4 @@
-package session;
+package com.example.flashcardai.session;
 
 import java.sql.Connection;
 import java.time.Instant;
@@ -17,8 +17,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import db.User;
 import db.UserDAO;
 import db.DBConnector;
-import flashcard.App;
-import flashcard.Crypto.Hasher;
+import com.example.flashcardai.app.App;
+import com.example.flashcardai.crypto.Hasher;
 
 public class Session {
     private String token;

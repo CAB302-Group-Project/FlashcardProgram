@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import flashcard.Crypto.Hasher;
+import com.example.flashcardai.crypto.Hasher;
 
 public class UserDAO
 {

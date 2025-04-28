@@ -1,4 +1,4 @@
-package flashcard;
+package com.example.flashcardai.app;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import session.Session;
+import com.example.flashcardai.session.Session;
 
-public class DashboardController implements Initializable {
+public class Dashboard2Controller implements Initializable {
     @FXML
     private Label textWelcome;
 
@@ -20,7 +20,7 @@ public class DashboardController implements Initializable {
     private Button btnLogout;
 
     @FXML
-    private Button btnPage2;
+    private Button btnPage1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,10 +36,10 @@ public class DashboardController implements Initializable {
             }
         });
 
-        btnPage2.setOnAction(new EventHandler<ActionEvent>() {
+        btnPage1.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                App.getAppInstance().navigate("dashboard2");
+                App.getAppInstance().navigate("dashboard");
             }
         });
     }

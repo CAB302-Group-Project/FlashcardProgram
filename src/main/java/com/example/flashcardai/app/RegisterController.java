@@ -1,4 +1,4 @@
-package flashcard;
+package com.example.flashcardai.app;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +11,13 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class RegisterController implements Initializable {
+    @FXML
+    private Button btnSignup;
+
+    @FXML
+    private Button btnHome;
+
     @FXML
     private TextField textEmail;
 
@@ -19,22 +25,23 @@ public class LoginController implements Initializable {
     private PasswordField textPassword;
 
     @FXML
-    private Button btnLogin;
-
-    @FXML
-    private Button btnHome;
+    private PasswordField textConfirmPassword;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnLogin.setOnAction(new EventHandler<>() {
+        btnSignup.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
+                App app = App.getAppInstance();
                 String email = textEmail.getText();
                 String password = textPassword.getText();
-                App app = App.getAppInstance();
-
-                if (app.getSession().login(email, password)) {
-                    app.navigate("dashboard");
+                String confirmPassword = textConfirmPassword.getText();
+                if (password.equals(confirmPassword)) {
+                    if (app.getSession().signup(email, password)) {
+                        app.navigate("login");
+                    }
+                } else {
+                    App.getAppInstance().alert("Passwords do not match");
                 }
             }
         });

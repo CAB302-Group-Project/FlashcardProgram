@@ -1,4 +1,4 @@
-package flashcard;
+package com.example.flashcardai.app;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import db.DBInit;
-import session.Session;
+import com.example.flashcardai.session.Session;
 
 public class App extends Application implements Initializable {
     @FXML

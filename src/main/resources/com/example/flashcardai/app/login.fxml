@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="290.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.LoginController">
+<Pane prefHeight="290.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flashcardai.app.LoginController">
     <Label layoutX="125.0" layoutY="40.0" text="Email" />
     <TextField fx:id="textEmail" layoutX="20.0" layoutY="65.0" prefHeight="25.0" prefWidth="235.0" />
     <Label layoutX="114.0" layoutY="128.0" text="Password" />

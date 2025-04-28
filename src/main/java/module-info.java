@@ -9,10 +9,10 @@ module com.example.flashcardai {
     opens com.example.flashcardai.app to javafx.fxml;
     opens com.example.flashcardai.controllers to javafx.fxml;
     opens com.example.flashcardai.models to javafx.fxml;
-    opens session to javafx.fxml;
+    opens com.example.flashcardai.session to javafx.fxml;
 
     exports com.example.flashcardai.app;
     exports com.example.flashcardai.controllers;
     exports com.example.flashcardai.models;
-    exports session;
+    exports com.example.flashcardai.session;
 }
