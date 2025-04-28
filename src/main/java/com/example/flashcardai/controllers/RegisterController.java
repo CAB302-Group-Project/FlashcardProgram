@@ -1,5 +1,6 @@
-package com.example.flashcardai.app;
+package com.example.flashcardai.controllers;
 
+import com.example.flashcardai.app.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

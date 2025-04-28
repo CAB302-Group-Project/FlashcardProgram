@@ -1,5 +1,6 @@
-package com.example.flashcardai.app;
+package com.example.flashcardai.controllers;
 
+import com.example.flashcardai.app.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import java.util.ResourceBundle;
 
 import com.example.flashcardai.session.Session;
 
-public class DashboardController implements Initializable {
+public class HomeController implements Initializable {
     @FXML
     private Label textWelcome;
 
