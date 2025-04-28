@@ -1,6 +1,6 @@
 /*package com.example.flashcardai.app;
 
-public class Main {
+public class app.Main {
     public static void main(String[] args) {
         System.out.println("Hello from Flashcard AI!");
     }
@@ -9,7 +9,7 @@ public class Main {
 
 import com.example.flashcardai.controllers.DashboardController;
 
-public class Main {
+public class app.Main {
     public static void main(String[] args) {
         System.out.println("Hello from Flashcard AI!");
 
