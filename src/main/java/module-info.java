@@ -6,13 +6,9 @@ module com.example.flashcardai {
     requires transitive javafx.graphics;
     requires com.auth0.jwt;
 
-    opens com.example.flashcardai.app to javafx.fxml;
-    opens com.example.flashcardai.controllers to javafx.fxml;
-    opens com.example.flashcardai.models to javafx.fxml;
-    opens com.example.flashcardai.session to javafx.fxml;
+    opens app to javafx.graphics, javafx.fxml;
+    opens db to javafx.fxml;
 
-    exports com.example.flashcardai.app;
-    exports com.example.flashcardai.controllers;
-    exports com.example.flashcardai.models;
-    exports com.example.flashcardai.session;
+    exports app;
+    exports db;
 }

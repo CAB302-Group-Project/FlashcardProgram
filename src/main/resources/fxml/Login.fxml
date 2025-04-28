@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="app.LoginController"
+      prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1D2440;">
+
+   <children>
+      <Text fill="WHITE" layoutX="251.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+
+      <ImageView fx:id="logoImage" fitHeight="100.0" fitWidth="150.0" layoutX="5.0"/>
+
+      <Text fill="WHITE" layoutX="165.0" layoutY="145.0" text="Email">
+         <font><Font size="18.0"/></font>
+      </Text>
+
+      <TextField fx:id="emailField" layoutX="166.0" layoutY="150.0" prefHeight="25.0" prefWidth="300.0"
+                 style="-fx-border-color: #FFFFFF; -fx-background-color: #1D2440;" />
+
+      <Text fill="WHITE" layoutX="165.0" layoutY="207.0" text="Password">
+         <font><Font size="18.0"/></font>
+      </Text>
+
+      <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="212.0" prefHeight="27.0" prefWidth="300.0"
+                     style="-fx-background-color: #1D2440; -fx-border-color: #FFFFFF;" />
+
+      <Button fx:id="loginButton" layoutX="165.0" layoutY="273.0" prefHeight="25.0" prefWidth="300.0"
+              style="-fx-background-color: #687DF7;" text="Log In" textFill="WHITE" onAction="#handleLogin"/>
+
+      <Text fill="WHITE" layoutX="166.0" layoutY="332.0" text="Don't have an account?">
+         <font><Font size="14.0"/></font>
+      </Text>
+
+      <Button fx:id="signUpButton" layoutX="401.0" layoutY="314.0" prefHeight="19.0" prefWidth="64.0"
+              style="-fx-background-color: #1D2440;" text="Sign Up" textFill="#687df7" onAction="#handleSignUp"/>
+   </children>
+</Pane>
