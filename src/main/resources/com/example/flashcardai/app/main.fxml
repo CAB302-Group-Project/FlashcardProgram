@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="290.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <Button fx:id="btnLogin" layoutX="73.0" layoutY="83.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Log In" />
+   <Button fx:id="btnRegister" layoutX="73.0" layoutY="159.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Register" />
+</Pane>

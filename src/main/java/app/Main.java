@@ -16,7 +16,7 @@ public class Main {
         System.out.print("Enter prompt: "); // Where prompt goes
         String userPrompt = scanner.nextLine();
 
-        prompt.flashcardPrompt(userPrompt);
+        prompt.quizPrompt(userPrompt);
 
 
     }

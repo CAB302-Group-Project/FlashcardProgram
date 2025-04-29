@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.example.flashcardai.crypto.Hasher;
+
 public class UserDAO
 {
     // Insert a new user
@@ -78,4 +80,42 @@ public class UserDAO
         return getUserIdByEmail(email) != null;
     }
 
+    public static User getUser(String email) {
+        String sql = "SELECT id FROM users WHERE email=? LIMIT 1";
+        try {
+            Connection conn = DBConnector.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                final int id = rs.getInt("id");
+                return new User(id, email);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static User authUser(String email, String password) {
+        String sql = "SELECT id, password_hash FROM users WHERE email=? LIMIT 1";
+        try {
+            Connection conn = DBConnector.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String hashed = rs.getString("password_hash");
+                if (Hasher.verify(password, hashed)) {
+                    return new User(id, email);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
 }

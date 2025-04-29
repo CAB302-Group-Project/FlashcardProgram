@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
+      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="4.0" layoutY="4.0">
+         <image>
+            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="17.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc6cf" height="39.0" layoutX="17.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="71.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="42.0" layoutY="158.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="14.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc790" height="39.0" layoutX="14.0" layoutY="258.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="68.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="39.0" layoutY="306.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="163.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#a8cfff" height="39.0" layoutX="163.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="217.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="188.0" layoutY="158.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="160.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e6c5ff" height="39.0" layoutX="160.0" layoutY="258.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="214.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="185.0" layoutY="306.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="307.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fbecb2" height="39.0" layoutX="307.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="361.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="332.0" layoutY="157.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="304.0" layoutY="261.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#c5c4c4" height="39.0" layoutX="304.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="358.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="329.0" layoutY="305.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="451.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#b2fbb7" height="39.0" layoutX="451.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="505.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="476.0" layoutY="157.0" prefHeight="39.0" prefWidth="79.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="448.0" layoutY="261.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fe7c7c" height="39.0" layoutX="448.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Text layoutX="502.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea layoutX="473.0" layoutY="305.0" prefHeight="39.0" prefWidth="79.0" />
+      <Text layoutX="213.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deck Manager">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="561.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/user%20(2).png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
