@@ -12,48 +12,46 @@ import java.nio.charset.StandardCharsets;
 
 public class protoAI {
 
-    private static String modelName;
-    private String endpointUrl = "http://localhost:11434/api/generate";
+    private String modelName;
+    private final String endpointUrl = "http://localhost:11434/api/generate";
 
     public protoAI() {
-        this.modelName = "gemma3:latest"; // default constructor, takes just gemma3
+        this.modelName = "gemma3:latest"; // default model
     }
 
     public protoAI(String modelName) {
-        this.modelName = modelName; // Setting custom model if you want ig
+        this.modelName = modelName; // custom model
     }
 
-
-    public static String proto(String promptText) throws IOException {
-
-
+    public String proto(String promptText) throws IOException {
         // Set up the URL and connection
-        URL url = new URL("http://localhost:11434/api/generate");
+        URL url = new URL(endpointUrl);
         HttpURLConnection eConn = (HttpURLConnection) url.openConnection();
         eConn.setRequestMethod("POST");
         eConn.setRequestProperty("Content-Type", "application/json; utf-8");
         eConn.setRequestProperty("Accept", "application/json");
         eConn.setDoOutput(true);
-        eConn.setConnectTimeout(5000); // 5 seconds to connect
-        eConn.setReadTimeout(10000);   // 10 seconds to read response
+        eConn.setConnectTimeout(5000); // 5 seconds
+        eConn.setReadTimeout(30000);   // 30 seconds
 
-
-        //JSON body using variables
+        // JSON body
         String jsonInputString = String.format(
                 "{\"model\": \"%s\", \"prompt\":\"%s\", \"stream\": false}", modelName, promptText
         );
 
-        // Write the JSon body to the request
+        // Write the JSON body
         try (OutputStream os = eConn.getOutputStream()) {
             byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
 
-        // Get the response code (optional)
+        // Get response
         int code = eConn.getResponseCode();
-        //System.out.println("Response Code: " + code);
+        if (code != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Failed: HTTP error code : " + code);
+        }
 
-        //Read the response body
+        // Read response
         BufferedReader in = new BufferedReader(new InputStreamReader(eConn.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder response = new StringBuilder();
         String line;
@@ -62,21 +60,13 @@ public class protoAI {
         }
         in.close();
 
-        //Comments are just debugging stuff
-
-        //System.out.println("Response Body: " + response.toString());
-
-        //parse the json response and print the response field
+        // Parse JSON
         JSONObject jsonResponse = new JSONObject(response.toString());
         String responseText = jsonResponse.getString("response");
-        //System.out.println("Response: " + responseText);
 
         // Close connection
         eConn.disconnect();
 
         return responseText;
     }
-
-
-
 }

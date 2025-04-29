@@ -21,7 +21,8 @@ public class prompt {
 
         List<String>flashcards = new ArrayList<>();
         try {
-            String aiResponse = protoAI.proto(instruction + promptText);
+            protoAI ai = new protoAI();
+            String aiResponse = ai.proto(instruction + promptText);
 
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();
@@ -54,7 +55,8 @@ public class prompt {
 
         List<String>quiz = new ArrayList<>();
         try {
-            String aiResponse = protoAI.proto(instruction + promptText);
+            protoAI ai = new protoAI();
+            String aiResponse = ai.proto(instruction + promptText);
 
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();
