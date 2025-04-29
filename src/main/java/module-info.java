@@ -5,6 +5,7 @@ module com.example.flashcardai {
     requires spring.security.crypto;
     requires transitive javafx.graphics;
     requires com.auth0.jwt;
+    requires org.json;
 
     opens app to javafx.graphics, javafx.fxml;
     opens db to javafx.fxml;

@@ -12,12 +12,13 @@ public class Main {
             System.out.println("Connection successful!");
         }
 
+        // Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter prompt: "); // Where prompt goes
+        System.out.print("Enter prompt: ");
         String userPrompt = scanner.nextLine();
 
-        prompt.quizPrompt(userPrompt);
-
+        prompt.flashcardPrompt(userPrompt);
+        // Debug testing for AI. Feel free to remove if bothersome.
 
     }
 }

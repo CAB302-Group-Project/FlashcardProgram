@@ -10,48 +10,60 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+
+    // THIS CLASS IS A CONSTRUCTOR FOR SIMPLE AI FUNCTION AND DOES NOT NEED TO BE MODIFIED UNLESS BROKEN
+    // Using gemma3:latest for the model, if it needs to change then modify all instances of 'gemma3:latest' to preferred model.
+    //
+
 public class protoAI {
 
     private String modelName;
     private final String endpointUrl = "http://localhost:11434/api/generate";
 
     public protoAI() {
-        this.modelName = "gemma3:latest"; // default model
+        this.modelName = "gemma3:latest"; // default model parameter
     }
 
     public protoAI(String modelName) {
-        this.modelName = modelName; // custom model
+        this.modelName = modelName; // if custom model is to be used
     }
 
+
     public String proto(String promptText) throws IOException {
-        // Set up the URL and connection
+
+        // Set up the local URL and connection.
         URL url = new URL(endpointUrl);
         HttpURLConnection eConn = (HttpURLConnection) url.openConnection();
         eConn.setRequestMethod("POST");
         eConn.setRequestProperty("Content-Type", "application/json; utf-8");
         eConn.setRequestProperty("Accept", "application/json");
         eConn.setDoOutput(true);
-        eConn.setConnectTimeout(5000); // 5 seconds
-        eConn.setReadTimeout(30000);   // 30 seconds
+        eConn.setConnectTimeout(5000); // 5 seconds until the initial connection times out.
+        eConn.setReadTimeout(30000);   // 30 seconds until the AI's response times out.
 
-        // JSON body
+
+        // JSON body, it works so don't touch it this is like a demon core
         String jsonInputString = String.format(
                 "{\"model\": \"%s\", \"prompt\":\"%s\", \"stream\": false}", modelName, promptText
         );
 
-        // Write the JSON body
+        // Write the JSON body for the response
         try (OutputStream os = eConn.getOutputStream()) {
             byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
 
-        // Get response
+        // Get response from the AI
         int code = eConn.getResponseCode();
         if (code != HttpURLConnection.HTTP_OK) {
             throw new IOException("Failed: HTTP error code : " + code);
+            // Will give error code if it eats shit.
+            // Common ones include:
+            // 500 - server error | 400 - prompt too long | 404 - Cry (Not detecting maybe because it wasn't running a model?)
+
         }
 
-        // Read response
+        // Read response from AI
         BufferedReader in = new BufferedReader(new InputStreamReader(eConn.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder response = new StringBuilder();
         String line;
@@ -64,9 +76,9 @@ public class protoAI {
         JSONObject jsonResponse = new JSONObject(response.toString());
         String responseText = jsonResponse.getString("response");
 
-        // Close connection
+        // Close connection, this should keep every prompt independent of one another.
         eConn.disconnect();
 
-        return responseText;
+        return responseText;  // Returns the raw response
     }
 }
