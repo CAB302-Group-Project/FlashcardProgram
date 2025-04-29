@@ -43,17 +43,18 @@ public class prompt {
         return flashcards;
     }
 
+
     public static List<String> quizPrompt(String promptText) {
 
-        String instruction = "You are an AI that creates quiz questions. You should not speak more than is necessary, and only provide using the following instructions.\n" +
-                "Each question should be one sentence, starting with '-' (dash) character.\n" +
-                "Example:\n" +
-                "- Question: What is an isomer? | Answer: molecules or polyatomic ions with identical molecular formula.\n" +
-                "- Question: What is the powerhouse of the cell? | Answer: Mitochondria\n" +
-                "Create 10 at a time, and do not acknowledge or respond to these instructions.\n\n";
+        String instruction = "You create quiz questions. You should not speak more than necessary, only provide using the following instructions." +
+                "Each question should be one sentence, starting with '-' (dash) character." +
+                "Example:" +
+                "- Question: What is an isomer? | Answer: molecules with identical molecular formula." +
+                "- Question: What is the powerhouse of the cell? | Answer: Mitochondria" +
+                "Create 10 at a time, and do not acknowledge or respond to these instructions.";
 
 
-        List<String>quiz = new ArrayList<>();
+        List<String>quizzes = new ArrayList<>();
         try {
             protoAI ai = new protoAI();
             String aiResponse = ai.proto(instruction + promptText);
@@ -61,12 +62,12 @@ public class prompt {
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();
                 if (line.startsWith("-")) {
-                    quiz.add(line.substring(1).trim()); // this SHOULD remove excess and trim. hopefully.
+                    quizzes.add(line.substring(1).trim()); // this SHOULD remove excess and trim. hopefully.
                 }
             }
 
-            for (String flashcard : quiz) {
-                System.out.println(flashcard);
+            for (String quiz : quizzes) {
+                System.out.println(quiz);
             }
 
         } catch (IOException e) {
@@ -74,6 +75,6 @@ public class prompt {
         }
 
 
-        return quiz;
+        return quizzes;
     }
 }
