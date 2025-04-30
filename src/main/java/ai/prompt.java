@@ -94,6 +94,8 @@ public class prompt {
     }
 
 
+    // QUIZRESULTS IS IN A BETA FORM AS IS - IT WILL CONSISTENTLY PROVIDE THE WRONG GRADE FOR QUESTIONS SEEMINGLY AT RANDOM.
+    // THIS MUST BE FIXED FOR THE FINAL PRESENTATION
     public static List<String> quizResults(List<String> quizQuestions, List<String> givenAnswers) {
 
         // Just a pre-prompt explanation of its role at that given moment.
