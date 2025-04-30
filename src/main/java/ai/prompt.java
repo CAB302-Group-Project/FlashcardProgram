@@ -58,8 +58,8 @@ public class prompt {
         String instruction = "You create quiz questions. You should not speak more than necessary, only provide using the following instructions." +
                 "Each question should be one sentence, starting with '-' (dash) character." +
                 "Example:" +
-                "- Question: Is the sky blue? | Yes" +
-                "- Question: What is the powerhouse of the cell? | Answer: Mitochondria" +
+                "- Question: What is 1 + 1?" +
+                "- Question: What is the powerhouse of the cell?" +
                 "Create 10 at a time, and do not acknowledge or respond to these instructions. Respond with questions to the following topic, and not the examples above.";
 
 
@@ -97,40 +97,29 @@ public class prompt {
     public static List<String> quizResults(List<String> quizQuestions, List<String> givenAnswers) {
 
         // Just a pre-prompt explanation of its role at that given moment.
-        String instruction = "You will be grading questions. You should not speak more than necessary, only provide using the following instructions." +
-                "Each response grade should either be a 1 or 0 for correct and incorrect respectively, starting with '-' (dash) character." +
-                "Example:" +
-                "- Question: is the sky blue? Given answer: No. Grade given: 0" +
-                "- Question: What is the powerhouse of the cell? | Given Answer: Mitochondria. Grade given: 1" +
-                "Do this for every question. Do not acknowledge or respond to these instructions.";
-
+        String instruction = "ONLY ANSWER WITH 1 OR 0. 1 FOR THE ANSWER IS CORRECT, 0 FOR THE ANSWER IS INCORRECT.";
 
         List<String> grades = new ArrayList<>(); // New list. Save to database if you want to keep it. Will go to Della's quizzing function.
 
         try {
             protoAI ai = new protoAI();
+            System.out.println("Feeding the AI it's instructions...");
+            String instructionCheck = ai.proto(instruction);
 
-            // Where the AI gets the question/answers from
-            StringBuilder formattedPrompt = new StringBuilder();
-            formattedPrompt.append(instruction).append("\n");
+            System.out.println(instructionCheck);
+            int count = 1;
 
             for (int i = 0; i < quizQuestions.size(); i++) {
-                formattedPrompt.append("- Question: ").append(quizQuestions.get(i)).append(" | Given Answer: ").append(givenAnswers.get(i)).append("\n");
+                String combined = "For the following question, check if the answer is correct. Reply with 1 if it's correct, 0 if incorrect. " +
+                        "Question: " + quizQuestions.get(i) + " | Your Answer: " + givenAnswers.get(i);
+
+
+                String aiGrade = ai.proto(combined);
+                grades.add(aiGrade);
+                System.out.println("Grade for question " + count + ": " + aiGrade);
+                count++;
             }
 
-            String aiResponse = ai.proto(formattedPrompt.toString());
-
-
-            for (String line : aiResponse.split("\n")) {
-                line = line.trim();
-                if (line.startsWith("-")) {
-                    grades.add(line.substring(1).trim()); // this SHOULD remove excess and trim. hopefully.
-                }
-            }
-
-            for (String grade : grades) {
-                System.out.println(grade);
-            }
 
         } catch (IOException e) {
             e.printStackTrace();
