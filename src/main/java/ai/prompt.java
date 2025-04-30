@@ -51,7 +51,7 @@ public class prompt {
     }
 
 
-    // Quiz is identical to flashcards except has a different pre-prompt instruction.
+    // Quiz is identical to flashcards except has different pre-prompt instruction.
     public static List<String> quizPrompt(String promptText) {
 
         // Just a pre-prompt explanation of its role at that given moment.

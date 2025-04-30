@@ -38,7 +38,7 @@ public class protoAI {
         eConn.setRequestProperty("Content-Type", "application/json; utf-8");
         eConn.setRequestProperty("Accept", "application/json");
         eConn.setDoOutput(true);
-        eConn.setConnectTimeout(5000); // 5 seconds until the initial connection times out.
+        eConn.setConnectTimeout(15000); // 15 seconds until the initial connection times out.
         eConn.setReadTimeout(30000);   // 30 seconds until the AI's response times out.
 
 
@@ -63,7 +63,7 @@ public class protoAI {
 
         }
 
-        // Read response from AI
+        // Read response from Ai
         BufferedReader in = new BufferedReader(new InputStreamReader(eConn.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder response = new StringBuilder();
         String line;
