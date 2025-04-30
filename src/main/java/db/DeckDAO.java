@@ -1,5 +1,7 @@
 package db;
 
+import app.FlashcardApp;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +12,9 @@ public class DeckDAO {
     public static boolean insertDeck(int userId, String title, String description)
     {
         String sql = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
+        Connection conn = FlashcardApp.getInstance().getDBConnection();
 
-        try (Connection conn = DBConnector.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             stmt.setString(2, title);

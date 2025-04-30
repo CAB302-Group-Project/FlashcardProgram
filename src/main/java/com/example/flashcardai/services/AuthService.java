@@ -1,17 +1,47 @@
 package com.example.flashcardai.services;
 
-import java.util.HashMap;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTCreationException;
+import com.example.flashcardai.crypto.Hasher;
+import com.example.flashcardai.models.User;
+import db.UserDAO;
+
+import java.time.Instant;
+import java.time.ZonedDateTime;
 
 public class AuthService {
-    private static final HashMap<String, String> users = new HashMap<>();
-
     public static boolean register(String username, String password) {
-        if (users.containsKey(username)) return false;
-        users.put(username, password); // Replace with hash in real app
-        return true;
+        User user = UserDAO.getUser(username);
+        if (user == null) {
+            String hashed = Hasher.hash(password);
+            UserDAO.insertUser(username, hashed);
+            return true;
+        }
+
+        return false;
     }
 
-    public static boolean login(String username, String password) {
-        return users.getOrDefault(username, "").equals(password);
+    public static Algorithm algo = Algorithm.HMAC256("secret");
+
+    public static String login(String username, String password) {
+        User user = UserDAO.authUser(username, password);
+        if (user != null) {
+            try {
+                // TODO: Update session timeout (+5 seconds)
+                ZonedDateTime expireTime = ZonedDateTime.now().plusSeconds(5);
+                Instant instant = expireTime.toInstant();
+
+                return JWT.create()
+                        .withIssuer("FlashcardProgram")
+                        .withKeyId(user.getEmail())
+                        .withExpiresAt(instant)
+                        .sign(algo);
+            } catch (JWTCreationException exception) {
+                System.err.println(exception.getMessage());
+            }
+        }
+
+        return null;
     }
 }

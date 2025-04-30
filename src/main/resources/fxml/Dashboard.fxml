@@ -28,7 +28,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Text layoutX="365.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}">
+      <Text fx:id="textName" layoutX="365.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}">
          <font>
             <Font size="30.0" />
          </font>
