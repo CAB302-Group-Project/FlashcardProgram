@@ -78,4 +78,116 @@ public class UserDAO
         return getUserIdByEmail(email) != null;
     }
 
+<<<<<<< Updated upstream
+=======
+    public static User getUser(String email) {
+        String sql = "SELECT id FROM users WHERE email=? LIMIT 1";
+        try {
+            Connection conn = DBConnector.connect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                final int id = rs.getInt("id");
+                return new User(id, email);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    private static void logLogin(int userId) {
+        String sql = "INSERT INTO login_log (user_id) VALUES (?)";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Failed to log login: " + e.getMessage());
+        }
+    }
+
+    public static boolean registerUser(String email, String password) {
+        String sql = "INSERT INTO users (email, password_hash) VALUES (?, ?)";
+        String hashed = Hasher.hash(password);  // Assuming Hasher.hash() exists
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            stmt.setString(2, hashed);
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Registration failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static User authUser(String email, String password) {
+        String sql = "SELECT id, password_hash FROM users WHERE email=? LIMIT 1";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String hashed = rs.getString("password_hash");
+
+                if (Hasher.verify(password, hashed)) {
+                    logLogin(id);  // Log successful login here
+                    return new User(id, email);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error during auth: " + e.getMessage());
+        }
+
+        return null;  // Only reached if login fails
+    }
+
+    public static void insertTestUser() {
+        String email = "test@example.com";
+        String password = "test123";
+        String hashed = Hasher.hash(password);  // BCrypt hash
+
+        // First, delete the test user if it exists
+        String deleteSQL = "DELETE FROM users WHERE email = ?";
+
+        // Then insert fresh
+        String insertSQL = "INSERT INTO users (email, password_hash) VALUES (?, ?)";
+
+        try (Connection conn = DBConnector.connect()) {
+            // Delete if exists
+            try (PreparedStatement del = conn.prepareStatement(deleteSQL)) {
+                del.setString(1, email);
+                del.executeUpdate();
+            }
+
+            // Insert new user
+            try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
+                ins.setString(1, email);
+                ins.setString(2, hashed);
+                ins.executeUpdate();
+            }
+
+            System.out.println("Test user recreated: " + email + " / " + password);
+
+        } catch (SQLException e) {
+            System.err.println("Failed to recreate test user: " + e.getMessage());
+        }
+    }
+
+
+>>>>>>> Stashed changes
 }

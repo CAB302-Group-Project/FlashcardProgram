@@ -20,6 +20,18 @@ public class DBInit
                 );
             """);
 
+            String sql = "ALTER TABLE users ADD COLUMN name TEXT DEFAULT 'Unnamed User';";
+
+            // Log of User Logins
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS login_log (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(user_id) REFERENCES users(id)
+                );
+            """);
+
             // Decks table
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS decks (

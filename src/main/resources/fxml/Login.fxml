@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <Pane xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="app.LoginController"
@@ -27,14 +28,14 @@
       </Text>
 
       <TextField fx:id="emailField" layoutX="166.0" layoutY="150.0" prefHeight="25.0" prefWidth="300.0"
-                 style="-fx-border-color: #FFFFFF; -fx-background-color: #1D2440;" />
+                 style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF;" />
 
       <Text fill="WHITE" layoutX="165.0" layoutY="207.0" text="Password">
          <font><Font size="18.0"/></font>
       </Text>
 
       <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="212.0" prefHeight="27.0" prefWidth="300.0"
-                     style="-fx-background-color: #1D2440; -fx-border-color: #FFFFFF;" />
+                     style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
 
       <Button fx:id="loginButton" layoutX="165.0" layoutY="273.0" prefHeight="25.0" prefWidth="300.0"
               style="-fx-background-color: #687DF7;" text="Log In" textFill="WHITE" onAction="#handleLogin"/>
@@ -42,6 +43,12 @@
       <Text fill="WHITE" layoutX="166.0" layoutY="332.0" text="Don't have an account?">
          <font><Font size="14.0"/></font>
       </Text>
+
+      <Label fx:id="errorLabel"
+             layoutX="165.0"
+             layoutY="360.0"
+             textFill="red"
+             text="" />
 
       <Button fx:id="signUpButton" layoutX="401.0" layoutY="314.0" prefHeight="19.0" prefWidth="64.0"
               style="-fx-background-color: #1D2440;" text="Sign Up" textFill="#687df7" onAction="#handleSignUp"/>
