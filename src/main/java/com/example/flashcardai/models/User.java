@@ -1,15 +1,19 @@
 package com.example.flashcardai.models;
 
 public class User {
-    private String id;
-    private String username;
-    private String passwordHash;
+    private final int id;
+    private final String email;
 
-    public User(String id, String username, String passwordHash) {
+    public User(int id, String email) {
         this.id = id;
-        this.username = username;
-        this.passwordHash = passwordHash;
+        this.email = email;
     }
 
-    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
