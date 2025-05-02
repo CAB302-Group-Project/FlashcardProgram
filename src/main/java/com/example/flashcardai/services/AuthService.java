@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.example.flashcardai.crypto.Hasher;
-import com.example.flashcardai.models.User;
+import db.User;
 import db.UserDAO;
 
 import java.time.Instant;
@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 
 public class AuthService {
     public static boolean register(String username, String password) {
-        User user = UserDAO.getUser(username);
+        db.User user = UserDAO.getUser(username);
         if (user == null) {
             String hashed = Hasher.hash(password);
             UserDAO.insertUser(username, hashed);

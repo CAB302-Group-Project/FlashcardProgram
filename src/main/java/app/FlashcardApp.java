@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.flashcardai.models.User;
 import com.example.flashcardai.services.AuthService;
 import db.DBConnector;
 import db.UserDAO;
@@ -66,7 +65,7 @@ public class FlashcardApp extends Application {
         this.sessionToken = token;
     }
 
-    public User getSession() {
+    public Integer getSession() {
         if (sessionToken != null) {
             try {
                 JWTVerifier verifier = JWT.require(AuthService.algo)
