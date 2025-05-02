@@ -1,7 +1,10 @@
 package app;
 
+import ai.pdfReader;
 import db.DBConnector;
 import ai.prompt;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ public class Main {
             System.out.println("Connection successful!");
         }
 
-        // Debug testing for AI. Feel free to remove if bothersome.
+       /* // Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter prompt: ");
         String userPrompt = scanner.nextLine();
@@ -40,9 +43,24 @@ public class Main {
             System.out.println(grade);
         }
 
-        // Debug testing for AI. Feel free to remove if bothersome.
+        // Debug testing for AI. Feel free to remove if bothersome.*/
 
 
+        // Debug testing for File Picking. Feel free to remove if bothersome.
+        try {
+            String pdfText = pdfReader.pdfExtract(); // Triggering file picker
+
+            if (pdfText != null && !pdfText.isEmpty()) {
+                System.out.println("Extracted PDF Text:\n");
+                System.out.println(pdfText);
+            } else {
+                System.out.println("No text found or PDF is empty.");
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // Debug testing for File Picking. Feel free to remove if bothersome.
 
     }
 }

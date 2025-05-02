@@ -111,6 +111,7 @@ public class prompt {
             System.out.println(instructionCheck);
             int count = 1;
 
+            // May help the AI to determine if two answers are similar as opposed to its objective correctness.
             for (int i = 0; i < quizQuestions.size(); i++) {
                 String combined = "For the following question, check if the answer is correct. Reply with 1 if it's correct, 0 if incorrect. " +
                         "Question: " + quizQuestions.get(i) + " | Your Answer: " + givenAnswers.get(i);

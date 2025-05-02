@@ -6,6 +6,8 @@ module com.example.flashcardai {
     requires transitive javafx.graphics;
     requires com.auth0.jwt;
     requires org.json;
+    requires org.apache.pdfbox;
+    requires java.desktop;
 
     opens app to javafx.graphics, javafx.fxml;
     opens db to javafx.fxml;
