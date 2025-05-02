@@ -36,7 +36,7 @@ public class FlashcardApp extends Application {
         dbInstance = DBConnector.connect();
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
 
             Scene scene = new Scene(root, 800, 600); // width x height
 

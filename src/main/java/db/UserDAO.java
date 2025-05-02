@@ -6,19 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import app.FlashcardApp;
-import com.example.flashcardai.crypto.Hasher;
-import com.example.flashcardai.models.User;
-
 public class UserDAO
 {
     // Insert a new user
     public static boolean insertUser(String email, String passwordHash) {
         String userInsertSQL = "INSERT INTO users(email, password_hash) VALUES(?, ?)";
-        Connection conn = FlashcardApp.getInstance().getDBConnection();
 
-        try {
-            PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS);
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
+
             stmt.setString(1, email);
             stmt.setString(2, passwordHash);
             int affectedRows = stmt.executeUpdate();
@@ -36,6 +32,7 @@ public class UserDAO
                     return true;
                 }
             }
+
         } catch (SQLException e) {
             System.err.println("Insert user failed: " + e.getMessage());
         }
@@ -63,14 +60,14 @@ public class UserDAO
         }
     }
 
-    public static User getUserIdByEmail(String email)
+    public static Integer getUserIdByEmail(String email)
     {
         String sql = "SELECT id FROM users WHERE email = ?";
-        Connection conn = FlashcardApp.getInstance().getDBConnection();
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) return new User(rs.getInt("id"), email);
+            if (rs.next()) return rs.getInt("id");
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
         }
@@ -83,9 +80,8 @@ public class UserDAO
 
     public static User getUser(String email) {
         String sql = "SELECT id FROM users WHERE email=? LIMIT 1";
-        Connection conn = FlashcardApp.getInstance().getDBConnection();
-
         try {
+            Connection conn = DBConnector.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
@@ -100,24 +96,73 @@ public class UserDAO
         return null;
     }
 
+    private static void logLogin(int userId) {
+        String sql = "INSERT INTO login_log (user_id) VALUES (?)";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Failed to log login: " + e.getMessage());
+        }
+    }
+
+    public static boolean registerUser(String email, String password) {
+        return insertUser(email, password);
+    }
+
     public static User authUser(String email, String password) {
         String sql = "SELECT id, password_hash FROM users WHERE email=? LIMIT 1";
-        Connection conn = FlashcardApp.getInstance().getDBConnection();
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
                 int id = rs.getInt("id");
-                String hashed = rs.getString("password_hash");
-                if (Hasher.verify(password, hashed)) {
+                String storedPassword = rs.getString("password_hash");
+
+                if (password.equals(storedPassword)) {
+                    logLogin(id);
                     return new User(id, email);
                 }
             }
+
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error during auth: " + e.getMessage());
         }
 
         return null;
+    }
+
+    public static void insertTestUser() {
+        String email = "test@example.com";
+        String password = "test123";
+
+        String deleteSQL = "DELETE FROM users WHERE email = ?";
+        String insertSQL = "INSERT INTO users (email, password_hash) VALUES (?, ?)";
+
+        try (Connection conn = DBConnector.connect()) {
+            try (PreparedStatement del = conn.prepareStatement(deleteSQL)) {
+                del.setString(1, email);
+                del.executeUpdate();
+            }
+
+            try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
+                ins.setString(1, email);
+                ins.setString(2, password);
+                ins.executeUpdate();
+            }
+
+            System.out.println("Test user recreated: " + email + " / " + password);
+
+        } catch (SQLException e) {
+            System.err.println("Failed to recreate test user: " + e.getMessage());
+        }
     }
 }

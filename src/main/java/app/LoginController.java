@@ -1,56 +1,69 @@
 package app;
 
-import com.example.flashcardai.services.AuthService;
-import javafx.event.ActionEvent;
+import db.User;
+import db.UserDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    private TextField emailField;
+    @FXML private TextField emailField;
+    @FXML private PasswordField passwordField;
+    @FXML private Label errorLabel;
 
     @FXML
-    private PasswordField passwordField;
+    private Button loginButton;
 
     @FXML
-    private void handleLogin(ActionEvent event) {
-        String email = emailField.getText();
+    private Button signUpButton;
+
+    @FXML
+    private void handleLogin() {
+        String email = emailField.getText().trim();
         String password = passwordField.getText();
-        String token = AuthService.login(email, password);
 
-        if (token != null) {
+        if (email.isBlank() || password.isBlank()) {
+            System.out.println("Please fill in both email and password.");
+            return;
+        }
+
+        User user = UserDAO.authUser(email, password);  // Make sure this exists
+
+        if (user != null) {
             try {
-                FlashcardApp.getInstance().setSessionToken(token);
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
-                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+                Parent root = loader.load();
+
+                DashboardController controller = loader.getController();
+                controller.setUser(user);  // You’ll add this next
+
+                Stage stage = (Stage) emailField.getScene().getWindow();
                 stage.setScene(new Scene(root));
-                stage.setTitle("Dashboard");
                 stage.show();
-            } catch (Exception e) {
+
+            } catch (IOException e) {
                 e.printStackTrace();
+                errorLabel.setText("Failed to load dashboard.");
             }
         } else {
-            // Use modal
-            System.err.println("Account does not exist");
+            errorLabel.setText("Invalid email or password.");
         }
     }
 
+
     @FXML
-    private void handleSignUp(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Sign_Up.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Dashboard");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void handleSignUp() {
+        System.out.println("Redirecting to Sign Up screen...");
+        // Later: Add navigation logic here
     }
 }

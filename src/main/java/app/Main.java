@@ -1,10 +1,6 @@
 package app;
 
-import ai.pdfReader;
 import db.DBConnector;
-import ai.prompt;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;

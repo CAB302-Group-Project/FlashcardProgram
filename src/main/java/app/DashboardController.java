@@ -1,5 +1,7 @@
 package app;
 
+import db.User;
+import com.example.flashcardai.models.User;
 import com.example.flashcardai.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,15 +9,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+public class DashboardController {
+    @FXML private Text nameText;
+    private User currentUser;
 
-public class DashboardController implements Initializable {
-    @FXML
-    private Text textName;
+    public void setUser(User user) {
+        this.currentUser = user;
+        System.out.println("Welcome, " + user.getEmail());
+        this.currentUser = user;
+        nameText.setText(user.getName());
+    }
 
     @FXML
     private void handleLogout(ActionEvent event) {
@@ -28,14 +35,6 @@ public class DashboardController implements Initializable {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        User currentUser = FlashcardApp.getInstance().getSession();
-        if (currentUser != null) {
-            textName.setText(currentUser.getEmail());
         }
     }
 
