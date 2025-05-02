@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class pdfReader {
 
-    public static String findFilePath() {
+    private static String findFilePath() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Select a PDF file");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
