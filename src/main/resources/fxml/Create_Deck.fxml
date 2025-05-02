@@ -7,7 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<Pane fx:controller="app.createDeckController"
+      maxHeight="-Infinity"
+      maxWidth="-Infinity"
+      minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      style="-fx-background-color: #C1DFEC;"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fbecb2" height="120.0" layoutX="85.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="39.0" layoutX="85.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
@@ -66,5 +77,29 @@
             <Image url="@../../../../../../Downloads/user%20(2).png" />
          </image>
       </ImageView>
+      <Button fx:id="backButton"
+              text="Back"
+              layoutX="25" layoutY="337"
+              prefWidth="95" prefHeight="39"
+              onAction="#handleBack"
+              style="-fx-background-color: #FF6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
+      <Button fx:id="createKeywordsButton"
+              text=""
+              layoutX="240" layoutY="177"
+              prefWidth="130" prefHeight="120"
+              onAction="#handleKeywords"
+              style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"/>
+      <Button fx:id="createDocumentButton"
+              text=""
+              layoutX="85" layoutY="177"
+              prefWidth="130" prefHeight="120"
+              onAction="#handleDocument"
+              style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"/>
+      <Button fx:id="createPDFButton"
+              text=""
+              layoutX="398" layoutY="177"
+              prefWidth="130" prefHeight="120"
+              onAction="#handlePDF"
+              style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"/>
    </children>
 </Pane>

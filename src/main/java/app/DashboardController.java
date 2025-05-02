@@ -38,4 +38,18 @@ public class DashboardController implements Initializable {
             textName.setText(currentUser.getEmail());
         }
     }
+
+    @FXML
+    private void handleCreateDeck(ActionEvent event) {
+        try {
+            FlashcardApp.getInstance().setSessionToken(null);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Create Deck");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

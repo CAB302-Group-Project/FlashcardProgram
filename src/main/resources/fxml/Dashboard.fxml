@@ -114,5 +114,11 @@
               prefWidth="80" prefHeight="30"
               onAction="#handleLogout"
               style="-fx-background-color: #FF6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
+      <Button fx:id="createDeckButton"
+              text=""
+              layoutX="245" layoutY="120"
+              prefWidth="142" prefHeight="107"
+              onAction="#handleCreateDeck"
+              style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"/>
    </children>
 </Pane>

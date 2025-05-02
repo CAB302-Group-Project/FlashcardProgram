@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="app.createKeywordController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
       <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="3.0" layoutY="14.0">
@@ -38,5 +38,11 @@
          </font>
       </Button>
       <TextArea layoutX="179.0" layoutY="171.0" prefHeight="82.0" prefWidth="240.0" />
+      <Button fx:id="backButton"
+              text="Back"
+              layoutX="25" layoutY="337"
+              prefWidth="95" prefHeight="39"
+              onAction="#handleBack"
+              style="-fx-background-color: #FF6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
    </children>
 </Pane>
