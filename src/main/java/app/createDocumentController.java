@@ -33,6 +33,7 @@ public class createDocumentController {
 
         String document = pdfReader.pdfExtract(); // Opening a file and getting the text from it
 
+
         // Go back to create deck
         try {
             FlashcardApp.getInstance().setSessionToken(null);
