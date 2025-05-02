@@ -12,6 +12,7 @@ import java.util.List;
 
 public class prompt {
 
+    // Need to separate the Answers from the questions with regex.
     public static List<String> flashcardPrompt(String promptText) {
 
         // Just a pre-prompt explanation of its role at that given moment.
