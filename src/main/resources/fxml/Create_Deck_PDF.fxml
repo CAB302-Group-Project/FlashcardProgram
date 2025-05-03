@@ -32,7 +32,11 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="255.0" layoutY="233.0" mnemonicParsing="false" text="Choose File">
+      <Button layoutX="255.0"
+              layoutY="233.0"
+              mnemonicParsing="false"
+              text="Choose File"
+              onAction="#handleFile">
          <font>
             <Font size="14.0" />
          </font>
@@ -43,5 +47,6 @@
               prefWidth="95" prefHeight="39"
               onAction="#handleBack"
               style="-fx-background-color: #FF6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
    </children>
 </Pane>
