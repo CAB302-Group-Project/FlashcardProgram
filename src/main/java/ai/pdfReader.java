@@ -29,7 +29,7 @@ public class pdfReader {
         return null;
     }
 
-    // Only this method needs to be called. It automatically calls findfilepath within it
+    // Only this method needs to be called. It automatically calls findfilepath within it.
     public static String pdfExtract() throws IOException {
 
         File pdf = new File(findFilePath()); // Grabs the file from findFilePath().
