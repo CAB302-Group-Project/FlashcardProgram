@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1D2440;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SignUpController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1D2440;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SignUpController">
    <children>
       <Text fill="WHITE" layoutX="243.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
          <font>
@@ -26,9 +22,9 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #687DF7;" text="Sign Up" textFill="WHITE" onAction="#handleSignUp" />
-      <PasswordField fx:id="confirmField" layoutX="173.0" layoutY="254.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #1D2440; -fx-border-color: #FFFFFF;" />
-      <Button layoutX="417.0" layoutY="331.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="56.0" style="-fx-background-color: #1D2440;" text="Log In" textFill="#687df7" onAction="#handleLogin" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #687DF7;" text="Sign Up" textFill="WHITE" />
+      <PasswordField fx:id="confirmField" layoutX="173.0" layoutY="254.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
+      <Button layoutX="417.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="24.0" prefWidth="56.0" style="-fx-background-color: #1D2440;" text="Log In" textFill="#687df7" />
       <Text fill="WHITE" layoutX="169.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
          <font>
             <Font size="14.0" />
@@ -44,7 +40,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="emailField" layoutX="173.0" layoutY="132.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #1D2440; -fx-border-color: #FFFFFF;" />
-      <PasswordField fx:id="passwordField" layoutX="173.0" layoutY="193.0" prefHeight="27.0" prefWidth="300.0" style="-fx-background-color: #1D2440; -fx-border-color: #FFFFFF;" />
+      <TextField fx:id="emailField" layoutX="173.0" layoutY="132.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
+      <PasswordField fx:id="passwordField" layoutX="173.0" layoutY="193.0" prefHeight="27.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
    </children>
 </Pane>

@@ -20,8 +20,6 @@ public class DBInit
                 );
             """);
 
-            String sql = "ALTER TABLE users ADD COLUMN name TEXT DEFAULT 'Unnamed User';";
-
             // Log of User Logins
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS login_log (

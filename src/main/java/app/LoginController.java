@@ -45,7 +45,7 @@ public class LoginController {
                 Parent root = loader.load();
 
                 DashboardController controller = loader.getController();
-                controller.setUser(user);  // You’ll add this next
+                controller.setUser(user);
 
                 Stage stage = (Stage) emailField.getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -62,8 +62,16 @@ public class LoginController {
 
 
     @FXML
-    private void handleSignUp() {
-        System.out.println("Redirecting to Sign Up screen...");
-        // Later: Add navigation logic here
+    private void handleSignUp(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Sign_Up.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

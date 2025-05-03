@@ -1,56 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
-<Pane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.LoginController"
-      prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1D2440;">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.LoginController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #1D2440;">
 
-   <children>
-      <Text fill="WHITE" layoutX="251.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
+   <top>
+      <VBox alignment="TOP_CENTER" spacing="15.0">
+         <padding>
+            <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+         </padding>
 
-      <ImageView fx:id="logoImage" fitHeight="100.0" fitWidth="150.0" layoutX="5.0"/>
+         <ImageView fx:id="logoImage" fitHeight="100.0" fitWidth="150.0" />
 
-      <Text fill="WHITE" layoutX="165.0" layoutY="145.0" text="Email">
-         <font><Font size="18.0"/></font>
-      </Text>
+         <Text fill="WHITE" text="Log In">
+            <font><Font size="36.0"/></font>
+         </Text>
 
-      <TextField fx:id="emailField" layoutX="166.0" layoutY="150.0" prefHeight="25.0" prefWidth="300.0"
-                 style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF;" />
+         <VBox spacing="5.0" maxWidth="300.0">
+            <Text fill="WHITE" text="Email">
+               <font><Font size="18.0"/></font>
+            </Text>
+            <TextField fx:id="emailField"
+                       promptText="Enter your email"
+                       style="-fx-background-color: white;" />
+         </VBox>
 
-      <Text fill="WHITE" layoutX="165.0" layoutY="207.0" text="Password">
-         <font><Font size="18.0"/></font>
-      </Text>
+         <VBox spacing="5.0" maxWidth="300.0">
+            <Text fill="WHITE" text="Password">
+               <font><Font size="18.0"/></font>
+            </Text>
+            <PasswordField fx:id="passwordField"
+                           promptText="Enter your password"
+                           style="-fx-background-color: white;" />
+         </VBox>
 
-      <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="212.0" prefHeight="27.0" prefWidth="300.0"
-                     style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
+         <Button fx:id="loginButton"
+                 text="Log In"
+                 maxWidth="300.0"
+                 onAction="#handleLogin"
+                 style="-fx-background-color: #687DF7; -fx-text-fill: white;" />
 
-      <Button fx:id="loginButton" layoutX="165.0" layoutY="273.0" prefHeight="25.0" prefWidth="300.0"
-              style="-fx-background-color: #687DF7;" text="Log In" textFill="WHITE" onAction="#handleLogin"/>
+         <Label fx:id="errorLabel" textFill="red" text="" />
 
-      <Text fill="WHITE" layoutX="166.0" layoutY="332.0" text="Don't have an account?">
-         <font><Font size="14.0"/></font>
-      </Text>
-
-      <Label fx:id="errorLabel"
-             layoutX="165.0"
-             layoutY="360.0"
-             textFill="red"
-             text="" />
-
-      <Button fx:id="signUpButton" layoutX="401.0" layoutY="314.0" prefHeight="19.0" prefWidth="64.0"
-              style="-fx-background-color: #1D2440;" text="Sign Up" textFill="#687df7" onAction="#handleSignUp"/>
-   </children>
-</Pane>
+         <HBox alignment="CENTER" spacing="5.0">
+            <Text fill="WHITE" text="Don't have an account?">
+               <font><Font size="14.0"/></font>
+            </Text>
+            <Button fx:id="signUpButton"
+                    text="Sign Up"
+                    onAction="#handleSignUp"
+                    style="-fx-background-color: transparent; -fx-text-fill: #687DF7;" />
+         </HBox>
+      </VBox>
+   </top>
+</BorderPane>

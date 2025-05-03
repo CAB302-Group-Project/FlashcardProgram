@@ -1,6 +1,8 @@
 package app;
 
 import db.DBConnector;
+import db.UserDAO;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,8 @@ public class Main {
         if (conn != null) {
             System.out.println("Connection successful!");
         }
+
+        UserDAO.insertTestUser();
 
        /*// Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);
