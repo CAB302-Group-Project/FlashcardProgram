@@ -165,7 +165,7 @@
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Button fx:id="profilebutton" onAction="#handleCreateDeck" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
       </Group>
    </children>
