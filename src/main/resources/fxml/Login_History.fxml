@@ -52,7 +52,7 @@
          <children>
             <ImageView fitHeight="34.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/user%20(2).png" />
+                  <Image url="@images/user.png" />
                </image>
             </ImageView>
             <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
