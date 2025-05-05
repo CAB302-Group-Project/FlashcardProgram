@@ -15,7 +15,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
       <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="4.0" layoutY="6.0">
          <image>
-            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
+            <Image url="@images/Small_Logo.png" />
          </image>
       </ImageView>
       <Text layoutX="188.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Flashcards">
@@ -47,10 +47,9 @@
       <Button layoutX="384.0" layoutY="361.0" mnemonicParsing="false" text="Hard" />
       <Button layoutX="524.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #687DF7;" text="Edit Deck" textFill="WHITE" />
       <TextArea layoutX="173.0" layoutY="217.0" prefHeight="52.0" prefWidth="258.0" />
-      <ImageView fitHeight="82.0" fitWidth="142.0" layoutX="230.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="557.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Downloads/user%20(2).png" />
+            <Image url="@images/user.png" />
          </image>
       </ImageView>
    </children>

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import app.DashboardController;
 
 public class createDeckController {
 
@@ -15,10 +16,12 @@ public class createDeckController {
         try {
             FlashcardApp.getInstance().setSessionToken(null);
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
