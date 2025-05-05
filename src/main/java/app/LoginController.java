@@ -33,7 +33,7 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (email.isBlank() || password.isBlank()) {
-            System.out.println("Please fill in both email and password.");
+            errorLabel.setText("Please fill out both email and password fields");
             return;
         }
 
