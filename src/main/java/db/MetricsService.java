@@ -1,5 +1,7 @@
 package db;
 
+import db.DAO.StudyMetricsDAO;
+
 public class MetricsService
 {
 

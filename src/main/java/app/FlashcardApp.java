@@ -4,9 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.flashcardai.services.AuthService;
+import utilities.services.AuthService;
 import db.DBConnector;
-import db.UserDAO;
+import db.User;
+import db.DAO.UserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -63,6 +64,12 @@ public class FlashcardApp extends Application {
 
     public void setSessionToken(String token) {
         this.sessionToken = token;
+    }
+
+    public User getCurrentUser()
+    {
+        Integer id = getSession();
+        return id != null ? UserDAO.getUserByID(id) : null;
     }
 
     public Integer getSession() {
