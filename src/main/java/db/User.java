@@ -1,13 +1,14 @@
 package db;
 
 public class User {
-    private final int id;
-    private final String email;
+    private int id;
+    private String email;
     private String name;
 
-    public User(int id, String email) {
+    public User(int id, String email, String name) {
         this.id = id;
         this.email = email;
+        this.name = name;
     }
 
     public int getId() {

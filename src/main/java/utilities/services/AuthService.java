@@ -11,11 +11,11 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 
 public class AuthService {
-    public static boolean register(String username, String password) {
-        db.User user = UserDAO.getUser(username);
+    public static boolean register(String name, String email, String password) {
+        db.User user = UserDAO.getUser(email);
         if (user == null) {
             String hashed = Hasher.hash(password);
-            UserDAO.insertUser(username, hashed);
+            UserDAO.insertUser(name, email, hashed);
             return true;
         }
 

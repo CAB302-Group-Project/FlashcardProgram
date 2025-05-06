@@ -22,28 +22,36 @@ public class SignUpController {
     private PasswordField confirmField;
 
     @FXML
+    private TextField nameField;
+
+    @FXML
     private void handleSignUp(ActionEvent event) {
         String email = emailField.getText();
+        String name = nameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmField.getText();
-        if (password.equals(confirmPassword)) {
-            if (AuthService.register(email, password)) {
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-                    Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Login");
-                    stage.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                // Use modal
-                System.err.println("Account already exists");
+
+        if (email.isEmpty() || name.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            System.err.println("Please fill in all fields.");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            System.err.println("Passwords do not match");
+            return;
+        }
+        if (AuthService.register(name, email, password)) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Login");
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
-            // Use modal
-            System.err.println("Passwords do not match");
+            System.err.println("Account already exists");
         }
     }
 
