@@ -1,57 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="3.0" layoutY="14.0">
-         <image>
-            <Image url="@images/Small_Logo.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="184.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Flashcards">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <Text layoutX="188.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Flashcards" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="30.0" />
          </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </Text>
-      <Text layoutX="286.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Topic">
+      <Text layoutX="290.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Topic" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="14.0" />
          </font>
+         <GridPane.margin>
+            <Insets top="50.0" />
+         </GridPane.margin>
       </Text>
-      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="181.0" layoutX="149.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
-      <Line endX="126.99996948242188" layoutX="322.0" layoutY="261.0" startX="-173.00001525878906" />
-      <Line endX="100.0" layoutX="85.0" layoutY="277.0" startX="71.80001831054688" />
-      <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="156.0" layoutY="277.0" startX="-0.266693115234375" />
-      <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="166.0" layoutY="287.0" startX="-0.266693115234375" />
-      <Line endX="100.0" layoutX="342.0" layoutY="277.0" startX="71.80001831054688" />
-      <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="432.0" layoutY="288.0" startX="-0.266693115234375" />
-      <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="442.0" layoutY="277.0" startX="-0.266693115234375" />
-      <Text layoutX="192.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" />
-      <Text layoutX="382.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" />
-      <Text layoutX="299.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
-      <Text layoutX="273.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="312.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="81.0" layoutX="184.0" layoutY="305.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
-      <Button layoutX="196.0" layoutY="352.0" mnemonicParsing="false" text="Easy" />
-      <Button layoutX="276.0" layoutY="352.0" mnemonicParsing="false" text="Medium" />
-      <Button layoutX="372.0" layoutY="352.0" mnemonicParsing="false" text="Hard" />
-      <Button layoutX="523.0" layoutY="60.0" mnemonicParsing="false" text="Edit Deck" />
-      <TextArea layoutX="170.0" layoutY="191.0" prefHeight="52.0" prefWidth="258.0" />
-      <Text layoutX="225.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How difficult was this question?" />
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="556.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/user.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="524.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #687DF7;" text="Edit Deck" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Group layoutX="10.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Group>
+      <GridPane layoutX="81.0" layoutY="122.0" maxWidth="1.7976931348623157E308" prefHeight="252.0" prefWidth="440.0" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="200.0" layoutX="0.5000152587890625" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                  <Line endX="126.0" layoutX="173.0" layoutY="159.0" startX="-172.0" />
+                  <Line endX="100.0" layoutX="-62.0" layoutY="182.0" startX="71.80001831054688" />
+                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="10.0" layoutY="182.0" startX="-0.266693115234375" />
+                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="20.0" layoutY="193.0" startX="-0.266693115234375" />
+                  <Line endX="100.0" layoutX="189.0" layoutY="182.0" startX="71.80001831054688" />
+                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="281.0" layoutY="192.0" startX="-0.266693115234375" />
+                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="290.0" layoutY="182.0" startX="-0.266693115234375" />
+                  <Text layoutX="41.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" />
+                  <Text layoutX="230.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" />
+                  <Text layoutX="147.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
+                  <Text layoutX="121.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="160.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <TextArea layoutX="21.500015258789062" layoutY="15.0" prefHeight="131.0" prefWidth="258.0" />
+                  <Button fx:id="previousbutton" layoutX="9.0" layoutY="169.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button fx:id="nextbutton" layoutX="260.0" layoutY="167.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="81.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" text="Easy" />
+                  <Button layoutX="92.0" layoutY="47.0" mnemonicParsing="false" text="Medium" />
+                  <Button layoutX="188.0" layoutY="47.0" mnemonicParsing="false" text="Hard" />
+                  <Text layoutX="41.0" layoutY="20.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="How difficult was this question?" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="-280.0" />
+               </GridPane.margin>
+            </Group>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="80.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </GridPane>
+      <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Group>
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
+               <image>
+                  <Image url="@images/Small_Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+      </Group>
+      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+         <children>
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="9.5999755859375" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="profilebutton1" layoutX="10.0" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Group>
    </children>
-</Pane>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="50.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="12.0" />
+      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="78.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>
