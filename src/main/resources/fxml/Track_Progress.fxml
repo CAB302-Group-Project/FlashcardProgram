@@ -1,110 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="14.0" layoutY="13.0">
-         <image>
-            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="559.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/user%20(2).png" />
-         </image>
-      </ImageView>
-      <Text layoutX="213.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Track Progress">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <Text layoutX="232.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="See how far you've come!">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="26.0" layoutY="287.0" stroke="WHITE" strokeType="INSIDE" width="550.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="150.0" layoutX="26.0" layoutY="125.0" stroke="WHITE" strokeType="INSIDE" width="260.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="150.0" layoutX="311.0" layoutY="125.0" stroke="WHITE" strokeType="INSIDE" width="260.0" />
-      <Text layoutX="88.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Performance">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="371.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pomodoro Sessions">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="32.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flashcard Memory">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Circle fill="#c9d8f2" layoutX="233.0" layoutY="302.0" radius="10.0" stroke="#c9d8f2" strokeType="INSIDE" />
-      <Circle fill="#d9c9f2" layoutX="233.0" layoutY="332.0" radius="10.0" stroke="#d9c9f2" strokeType="INSIDE" />
-      <Circle fill="#f2c9d9" layoutX="233.0" layoutY="362.0" radius="10.0" stroke="#f2c9d9" strokeType="INSIDE" />
-      <Text layoutX="252.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy" />
-      <Text layoutX="253.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium" />
-      <Text layoutX="254.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hard" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8cfff" height="75.0" layoutX="105.0" layoutY="171.0" stroke="#a8cfff" strokeType="INSIDE" width="40.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc6cf" height="40.0" layoutX="169.0" layoutY="206.0" stroke="#ffc6cf" strokeType="INSIDE" width="40.0" />
-      <Text layoutX="106.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct" />
-      <Text layoutX="166.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect" />
-      <MenuButton alignment="CENTER" graphicTextGap="2.0" layoutX="501.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #687DF7;" text="Past Week" textFill="WHITE">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </MenuButton>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#eee4fe" height="75.0" layoutX="362.0" layoutY="300.0" stroke="#eee4fe" strokeType="INSIDE" width="172.0" />
-      <Text layoutX="438.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="461.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="440.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{n}">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="376.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/trophy-star.png" />
-         </image>
-      </ImageView>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#c9d8f2" height="19.0" layoutX="47.0" layoutY="333.0" stroke="#c9d8f2" strokeType="INSIDE" width="56.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#d9c9f2" height="19.0" layoutX="81.0" layoutY="333.0" stroke="#d9c9f2" strokeType="INSIDE" width="56.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f2c9d9" height="19.0" layoutX="115.0" layoutY="333.0" stroke="#f2c9d9" strokeType="INSIDE" width="56.0" />
-      <Circle fill="#1f93ff00" layoutX="384.0" layoutY="209.0" radius="45.0" stroke="#e4e4e4" strokeType="INSIDE" strokeWidth="10.0" />
-      <Text layoutX="443.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sessions this week">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="486.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{n}" wrappingWidth="34.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <Group>
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
+               <image>
+                  <Image url="@images/Small_Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+      </Group>
+      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+         <children>
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="9.5999755859375" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+      </Group>
+      <GridPane layoutX="14.0" layoutY="42.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Track Progress" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="See how far you've come!" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="-10.0" />
+               </GridPane.margin>
+            </Text>
+            <Group GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="150.0" stroke="WHITE" strokeType="INSIDE" width="260.0" />
+                  <BarChart fx:id="QuizPerformance" layoutX="30.0" layoutY="-2.0" prefHeight="130.0" prefWidth="200.0" title="Quiz Performance">
+                    <xAxis>
+                      <CategoryAxis label="Category" prefHeight="22.0" prefWidth="122.0" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="Questions" side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="150.0" stroke="WHITE" strokeType="INSIDE" width="260.0" />
+                  <Text layoutX="26.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pomodoro Sessions">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="54.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sessions this week" wrappingWidth="167.08340454101562">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="121.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{n}" wrappingWidth="34.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="6.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="560.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#eee4fe" height="75.0" layoutX="363.0" layoutY="15.0" stroke="#eee4fe" strokeType="INSIDE" width="172.0" />
+                  <Text layoutX="439.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="462.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="441.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{n}">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="377.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Downloads/trophy-star.png" />
+                     </image>
+                  </ImageView>
+                  <StackedBarChart fx:id="FlashcardMemory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="211.0" title="Flashcard Memory" verticalGridLinesVisible="false">
+                    <xAxis>
+                      <NumberAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <CategoryAxis side="LEFT" />
+                    </yAxis>
+                  </StackedBarChart>
+                  <GridPane layoutX="209.0" layoutY="19.0" prefHeight="75.0" prefWidth="86.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Easy" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Circle fill="#c9d8f2" radius="10.0" stroke="#c9d8f2" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Circle fill="#d9c9f2" radius="10.0" stroke="#d9c9f2" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Circle fill="#f2c9d9" radius="10.0" stroke="#f2c9d9" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hard" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medium" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Group>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </GridPane>
    </children>
-</Pane>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" percentHeight="90.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>

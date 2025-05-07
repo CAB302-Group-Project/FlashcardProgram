@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.Button?>
-<Pane fx:controller="app.createDeckController"
+<Pane fx:controller="utilities.controllers.createDeckController"
       maxHeight="-Infinity"
       maxWidth="-Infinity"
       minHeight="-Infinity"
