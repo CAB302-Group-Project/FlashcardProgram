@@ -109,7 +109,7 @@
                         <Image url="@images/stopwatch.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handlePomodoro" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
             <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
