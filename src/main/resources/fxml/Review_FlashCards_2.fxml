@@ -69,9 +69,10 @@
                   <Text layoutX="147.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
                   <Text layoutX="121.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                   <Text layoutX="160.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <TextArea layoutX="21.500015258789062" layoutY="15.0" prefHeight="131.0" prefWidth="258.0" />
+                  <TextArea layoutX="21.500015258789062" layoutY="15.0" prefHeight="112.0" prefWidth="258.0" />
                   <Button fx:id="previousbutton" layoutX="9.0" layoutY="169.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                   <Button fx:id="nextbutton" layoutX="260.0" layoutY="167.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button fx:id="showanswerbutton" layoutX="104.0" layoutY="130.0" mnemonicParsing="false" text="Show Question" />
                </children>
                <GridPane.margin>
                   <Insets bottom="10.0" />
