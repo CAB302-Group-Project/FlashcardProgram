@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -51,22 +51,12 @@
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="230.0" layoutX="0.5000152587890625" stroke="BLACK" strokeType="INSIDE" width="300.0" />
-                  <Line endX="126.0" layoutX="173.0" layoutY="180.5" startX="-172.0" />
-                  <Line endX="100.0" layoutX="-61.0" layoutY="205.0" startX="71.80001831054688" />
-                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="11.0" layoutY="205.0" startX="-0.266693115234375" />
-                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="21.0" layoutY="216.0" startX="-0.266693115234375" />
-                  <Line endX="100.0" layoutX="189.80003356933594" layoutY="205.5" startX="71.80001831054688" />
-                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="281.52622985839844" layoutY="215.35955810546875" startX="-0.266693115234375" />
-                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="290.52622985839844" layoutY="204.9595947265625" startX="-0.266693115234375" />
-                  <Text layoutX="42.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" />
-                  <Text layoutX="231.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" />
-                  <Text layoutX="148.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
-                  <Text layoutX="122.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text layoutX="161.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Button fx:id="showanswerbutton" layoutX="112.50001525878906" layoutY="150.0" mnemonicParsing="false" text="Show Answer" />
-                  <TextArea layoutX="21.500015258789062" layoutY="15.0" prefHeight="131.0" prefWidth="258.0" />
-                  <Button fx:id="previousbutton" layoutX="10.0" layoutY="192.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-                  <Button fx:id="nextbutton" layoutX="261.0" layoutY="190.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Line endX="126.0" layoutX="173.0" layoutY="199.5" startX="-172.0" />
+                  <Text layoutX="145.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
+                  <Text layoutX="120.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="159.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Button fx:id="showanswerbutton" layoutX="112.50001525878906" layoutY="167.0" mnemonicParsing="false" text="Show Answer" />
+                  <Label fx:id="questionlabel" layoutX="15.0" layoutY="14.0" prefHeight="142.0" prefWidth="272.0" />
                </children>
             </Group>
             <Button mnemonicParsing="false" text="Easy" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

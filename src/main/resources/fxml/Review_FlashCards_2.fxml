@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -55,44 +55,36 @@
          </rowConstraints>
          <children>
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <children>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="200.0" layoutX="0.5000152587890625" stroke="BLACK" strokeType="INSIDE" width="300.0" />
-                  <Line endX="126.0" layoutX="173.0" layoutY="159.0" startX="-172.0" />
-                  <Line endX="100.0" layoutX="-62.0" layoutY="182.0" startX="71.80001831054688" />
-                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="10.0" layoutY="182.0" startX="-0.266693115234375" />
-                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="20.0" layoutY="193.0" startX="-0.266693115234375" />
-                  <Line endX="100.0" layoutX="189.0" layoutY="182.0" startX="71.80001831054688" />
-                  <Line endX="9.33331298828125" endY="-9.933349609375" layoutX="281.0" layoutY="192.0" startX="-0.266693115234375" />
-                  <Line endX="-10.266693115234375" endY="-10.33331298828125" layoutX="290.0" layoutY="182.0" startX="-0.266693115234375" />
-                  <Text layoutX="41.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" />
-                  <Text layoutX="230.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" />
-                  <Text layoutX="147.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
-                  <Text layoutX="121.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text layoutX="160.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <TextArea layoutX="21.500015258789062" layoutY="15.0" prefHeight="112.0" prefWidth="258.0" />
-                  <Button fx:id="previousbutton" layoutX="9.0" layoutY="169.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-                  <Button fx:id="nextbutton" layoutX="260.0" layoutY="167.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-                  <Button fx:id="showanswerbutton" layoutX="104.0" layoutY="130.0" mnemonicParsing="false" text="Show Question" />
-               </children>
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Group>
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="81.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
-                  <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" text="Easy" />
-                  <Button layoutX="92.0" layoutY="47.0" mnemonicParsing="false" text="Medium" />
-                  <Button layoutX="188.0" layoutY="47.0" mnemonicParsing="false" text="Hard" />
-                  <Text layoutX="41.0" layoutY="20.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="How difficult was this question?" />
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="57.0" layoutX="2.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                  <Button layoutX="16.0" layoutY="45.0" mnemonicParsing="false" text="Easy" />
+                  <Button layoutX="92.0" layoutY="45.0" mnemonicParsing="false" text="Medium" />
+                  <Button layoutX="184.0" layoutY="45.0" mnemonicParsing="false" text="Hard" />
+                  <Text layoutX="41.0" layoutY="35.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="How difficult was this question?" />
                </children>
                <GridPane.margin>
-                  <Insets bottom="-280.0" />
+                  <Insets bottom="-290.0" />
                </GridPane.margin>
+            </Group>
+            <Group GridPane.columnSpan="3" GridPane.halignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="230.0" layoutX="0.5000152587890625" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                  <Line endX="126.0" layoutX="173.0" layoutY="199.5" startX="-172.0" />
+                  <Text layoutX="145.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
+                  <Text layoutX="120.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="159.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Button fx:id="showanswerbutton" layoutX="112.50001525878906" layoutY="167.0" mnemonicParsing="false" text="Show Answer" />
+                  <Label fx:id="answerlabel" layoutX="15.0" layoutY="14.0" prefHeight="142.0" prefWidth="272.0" />
+               </children>
             </Group>
          </children>
          <GridPane.margin>
-            <Insets bottom="80.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="100.0" left="20.0" right="20.0" top="50.0" />
          </GridPane.margin>
       </GridPane>
       <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
