@@ -1,5 +1,7 @@
 package app;
 
+import ai.FlashcardResult;
+import ai.prompt;
 import db.DBConnector;
 import db.DAO.UserDAO;
 
@@ -13,6 +15,9 @@ public class Main {
         }
 
         UserDAO.insertTestUser();
+
+
+
 
        /*// Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);

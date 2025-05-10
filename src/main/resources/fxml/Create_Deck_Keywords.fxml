@@ -32,12 +32,23 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="269.0" layoutY="259.0" mnemonicParsing="false" text="Create">
+
+      <TextArea layoutX="179.0"
+                layoutY="171.0"
+                prefHeight="82.0"
+                prefWidth="240.0"
+                fx:id="inputField"
+                promptText="Write keyword(s) for your deck..."/>
+      <Button fx:id="submitButton"
+              onAction="#handleSubmit"
+              layoutX="269.0"
+              layoutY="259.0"
+              mnemonicParsing="false"
+              text="Submit">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea layoutX="179.0" layoutY="171.0" prefHeight="82.0" prefWidth="240.0" />
       <Button fx:id="backButton"
               text="Back"
               layoutX="25" layoutY="337"
