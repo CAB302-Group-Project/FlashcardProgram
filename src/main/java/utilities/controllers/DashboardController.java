@@ -1,8 +1,5 @@
-package utilities.controllers;
+package app;
 
-import app.FlashcardApp;
-import utilities.models.Deck;
-import utilities.services.ApiService;
 import db.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,37 +9,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-import java.util.List;
-
 public class DashboardController {
     private User currentUser;
 
     public void setUser(User user) {
         this.currentUser = user;
+        System.out.println("Welcome, " + user.getEmail());
         updateUI();
-    }
-
-    public void initialize() {
-        currentUser = FlashcardApp.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            updateUI();
-        }
-        else
-        {
-            // Redirect to log in
-        }
-    }
-
-    private final ApiService apiService;
-
-    public DashboardController() {
-        this.apiService = new ApiService();
-    }
-
-    public void displayDecks() {
-        List<Deck> decks = apiService.fetchDecks();  // Fix this typo (Deck instead of Deck)
-        System.out.println("Available Flashcard Decks:");
-        decks.forEach(deck -> System.out.println("- " + deck.getName() + ": " + deck.getDescription()));
     }
 
     @FXML
@@ -73,11 +46,43 @@ public class DashboardController {
     }
 
     @FXML
-    private Text nameText;
+    private void handlePomodoro(ActionEvent event) {
+        try {
+            PomodoroTimerController controller = new PomodoroTimerController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pomodoro_Timer.fxml"));
+            loader.setController(controller);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pomodoro");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleDeckManager(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Deck_Manager.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Deck Manager");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private Text emailText;
 
     private void updateUI() {
-        if (currentUser != null && nameText != null) {
-            nameText.setText(currentUser.getName());
+        if (currentUser != null && emailText != null) {
+            emailText.setText(currentUser.getEmail());
         }
     }
 

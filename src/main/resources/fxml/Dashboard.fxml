@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="594.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.DashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.DashboardController">
 
    <children>
       <Pane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" />
@@ -21,7 +21,7 @@
          </GridPane.margin>
       </ImageView>
 
-                  <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #1D2440;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Text fx:id="emailText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #1D2440;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
@@ -73,7 +73,7 @@
                         <Image url="@images/pencil.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
             <Group GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
@@ -109,7 +109,7 @@
                         <Image url="@images/stopwatch.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handlePomodoro" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
             <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
@@ -127,7 +127,7 @@
                         <Image url="@images/chart-line-up.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
             <Group GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
@@ -145,7 +145,7 @@
                         <Image url="@images/settings-sliders.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handleDeckManager" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
          </children>
@@ -160,7 +160,7 @@
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Button fx:id="profilebutton" onAction="#handleCreateDeck" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
       </Group>
    </children>

@@ -1,11 +1,7 @@
-package utilities.controllers;
+package app;
 
-import app.FlashcardApp;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import utilities.services.AuthService;
 import db.User;
-import db.DAO.UserDAO;
+import db.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -16,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-
+import javafx.scene.Node;
 import java.io.IOException;
 
 public class LoginController {
@@ -37,25 +33,15 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (email.isBlank() || password.isBlank()) {
-            errorLabel.setText("Please fill in both email and password.");
+            errorLabel.setText("Please fill out both email and password fields");
             return;
         }
 
-        String token = AuthService.login(email, password); // Make sure this exists
+        User user = UserDAO.authUser(email, password);  // Make sure this exists
 
-        if (token != null) {
+        if (user != null) {
             try {
-                FlashcardApp.getInstance().setSessionToken(token);
-
-                DecodedJWT jwt = JWT.decode(token);
-                String emailFromToken = jwt.getKeyId(); // stored as .withKeyId(user.getEmail())
-
-                User user = UserDAO.getUser(emailFromToken);
-
-                if (user == null) {
-                    errorLabel.setText("User no longer exists.");
-                    return;
-                }
+                FlashcardApp.getInstance().setUserId(user.getId());
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
                 Parent root = loader.load();
@@ -65,7 +51,6 @@ public class LoginController {
 
                 Stage stage = (Stage) emailField.getScene().getWindow();
                 stage.setScene(new Scene(root));
-                stage.setTitle("Dashboard");
                 stage.show();
 
             } catch (IOException e) {
@@ -77,13 +62,14 @@ public class LoginController {
         }
     }
 
+
     @FXML
     private void handleSignUp(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Sign_Up.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Sign up");
+            stage.setTitle("Login");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
