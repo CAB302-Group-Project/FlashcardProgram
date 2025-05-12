@@ -1,10 +1,16 @@
 package app;
 
+import db.User;
+import db.UserDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -14,6 +20,7 @@ import java.util.ResourceBundle;
 import db.DeckDAO;
 import db.Deck;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class DeckManagerController implements Initializable {
     public static class DeckCell {
@@ -56,5 +63,48 @@ public class DeckManagerController implements Initializable {
         }
 
         tableDecks.setItems(decksList);
+    }
+
+    public void handleDashboard(ActionEvent event) {
+        try {
+            int currentUserId = FlashcardApp.getInstance().getUserId();
+            if (currentUserId == -1) {
+                System.out.println("User not found");
+                handleLogin(event);
+                return;
+            }
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+            Parent root = loader.load();
+
+            DashboardController controller = loader.getController();
+            User user = UserDAO.getUserById(currentUserId);
+            if (user == null) {
+                System.out.println("User not found 2");
+                handleLogin(event);
+                return;
+            }
+
+            controller.setUser(user);
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void handleLogin (ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
