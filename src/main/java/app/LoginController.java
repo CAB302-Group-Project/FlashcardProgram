@@ -41,6 +41,8 @@ public class LoginController {
 
         if (user != null) {
             try {
+                FlashcardApp.getInstance().setUserId(user.getId());
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
                 Parent root = loader.load();
 

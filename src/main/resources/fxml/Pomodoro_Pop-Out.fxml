@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="400.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
       <Group layoutX="9.0" layoutY="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -36,14 +29,14 @@
                </image>
             </ImageView>
             <Circle fill="#1f93ff00" layoutX="79.0" layoutY="68.0" radius="38.0" stroke="#f4f4f4" strokeType="INSIDE" strokeWidth="5.0" />
-            <Text fill="WHITE" layoutX="56.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX" wrappingWidth="50.466400146484375">
+            <Text fx:id="textPopoutTimer" fill="WHITE" layoutX="56.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" wrappingWidth="50.466400146484375">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Circle fill="#687df7" layoutX="79.0" layoutY="134.0" radius="16.0" stroke="WHITE" strokeType="INSIDE" />
-            <Polygon fill="WHITE" layoutX="123.0" layoutY="100.0" points="-50.0, 42.59999084472656, -34.20001220703125, 34.19999694824219, -50.00000762939453, 25.133331298828125" stroke="WHITE" strokeType="INSIDE" />
-            <Button fx:id="profilebutton" layoutX="138.0" layoutY="5.0" prefHeight="10.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Circle fill="#687df7" layoutX="79.0" layoutY="134.0" onMouseClicked="#handlePopoutToggle" radius="16.0" stroke="WHITE" strokeType="INSIDE" />
+            <Polygon fill="WHITE" layoutX="123.0" layoutY="100.0" onMouseClicked="#handlePopoutToggle" points="-50.0, 42.59999084472656, -34.20001220703125, 34.19999694824219, -50.00000762939453, 25.133331298828125" stroke="WHITE" strokeType="INSIDE" />
+            <Button layoutX="138.0" layoutY="5.0" onAction="#handleMaximize" prefHeight="10.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
          <GridPane.margin>
             <Insets left="20.0" top="20.0" />

@@ -46,6 +46,23 @@ public class DashboardController {
     }
 
     @FXML
+    private void handlePomodoro(ActionEvent event) {
+        try {
+            PomodoroTimerController controller = new PomodoroTimerController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pomodoro_Timer.fxml"));
+            loader.setController(controller);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pomodoro");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
     private Text emailText;
 
     private void updateUI() {

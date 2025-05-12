@@ -1,5 +1,7 @@
 package db;
 
+import app.FlashcardApp;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,6 +73,24 @@ public class UserDAO
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
         }
+        return null;
+    }
+
+    public static User getUserById(int userId) {
+        String sql = "SELECT email FROM users WHERE id = ?";
+        try {
+            Connection conn = FlashcardApp.getInstance().getDBConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String email = rs.getString("email");
+                return new User(userId, email);
+            }
+        } catch (SQLException e) {
+            System.err.println("Get user ID failed: " + e.getMessage());
+        }
+
         return null;
     }
 
