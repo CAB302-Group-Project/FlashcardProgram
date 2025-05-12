@@ -145,7 +145,7 @@
                         <Image url="@images/settings-sliders.png" />
                      </image>
                   </ImageView>
-                  <Button prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handleDeckManager" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
          </children>
