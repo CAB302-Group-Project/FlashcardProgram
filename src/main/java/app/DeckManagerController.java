@@ -1,7 +1,8 @@
 package app;
 
+import db.DAO.DeckDAO;
+import db.DAO.UserDAO;
 import db.User;
-import db.UserDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,6 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import db.DeckDAO;
 import db.Deck;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -78,7 +78,7 @@ public class DeckManagerController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
             Parent root = loader.load();
 
-            DashboardController controller = loader.getController();
+            app.DashboardController controller = loader.getController();
             User user = UserDAO.getUserById(currentUserId);
             if (user == null) {
                 System.out.println("User not found 2");

@@ -2,8 +2,8 @@ package app;
 
 import ai.FlashcardResult;
 import ai.prompt;
-import db.DBConnector;
 import db.DAO.UserDAO;
+import db.DBConnector;
 
 import java.sql.Connection;
 

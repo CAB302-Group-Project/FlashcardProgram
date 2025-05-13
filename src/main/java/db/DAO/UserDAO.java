@@ -1,6 +1,8 @@
-package db;
+package db.DAO;
 
 import app.FlashcardApp;
+import db.DBConnector;
+import utilities.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -76,7 +78,7 @@ public class UserDAO
         return null;
     }
 
-    public static User getUserById(int userId) {
+    public static db.User getUserById(int userId) {
         String sql = "SELECT email FROM users WHERE id = ?";
         try {
             Connection conn = FlashcardApp.getInstance().getDBConnection();
