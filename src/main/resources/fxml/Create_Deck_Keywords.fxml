@@ -32,7 +32,14 @@
             <Insets top="40.0" />
          </GridPane.margin>
       </Text>
-      <Button layoutX="269.0" layoutY="259.0" mnemonicParsing="false" text="Create" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button layoutX="269.0"
+              layoutY="259.0"
+              mnemonicParsing="false"
+              text="Create"
+              GridPane.columnIndex="1"
+              GridPane.halignment="CENTER"
+              onAction="#handleSubmit"
+              GridPane.rowIndex="3">
          <font>
             <Font size="14.0" />
          </font>

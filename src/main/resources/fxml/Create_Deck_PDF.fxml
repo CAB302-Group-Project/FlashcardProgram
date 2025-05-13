@@ -30,7 +30,14 @@
             <Insets bottom="60.0" />
          </GridPane.margin>
       </Text>
-      <Button layoutX="255.0" layoutY="233.0" mnemonicParsing="false" text="Choose File" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button layoutX="255.0"
+              layoutY="233.0"
+              mnemonicParsing="false"
+              text="Choose File"
+              GridPane.columnIndex="1"
+              GridPane.halignment="CENTER"
+              onAction="#handleFile"
+              GridPane.rowIndex="3">
          <font>
             <Font size="14.0" />
          </font>
