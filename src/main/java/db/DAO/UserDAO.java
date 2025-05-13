@@ -1,5 +1,6 @@
 package db.DAO;
 
+import app.FlashcardApp;
 import db.DBConnector;
 import db.User;
 
@@ -12,14 +13,14 @@ import java.sql.Statement;
 public class UserDAO
 {
     // Insert a new user
-    public static boolean insertUser(String name, String email, String passwordHash) {
-        String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES(?, ?, ?)";
+    public static boolean insertUser(String email, String name, String passwordHash) {
+        String userInsertSQL = "INSERT INTO users(email, password_hash) VALUES(?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, name);
-            stmt.setString(2, email);
+            stmt.setString(1, email);
+            stmt.setString(2, name);
             stmt.setString(3, passwordHash);
             int affectedRows = stmt.executeUpdate();
 
@@ -47,7 +48,7 @@ public class UserDAO
     // Fetch all users
     public static void getAllUsers()
     {
-        String sql = "SELECT id, name, email, created_at FROM users";
+        String sql = "SELECT id, email, created_at FROM users";
 
         try (Connection conn = db.DBConnector.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -55,7 +56,6 @@ public class UserDAO
             System.out.println("Users:");
             while (rs.next()) {
                 System.out.println("ID " + rs.getInt("id")
-                        + " | Name: " + rs.getString("name")
                         + " | Email: " + rs.getString("email")
                         + " | Created: " + rs.getString("created_at"));
             }
@@ -79,22 +79,20 @@ public class UserDAO
         return null;
     }
 
-    public static User getUserByID(Integer id) {
-        String sql = "Select email, name FROM users WHERE id=? LIMIT 1";
-
-        try (Connection conn = DBConnector.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
+    public static db.User getUserById(int userId) {
+        String sql = "SELECT email FROM users WHERE id = ?";
+        try {
+            Connection conn = FlashcardApp.getInstance().getDBConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
-
             if (rs.next()) {
                 String email = rs.getString("email");
                 String name = rs.getString("name");
-                return new User(id, email, name);
+                return new User(userId, name, email);
             }
-        } catch (Exception e) {
-            System.err.println("Error fetching user by ID: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Get user ID failed: " + e.getMessage());
         }
 
         return null;
@@ -105,7 +103,7 @@ public class UserDAO
     }
 
     public static User getUser(String email) {
-        String sql = "SELECT id, name FROM users WHERE email=? LIMIT 1";
+        String sql = "SELECT id FROM users WHERE email=? LIMIT 1";
         try {
             Connection conn = DBConnector.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -114,7 +112,7 @@ public class UserDAO
             if (rs.next()) {
                 final int id = rs.getInt("id");
                 final String name = rs.getString("name");
-                return new User(id, email, name);
+                return new User(id, name, email);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -137,13 +135,12 @@ public class UserDAO
         }
     }
 
-    public static boolean registerUser(String name, String email, String password) {return insertUser(name, email, password);}
+    public static boolean registerUser(String email, String name, String password) {
+        return insertUser(email, name, password);
+    }
 
     public static User authUser(String email, String password) {
         String sql = "SELECT id, name, password_hash FROM users WHERE email=? LIMIT 1";
-        int userId = -1;
-        String storedPassword = null;
-        String name = null;
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -152,18 +149,18 @@ public class UserDAO
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                userId = rs.getInt("id");
-                name = rs.getString("name");
-                storedPassword = rs.getString("password_hash");
+                int id = rs.getInt("id");
+                String storedPassword = rs.getString("password_hash");
+
+                if (password.equals(storedPassword)) {
+                    logLogin(id);
+                    String name = rs.getString("name");
+                    return new User(id, name, email);
+                }
             }
 
         } catch (SQLException e) {
             System.err.println("Error during auth: " + e.getMessage());
-        }
-
-        if (userId != -1 && password.equals(storedPassword)) {
-            logLogin(userId);
-            return new User(userId, email, name);
         }
 
         return null;
@@ -171,11 +168,11 @@ public class UserDAO
 
     public static void insertTestUser() {
         String email = "test@example.com";
+        String name = "Test Name";
         String password = "test123";
-        String name = "test name";
 
         String deleteSQL = "DELETE FROM users WHERE email = ?";
-        String insertSQL = "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)";
+        String insertSQL = "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect()) {
             try (PreparedStatement del = conn.prepareStatement(deleteSQL)) {
@@ -184,8 +181,8 @@ public class UserDAO
             }
 
             try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
-                ins.setString(1, name);
-                ins.setString(2, email);
+                ins.setString(1, email);
+                ins.setString(2, name);
                 ins.setString(3, password);
                 ins.executeUpdate();
             }

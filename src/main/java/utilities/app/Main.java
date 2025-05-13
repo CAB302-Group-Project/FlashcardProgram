@@ -28,7 +28,6 @@ public class Main {
         System.out.println("Hello from Flashcard AI!");
 
         DashboardController dashboard = new DashboardController();
-        dashboard.displayDecks();
 
         // Test the quiz system
         QuizController quiz = new QuizController();

@@ -40,7 +40,9 @@ public class createDocumentController {
         List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
         List<String> deckAnswers = deck.answers; // This is the A's
 
-
+        if(deck != null) {
+            System.out.println("Prompt successfully created.");
+        }
 
 
         // Go back to create deck

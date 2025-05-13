@@ -1,79 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="14.0" layoutY="13.0">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="559.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
          <image>
-            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
+            <Image url="@images/user.png" />
          </image>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
       </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="559.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/user%20(2).png" />
-         </image>
-      </ImageView>
-      <Separator layoutX="172.0" layoutY="67.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="6.0" style="-fx-background-color: 0;" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" layoutX="199.0" layoutY="131.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" layoutX="199.0" layoutY="180.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" layoutX="199.0" layoutY="229.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
-      <Text layoutX="207.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password">
+      <GridPane layoutX="58.0" layoutY="67.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="144.79999389648438" minHeight="10.0" percentHeight="50.0" prefHeight="93.59998168945313" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Group GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
+                  <Text layoutX="8.0" layoutY="16.892578125" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="266.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #687DF7;" text="Change" textFill="WHITE" />
+                  <Text layoutX="10.0" layoutY="40.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your account password">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="100.0" left="20.0" />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
+                  <Text layoutX="8.0" layoutY="15.892578125" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="266.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #687DF7;" text="Logout" textFill="WHITE" />
+                  <Text layoutX="11.0" layoutY="42.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you wish to logout from this account?">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets left="20.0" top="100.0" />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="50.0" stroke="#b4b4b4" strokeType="INSIDE" width="340.0" />
+                  <Text layoutX="8.0" layoutY="16.892578125" strokeType="OUTSIDE" strokeWidth="0.0" text="Login History">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="277.0" layoutY="13.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="View" textFill="WHITE" />
+                  <Text layoutX="10.0" layoutY="43.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="View the record of your past logins to this account">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Group>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{name}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="40.0" />
+               </GridPane.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{email}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Text>
+            <Group GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d254000" height="25.0" stroke="#1d244000" strokeType="INSIDE" width="132.0" />
+                  <Text layoutX="9.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
+                  <Button fx:id="accountbutton" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Group>
+            <Group GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d2540" height="25.0" stroke="#1d2440" strokeType="INSIDE" width="132.0" />
+                  <Text fill="WHITE" layoutX="8.0" layoutY="17.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="Security" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Group>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </GridPane.margin>
+      </GridPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Security" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
-            <Font size="14.0" />
+            <Font size="30.0" />
          </font>
+         <GridPane.margin>
+            <Insets top="40.0" />
+         </GridPane.margin>
       </Text>
-      <Text layoutX="207.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login History">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="207.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Button fx:id="changePassword" layoutX="465.0" layoutY="144.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #687DF7;" text="Change" textFill="WHITE" />
-      <Button fx:id="loginHistory" layoutX="476.0" layoutY="193.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="View" textFill="WHITE" />
-      <Button fx:id="logout" layoutX="465.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #687DF7;" text="Logout" textFill="WHITE" />
-      <Text layoutX="209.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your account password">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Text fx:id="nameField" layoutX="53.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="emailField" layoutX="60.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{email}">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d2540" height="25.0" layoutX="19.0" layoutY="184.0" stroke="#1d254000" strokeType="INSIDE" width="132.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d2440" height="25.0" layoutX="19.0" layoutY="212.0" stroke="#1d2440" strokeType="INSIDE" width="132.0" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
-      <Text layoutX="207.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="209.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View the record of your past logins to this account">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Text layoutX="210.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you wish to logout from this account?">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
+      <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="300.0" style="-fx-background-color: 0;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+      <Group GridPane.valignment="CENTER">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
+               <image>
+                  <Image url="@images/Small_Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+      </Group>
    </children>
-</Pane>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="50.0" />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="12.0" />
+      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="78.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>

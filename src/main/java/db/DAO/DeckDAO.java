@@ -4,6 +4,7 @@ import app.FlashcardApp;
 import db.DBConnector;
 import db.Deck;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -131,5 +132,29 @@ public class DeckDAO {
             System.err.println("Delete deck failed: " + e.getMessage());
             return false;
         }
+    }
+
+    public static Deck[] getAllDecks() {
+        String sql = "SELECT * FROM decks";
+        List<Deck> decks = new ArrayList<>();
+        try {
+            Connection conn = FlashcardApp.getInstance().getDBConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int userId = rs.getInt("user_id");
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                String created_at = rs.getString("created_at");
+                Deck deck = new Deck(id, userId, title, description, created_at);
+                decks.add(deck);
+            }
+        } catch (SQLException e) {
+            System.err.println("Get all decks failed: " + e.getMessage());
+        }
+
+        Deck[] decksArray = new Deck[decks.size()];
+        return decks.toArray(decksArray);
     }
 }
