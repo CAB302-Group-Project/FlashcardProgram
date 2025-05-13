@@ -38,14 +38,18 @@ public class protoAI {
         eConn.setRequestProperty("Content-Type", "application/json; utf-8");
         eConn.setRequestProperty("Accept", "application/json");
         eConn.setDoOutput(true);
-        eConn.setConnectTimeout(15000); // 15 seconds until the initial connection times out.
-        eConn.setReadTimeout(30000);   // 30 seconds until the AI's response times out.
+        eConn.setConnectTimeout(25000); // 15 seconds until the initial connection times out.
+        eConn.setReadTimeout(60000);   // 30 seconds until the AI's response times out.
 
 
         // JSON body, it works so don't touch it this is like a demon core
-        String jsonInputString = String.format(
-                "{\"model\": \"%s\", \"prompt\":\"%s\", \"stream\": false}", modelName, promptText
-        );
+        JSONObject json = new JSONObject();
+        json.put("model", modelName);
+        json.put("prompt", promptText);
+        json.put("stream", false);
+
+        String jsonInputString = json.toString();
+
 
         // Write the JSON body for the response
         try (OutputStream os = eConn.getOutputStream()) {
