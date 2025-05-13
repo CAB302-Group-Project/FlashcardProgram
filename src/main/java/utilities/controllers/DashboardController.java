@@ -1,5 +1,7 @@
-package app;
+package utilities.controllers;
 
+import app.FlashcardApp;
+import app.PomodoroTimerController;
 import db.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -75,7 +75,7 @@ public class FlashcardApp extends Application {
     public User getCurrentUser()
     {
         Integer id = getSession();
-        return id != null ? UserDAO.getUserByID(id) : null;
+        return id != null ? UserDAO.getUserById(id) : null;
     }
 
     public Integer getSession() {

@@ -13,7 +13,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import db.User;
-import db.UserDAO;
+import db.DAO.UserDAO;
+import utilities.controllers.DashboardController;
 
 public class PomodoroTimerController {
     @FXML

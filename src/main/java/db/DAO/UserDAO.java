@@ -2,7 +2,7 @@ package db.DAO;
 
 import app.FlashcardApp;
 import db.DBConnector;
-import utilities.models.User;
+import db.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,15 @@ import java.sql.Statement;
 public class UserDAO
 {
     // Insert a new user
-    public static boolean insertUser(String email, String passwordHash) {
+    public static boolean insertUser(String email, String name, String passwordHash) {
         String userInsertSQL = "INSERT INTO users(email, password_hash) VALUES(?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, email);
-            stmt.setString(2, passwordHash);
+            stmt.setString(2, name);
+            stmt.setString(3, passwordHash);
             int affectedRows = stmt.executeUpdate();
 
             if (affectedRows == 0) return false;
@@ -87,7 +88,8 @@ public class UserDAO
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String email = rs.getString("email");
-                return new User(userId, email);
+                String name = rs.getString("name");
+                return new User(userId, name, email);
             }
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
@@ -109,7 +111,8 @@ public class UserDAO
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 final int id = rs.getInt("id");
-                return new User(id, email);
+                final String name = rs.getString("name");
+                return new User(id, name, email);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -132,12 +135,12 @@ public class UserDAO
         }
     }
 
-    public static boolean registerUser(String email, String password) {
-        return insertUser(email, password);
+    public static boolean registerUser(String email, String name, String password) {
+        return insertUser(email, name, password);
     }
 
     public static User authUser(String email, String password) {
-        String sql = "SELECT id, password_hash FROM users WHERE email=? LIMIT 1";
+        String sql = "SELECT id, name, password_hash FROM users WHERE email=? LIMIT 1";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -151,7 +154,8 @@ public class UserDAO
 
                 if (password.equals(storedPassword)) {
                     logLogin(id);
-                    return new User(id, email);
+                    String name = rs.getString("name");
+                    return new User(id, name, email);
                 }
             }
 
@@ -164,10 +168,11 @@ public class UserDAO
 
     public static void insertTestUser() {
         String email = "test@example.com";
+        String name = "Test Name";
         String password = "test123";
 
         String deleteSQL = "DELETE FROM users WHERE email = ?";
-        String insertSQL = "INSERT INTO users (email, password_hash) VALUES (?, ?)";
+        String insertSQL = "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect()) {
             try (PreparedStatement del = conn.prepareStatement(deleteSQL)) {
@@ -177,7 +182,8 @@ public class UserDAO
 
             try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
                 ins.setString(1, email);
-                ins.setString(2, password);
+                ins.setString(2, name);
+                ins.setString(3, password);
                 ins.executeUpdate();
             }
 

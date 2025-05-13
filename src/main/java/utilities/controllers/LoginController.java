@@ -1,7 +1,9 @@
-package app;
+package utilities.controllers;
 
 import db.User;
-import db.UserDAO;
+import utilities.controllers.DashboardController;
+import app.FlashcardApp;
+import db.DAO.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+
 import java.io.IOException;
 
 public class LoginController {

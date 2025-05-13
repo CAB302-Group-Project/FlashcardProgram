@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import db.Deck;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import utilities.controllers.DashboardController;
 
 public class DeckManagerController implements Initializable {
     public static class DeckCell {
@@ -78,7 +79,7 @@ public class DeckManagerController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
             Parent root = loader.load();
 
-            app.DashboardController controller = loader.getController();
+            DashboardController controller = loader.getController();
             User user = UserDAO.getUserById(currentUserId);
             if (user == null) {
                 System.out.println("User not found 2");
