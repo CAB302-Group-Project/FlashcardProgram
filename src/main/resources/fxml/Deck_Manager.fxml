@@ -1,62 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="utilities.controllers.DeckManagerController"
+          maxHeight="-Infinity" maxWidth="-Infinity"
+          minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="400.0" prefWidth="600.0"
+          style="-fx-background-color: #C1DFEC;"
+          xmlns="http://javafx.com/javafx/17.0.12"
+          xmlns:fx="http://javafx.com/fxml/1">
+
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="4.0" layoutY="4.0">
-         <image>
-            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
-         </image>
-      </ImageView>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="17.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc6cf" height="39.0" layoutX="17.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="71.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="42.0" layoutY="158.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="14.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc790" height="39.0" layoutX="14.0" layoutY="258.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="68.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="39.0" layoutY="306.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="163.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#a8cfff" height="39.0" layoutX="163.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="217.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="188.0" layoutY="158.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="160.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e6c5ff" height="39.0" layoutX="160.0" layoutY="258.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="214.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="185.0" layoutY="306.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="307.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fbecb2" height="39.0" layoutX="307.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="361.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="332.0" layoutY="157.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="304.0" layoutY="261.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#c5c4c4" height="39.0" layoutX="304.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="358.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="329.0" layoutY="305.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="451.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#b2fbb7" height="39.0" layoutX="451.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="505.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="476.0" layoutY="157.0" prefHeight="39.0" prefWidth="79.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="448.0" layoutY="261.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fe7c7c" height="39.0" layoutX="448.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Text layoutX="502.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextArea layoutX="473.0" layoutY="305.0" prefHeight="39.0" prefWidth="79.0" />
-      <Text layoutX="213.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deck Manager">
+      <!-- Top header pane -->
+      <Pane prefHeight="200.0" prefWidth="200.0"
+            style="-fx-background-color: #1d2440;"
+            GridPane.columnSpan="3" />
+
+      <!-- Logo and dashboard button -->
+      <Group GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.0">
+               <image>
+                  <Image url="@images/Small_Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="dashboardButton"
+                    onAction="#handleBackToDashboard"
+                    prefHeight="32.0" prefWidth="142.0"
+                    style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"
+                    text="" />
+         </children>
+      </Group>
+
+      <!-- Title -->
+      <Text layoutX="213.0" layoutY="83.0"
+            strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Deck Manager"
+            GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="30.0" />
          </font>
+         <GridPane.margin>
+            <Insets top="20.0" />
+         </GridPane.margin>
       </Text>
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="561.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/user%20(2).png" />
-         </image>
-      </ImageView>
+
+      <!-- Decks table -->
+      <TableView fx:id="tableDecks"
+                 layoutX="76.0" layoutY="152.0"
+                 prefHeight="200.0" prefWidth="477.0"
+                 GridPane.columnSpan="3" GridPane.rowIndex="2">
+         <columns>
+            <TableColumn fx:id="dateColumn" text="Creation Date" />
+            <TableColumn fx:id="nameColumn" text="Name" />
+
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <GridPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </GridPane.margin>
+      </TableView>
+
+      <!-- User profile button -->
+      <Group GridPane.columnIndex="2"
+             GridPane.halignment="RIGHT"
+             GridPane.valignment="CENTER">
+         <children>
+            <ImageView fitHeight="34.0" fitWidth="54.0"
+                       pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
+            <Button onAction="#handleProfile"
+                    prefHeight="34.0" prefWidth="34.0"
+                    style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"
+                    text="" />
+         </children>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Group>
    </children>
-</Pane>
+
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
+   </columnConstraints>
+
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" percentHeight="12.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="68.0" minHeight="6.0" percentHeight="10.0" prefHeight="68.0" />
+      <RowConstraints maxHeight="194.0" minHeight="10.0" percentHeight="78.0" prefHeight="132.0" vgrow="ALWAYS" />
+   </rowConstraints>
+</GridPane>

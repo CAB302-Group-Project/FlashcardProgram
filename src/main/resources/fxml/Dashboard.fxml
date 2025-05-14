@@ -73,7 +73,7 @@
                         <Image url="@images/pencil.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handleStartQuiz" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="Start Quiz" />
                </children>
             </Group>
             <Group GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
@@ -127,7 +127,7 @@
                         <Image url="@images/chart-line-up.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handleTrackProgress" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="Track Progress" />
                </children>
             </Group>
             <Group GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
@@ -145,7 +145,7 @@
                         <Image url="@images/settings-sliders.png" />
                      </image>
                   </ImageView>
-                  <Button onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#handleDeckManager" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="Deck Manager" />
                </children>
             </Group>
          </children>

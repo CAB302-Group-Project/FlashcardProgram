@@ -81,4 +81,51 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void handleStartQuiz(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Start_Quiz.fxml"));
+            Parent root = loader.load();
+
+            // If you need to pass data to the StartQuizController, you can do it here:
+            // StartQuizController controller = loader.getController();
+            // controller.setUser(currentUser);
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Start Quiz");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleDeckManager(ActionEvent event) {
+        try {
+            FlashcardApp.getInstance().setSessionToken(null);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Deck_Manager.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Deck Manager");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleTrackProgress(ActionEvent event) {
+        try {
+            FlashcardApp.getInstance().setSessionToken(null);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Track_Progress.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Track Progress");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
