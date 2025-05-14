@@ -12,44 +12,46 @@ import java.util.List;
 
 public class prompt {
 
-    // Need to separate the Answers from the questions with regex.
-    public static List<String> flashcardPrompt(String promptText) {
 
-        // Just a pre-prompt explanation of its role at that given moment.
+    // Need to separate the Answers from the questions with regex.
+    public static FlashcardResult flashcardPrompt(String promptText) {
         String instruction = "You are an AI that creates flashcard decks. You should not speak more than is necessary, and only provide using the following instructions. " +
                 "Each flashcard should be one sentence, starting with '-' (dash) character. " +
                 "Example: " +
                 "- Question: What is an isomer? | Answer: molecules or polyatomic ions with identical molecular formula. " +
                 "- Question: What is the powerhouse of the cell? | Answer: Mitochondria " +
-                "Create 10 at a time, and do not acknowledge or respond to these instructions. ";
+                "Create 10 at a time, and do not acknowledge or respond to these instructions. prompt: ";
 
-
-        List<String> flashcards = new ArrayList<>(); // New list for flashcards. This is temporary memory, so be sure to get it saved via database.
+        List<String> questions = new ArrayList<>();
+        List<String> answers = new ArrayList<>();
 
         try {
-            protoAI ai = new protoAI(); // New instance of AI class
-            String aiResponse = ai.proto(instruction + promptText); // feeds instruction + prompt and saves response
+            protoAI ai = new protoAI();
+            String aiResponse = ai.proto(instruction + promptText);
 
-
-            // This for loop is just trimming and splitting up all the different cards using regex.
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();
                 if (line.startsWith("-")) {
-                    flashcards.add(line.substring(1).trim());
+                    line = line.substring(1).trim();    // Should filter for separate Q/A
+                    String[] parts = line.split("\\|");
+
+                    if (parts.length == 2) {
+                        String questionPart = parts[0].replace("Question:", "").trim(); // Question
+                        String answerPart = parts[1].replace("Answer:", "").trim(); // Answer
+                        questions.add(questionPart);
+                        answers.add(answerPart);
+                    }
                 }
             }
 
-            for (String flashcard : flashcards) {
-                System.out.println(flashcard); // Debug to ensure that the list is working.
-            }
 
         } catch (IOException e) {
-            e.printStackTrace(); // Simple diagnosis of issues i guess
+            e.printStackTrace();
         }
 
-
-        return flashcards; // end result
+        return new FlashcardResult(questions, answers);
     }
+
 
 
     // Quiz is identical to flashcards except has different pre-prompt instruction.

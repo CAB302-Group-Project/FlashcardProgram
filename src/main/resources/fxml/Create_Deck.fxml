@@ -95,6 +95,7 @@
               prefWidth="130" prefHeight="120"
               onAction="#handleDocument"
               style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"/>
+
       <Button fx:id="createPDFButton"
               text=""
               layoutX="398" layoutY="177"

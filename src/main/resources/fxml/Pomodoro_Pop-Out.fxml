@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="400.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PomodoroPopOutController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d2440" height="52.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="14.0" layoutY="13.0">
-         <image>
-            <Image url="@../../../../../Pictures/Screenshots/Screenshot%202025-04-07%20202321.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="559.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/user%20(2).png" />
-         </image>
-      </ImageView>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d2440" height="130.0" layoutX="9.0" layoutY="60.0" stroke="#1d2440" strokeType="INSIDE" width="120.0" />
-      <Text fill="WHITE" layoutX="36.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Focus Timer" />
-      <ImageView fitHeight="14.0" fitWidth="13.0" layoutX="17.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/menu-dots-vertical%20(1).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="108.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/arrow-up-right-from-square%20(4).png" />
-         </image>
-      </ImageView>
-      <Circle fill="#1f93ff00" layoutX="69.0" layoutY="121.0" radius="34.0" stroke="#f4f4f4" strokeType="INSIDE" strokeWidth="5.0" />
-      <Text fill="WHITE" layoutX="50.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Circle fill="#687df7" layoutX="69.0" layoutY="172.0" radius="12.0" stroke="WHITE" strokeType="INSIDE" />
-      <Polygon fill="WHITE" layoutX="115.0" layoutY="140.0" points="-50.0, 40.0, -38.19999694824219, 33.20001220703125, -50.00000762939453, 25.133331298828125" stroke="WHITE" strokeType="INSIDE" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <Group layoutX="9.0" layoutY="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d2440" height="174.0" stroke="#1d2440" strokeType="INSIDE" width="162.0" />
+            <Text fill="WHITE" layoutX="46.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Focus Timer">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <ImageView fitHeight="14.0" fitWidth="13.0" layoutX="8.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/menu-dots-vertical.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="16.0" fitWidth="17.0" layoutX="140.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/arrow-up-right-from-square (white).png" />
+               </image>
+            </ImageView>
+            <Circle fill="#1f93ff00" layoutX="79.0" layoutY="68.0" radius="38.0" stroke="#f4f4f4" strokeType="INSIDE" strokeWidth="5.0" />
+            <Text fx:id="textPopoutTimer" fill="WHITE" layoutX="56.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" wrappingWidth="50.466400146484375">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Circle fill="#687df7" layoutX="79.0" layoutY="134.0" onMouseClicked="#handlePopoutToggle" radius="16.0" stroke="WHITE" strokeType="INSIDE" />
+            <Polygon fill="WHITE" layoutX="123.0" layoutY="100.0" onMouseClicked="#handlePopoutToggle" points="-50.0, 42.59999084472656, -34.20001220703125, 34.19999694824219, -50.00000762939453, 25.133331298828125" stroke="WHITE" strokeType="INSIDE" />
+            <Button layoutX="138.0" layoutY="5.0" onAction="#handleMaximize" prefHeight="10.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+         <GridPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </GridPane.margin>
+      </Group>
    </children>
-</Pane>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="50.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="12.0" />
+      <RowConstraints minHeight="10.0" percentHeight="88.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>
