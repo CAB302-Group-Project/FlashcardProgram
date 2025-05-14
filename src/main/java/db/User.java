@@ -11,6 +11,11 @@ public class User {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
+    
     public int getId() {
         return id;
     }

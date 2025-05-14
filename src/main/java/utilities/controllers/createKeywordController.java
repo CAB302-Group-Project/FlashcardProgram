@@ -4,6 +4,7 @@ import ai.FlashcardResult;
 import ai.pdfReader;
 import ai.prompt;
 import app.FlashcardApp;
+import db.Deck;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -49,21 +50,22 @@ public class createKeywordController {
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
+            Deck.DeckDataHolder.questions = deck.questions;
+            Deck.DeckDataHolder.answers = deck.answers;
         }
 
         // Go back to create deck
         try {
             FlashcardApp.getInstance().setSessionToken(null);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Set_Deck_Information.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Create Deck");
+            stage.setTitle("Set_Deck_Information");
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 }

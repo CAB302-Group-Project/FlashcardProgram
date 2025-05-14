@@ -12,25 +12,30 @@ import java.util.List;
 public class DeckDAO {
 
     // Insert a new deck
-    public static boolean insertDeck(int userId, String title, String description)
+    public static int insertDeck(int userId, String title, String description)
     {
-        String sql = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
-        Connection conn = FlashcardApp.getInstance().getDBConnection();
+        String sql = "INSERT INTO decks(user_id, name, description) VALUES (?, ?, ?)";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, userId);
             stmt.setString(2, title);
             stmt.setString(3, description);
-            stmt.executeUpdate();
-            return true;
 
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) return -1;
+
+            try (var generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e)
-        {
-            System.err.println("Insert deck failed: " + e.getMessage());
-            return false;
-        }
+        return -1;
     }
 
     // Get all decks for a user
