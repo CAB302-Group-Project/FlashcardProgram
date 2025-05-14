@@ -16,7 +16,14 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.createKeywordController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
-      <Text layoutX="220.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Deck" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Text layoutX="220.0"
+            layoutY="98.0"
+            strokeType="OUTSIDE"
+            strokeWidth="0.0"
+            text="Create Deck"
+            GridPane.columnIndex="1"
+            GridPane.halignment="CENTER"
+            GridPane.rowIndex="1">
          <font>
             <Font size="30.0" />
          </font>
@@ -47,7 +54,13 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <TextArea layoutX="179.0" layoutY="171.0" prefHeight="82.0" prefWidth="240.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+      <TextArea layoutX="179.0"
+                fx:id="inputField"
+                layoutY="171.0"
+                prefHeight="82.0"
+                prefWidth="240.0"
+                GridPane.columnSpan="3"
+                GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="20.0" left="150.0" right="150.0" top="20.0" />
          </GridPane.margin></TextArea>
@@ -72,7 +85,11 @@
                   <Image url="@images/Small_Logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Button fx:id="dashboardbutton"
+                    prefHeight="32.0"
+                    prefWidth="142.0"
+                    style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"
+                    text="" />
          </children>
       </Group>
    </children>
