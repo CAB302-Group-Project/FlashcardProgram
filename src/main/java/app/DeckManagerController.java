@@ -13,17 +13,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import utilities.controllers.DashboardController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import db.Deck;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import utilities.controllers.DashboardController;
 
 public class DeckManagerController implements Initializable {
+
     public static class DeckCell {
         private final SimpleStringProperty date;
         private final SimpleStringProperty name;
@@ -64,6 +66,36 @@ public class DeckManagerController implements Initializable {
         }
 
         tableDecks.setItems(decksList);
+
+        // ✅ Add this to handle double-click on row
+        tableDecks.setRowFactory(tv -> {
+            TableRow<DeckCell> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    DeckCell clickedDeck = row.getItem();
+                    openDeckView(clickedDeck);
+                }
+            });
+            return row;
+        });
+    }
+
+    // ✅ This opens DeckView.fxml and passes deck name + date
+    private void openDeckView(DeckCell deck) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_1.fxml"));
+            Parent root = loader.load();
+
+            //DeckViewController controller = loader.getController();
+            //controller.initData(deck.getName(), deck.getDate());
+
+            Stage stage = (Stage) tableDecks.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Deck: " + deck.getName());
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleDashboard(ActionEvent event) {
@@ -96,7 +128,7 @@ public class DeckManagerController implements Initializable {
         }
     }
 
-    public void handleLogin (ActionEvent event) {
+    public void handleLogin(ActionEvent event) {
         try {
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
