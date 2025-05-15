@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PomodoroPopOutController">
+<GridPane prefHeight="400.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
       <Group layoutX="9.0" layoutY="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">

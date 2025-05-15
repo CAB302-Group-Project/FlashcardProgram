@@ -39,14 +39,14 @@
             <Insets right="10.0" />
          </GridPane.margin></Button>
       <GridPane layoutX="81.0" layoutY="122.0" maxWidth="1.7976931348623157E308" prefHeight="252.0" prefWidth="440.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
-         <columnConstraints>
+        <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>

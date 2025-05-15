@@ -92,7 +92,7 @@ public class PomodoroTimerController {
         }
     }
 
-    /*public void handleDashboard(ActionEvent event) {
+    public void handleDashboard(ActionEvent event) {
         try {
             handleToggle();
             timer.cancel();
@@ -124,7 +124,7 @@ public class PomodoroTimerController {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }*/
+    }
 
     public void handleLogin (ActionEvent event) {
         try {

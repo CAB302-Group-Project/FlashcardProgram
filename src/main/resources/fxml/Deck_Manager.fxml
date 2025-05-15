@@ -7,21 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:controller="utilities.controllers.DeckManagerController"
-          maxHeight="-Infinity" maxWidth="-Infinity"
-          minHeight="-Infinity" minWidth="-Infinity"
-          prefHeight="400.0" prefWidth="600.0"
-          style="-fx-background-color: #C1DFEC;"
-          xmlns="http://javafx.com/javafx/17.0.12"
-          xmlns:fx="http://javafx.com/fxml/1">
-
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.DeckManagerController">
    <children>
-      <!-- Top header pane -->
-      <Pane prefHeight="200.0" prefWidth="200.0"
-            style="-fx-background-color: #1d2440;"
-            GridPane.columnSpan="3" />
-
-      <!-- Logo and dashboard button -->
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
       <Group GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <children>
             <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.0">
@@ -29,19 +17,10 @@
                   <Image url="@images/Small_Logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="dashboardButton"
-                    onAction="#handleBackToDashboard"
-                    prefHeight="32.0" prefWidth="142.0"
-                    style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"
-                    text="" />
+            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
       </Group>
-
-      <!-- Title -->
-      <Text layoutX="213.0" layoutY="83.0"
-            strokeType="OUTSIDE" strokeWidth="0.0"
-            text="Deck Manager"
-            GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Text layoutX="213.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deck Manager" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="30.0" />
          </font>
@@ -49,16 +28,10 @@
             <Insets top="20.0" />
          </GridPane.margin>
       </Text>
-
-      <!-- Decks table -->
-      <TableView fx:id="tableDecks"
-                 layoutX="76.0" layoutY="152.0"
-                 prefHeight="200.0" prefWidth="477.0"
-                 GridPane.columnSpan="3" GridPane.rowIndex="2">
+      <TableView fx:id="tableDecks" layoutX="76.0" layoutY="152.0" prefHeight="200.0" prefWidth="477.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
          <columns>
             <TableColumn fx:id="dateColumn" text="Creation Date" />
             <TableColumn fx:id="nameColumn" text="Name" />
-
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -67,38 +40,28 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </TableView>
-
-      <!-- User profile button -->
-      <Group GridPane.columnIndex="2"
-             GridPane.halignment="RIGHT"
-             GridPane.valignment="CENTER">
+      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
          <children>
-            <ImageView fitHeight="34.0" fitWidth="54.0"
-                       pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Button onAction="#handleProfile"
-                    prefHeight="34.0" prefWidth="34.0"
-                    style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;"
-                    text="" />
+            <Button onAction="#handleDashboard" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Group>
    </children>
-
    <columnConstraints>
-      <ColumnConstraints minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="50.0" />
    </columnConstraints>
-
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" percentHeight="12.0" vgrow="NEVER" />
       <RowConstraints maxHeight="68.0" minHeight="6.0" percentHeight="10.0" prefHeight="68.0" />
-      <RowConstraints maxHeight="194.0" minHeight="10.0" percentHeight="78.0" prefHeight="132.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="194.0" minHeight="10.0" percentHeight="78.0" prefHeight="132.0" />
    </rowConstraints>
 </GridPane>

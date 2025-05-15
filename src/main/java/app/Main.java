@@ -1,7 +1,9 @@
 package app;
 
-import db.DBConnector;
+import ai.FlashcardResult;
+import ai.prompt;
 import db.DAO.UserDAO;
+import db.DBConnector;
 
 import java.sql.Connection;
 
@@ -13,6 +15,9 @@ public class Main {
         }
 
         UserDAO.insertTestUser();
+
+
+
 
        /*// Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);

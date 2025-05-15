@@ -22,6 +22,8 @@ import java.util.Date;
 public class FlashcardApp extends Application {
     private static FlashcardApp appInstance;
 
+    private int userId = -1;
+
     private String sessionToken;
 
     private Connection dbInstance;
@@ -62,6 +64,10 @@ public class FlashcardApp extends Application {
         return this.dbInstance;
     }
 
+    public void setUserId(int userId) { this.userId = userId; }
+
+    public int getUserId() { return this.userId; }
+
     public void setSessionToken(String token) {
         this.sessionToken = token;
     }
@@ -69,7 +75,7 @@ public class FlashcardApp extends Application {
     public User getCurrentUser()
     {
         Integer id = getSession();
-        return id != null ? UserDAO.getUserByID(id) : null;
+        return id != null ? UserDAO.getUserById(id) : null;
     }
 
     public Integer getSession() {

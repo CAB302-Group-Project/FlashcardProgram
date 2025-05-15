@@ -22,7 +22,7 @@
 <GridPane fx:controller="utilities.controllers.TrackProgressController" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
-      <Group>
+      <Group GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <children>
             <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
                <image>
@@ -32,15 +32,18 @@
             <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
       </Group>
-      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
          <children>
             <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="9.5999755859375" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Button fx:id="profilebutton" layoutX="10.0" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
       </Group>
       <GridPane layoutX="14.0" layoutY="42.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
         <columnConstraints>
