@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.DeckInfoController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+      <Group>
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
+               <image>
+                  <Image url="@images/Small_Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+         </children>
+      </Group>
+      <TextField fx:id="Prompt_Deck_Title" prefHeight="38.0" prefWidth="200.0" promptText="Title Your Deck" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="Prompt_Deck_Disc" alignment="CENTER" prefHeight="92.0" prefWidth="200.0" promptText="Give your deck a catchy description" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label alignment="CENTER" prefHeight="59.0" prefWidth="199.0" text="Deck Information" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="26.0" />
+         </font></Label>
+      <Button fx:id="confirm_details" alignment="CENTER" mnemonicParsing="false" onAction="#handleSave" prefHeight="52.0" prefWidth="200.0" text="Confirm Details" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="ErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" text="Please give your deck a title!" textAlignment="CENTER" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints percentWidth="50.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="12.0" />
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>

@@ -1,5 +1,7 @@
 package db;
 
+import java.util.List;
+
 public class Deck
 {
     private int id;
@@ -15,6 +17,11 @@ public class Deck
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
+    }
+
+    public class DeckDataHolder {
+        public static List<String> questions;
+        public static List<String> answers;
     }
 
     public int getId() { return id; }

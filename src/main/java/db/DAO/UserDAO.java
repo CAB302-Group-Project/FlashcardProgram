@@ -14,13 +14,13 @@ public class UserDAO
 {
     // Insert a new user
     public static boolean insertUser(String email, String name, String passwordHash) {
-        String userInsertSQL = "INSERT INTO users(email, password_hash) VALUES(?, ?)";
+        String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, email);
-            stmt.setString(2, name);
+            stmt.setString(1, name);
+            stmt.setString(2, email);
             stmt.setString(3, passwordHash);
             int affectedRows = stmt.executeUpdate();
 
@@ -121,11 +121,10 @@ public class UserDAO
         return null;
     }
 
-    private static void logLogin(int userId) {
+    private static void logLogin(Connection conn, int userId) {
         String sql = "INSERT INTO login_log (user_id) VALUES (?)";
 
-        try (Connection conn = DBConnector.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             stmt.executeUpdate();
@@ -151,10 +150,10 @@ public class UserDAO
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String storedPassword = rs.getString("password_hash");
+                String name = rs.getString("name");
 
                 if (password.equals(storedPassword)) {
-                    logLogin(id);
-                    String name = rs.getString("name");
+                    logLogin(conn, id);
                     return new User(id, name, email);
                 }
             }
