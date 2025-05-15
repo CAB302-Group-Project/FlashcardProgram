@@ -148,15 +148,15 @@ public class FlashcardDAO
         }
     }
 
-    public static boolean insertFlashcard(int deckId, String question, String answer) {
-        String sql = "INSERT INTO flashcards(deck_id, question, answer) VALUES (?, ?, ?)";
+    public static boolean insertFlashcard(int deckId, String front, String back) {
+        String sql = "INSERT INTO flashcards(deck_id, front, back) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, deckId);
-            stmt.setString(2, question);
-            stmt.setString(3, answer);
+            stmt.setString(2, front);
+            stmt.setString(3, back);
 
             int affectedRows = stmt.executeUpdate();
             return affectedRows > 0;

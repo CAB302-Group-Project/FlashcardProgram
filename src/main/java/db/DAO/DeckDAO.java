@@ -14,7 +14,7 @@ public class DeckDAO {
     // Insert a new deck
     public static int insertDeck(int userId, String title, String description)
     {
-        String sql = "INSERT INTO decks(user_id, name, description) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {

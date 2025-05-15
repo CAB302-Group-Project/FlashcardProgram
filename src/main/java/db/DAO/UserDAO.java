@@ -14,13 +14,13 @@ public class UserDAO
 {
     // Insert a new user
     public static boolean insertUser(String email, String name, String passwordHash) {
-        String userInsertSQL = "INSERT INTO users(email, password_hash) VALUES(?, ?)";
+        String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, email);
-            stmt.setString(2, name);
+            stmt.setString(1, name);
+            stmt.setString(2, email);
             stmt.setString(3, passwordHash);
             int affectedRows = stmt.executeUpdate();
 
