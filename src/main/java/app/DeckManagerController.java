@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import db.Deck;
+import utilities.controllers.ReviewFlashcardController;
 
 public class DeckManagerController implements Initializable {
 
@@ -86,7 +87,7 @@ public class DeckManagerController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_1.fxml"));
             Parent root = loader.load();
 
-            //DeckViewController controller = loader.getController();
+            //ReviewFlashcardController controller = loader.getController();
             //controller.initData(deck.getName(), deck.getDate());
 
             Stage stage = (Stage) tableDecks.getScene().getWindow();

@@ -62,9 +62,9 @@
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="57.0" layoutX="2.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
-                  <Button layoutX="16.0" layoutY="45.0" mnemonicParsing="false" text="Easy" onAction="#handleEasyClick"/>
-                  <Button layoutX="92.0" layoutY="45.0" mnemonicParsing="false" text="Medium" onAction="#handleMediumClick" />
-                  <Button layoutX="184.0" layoutY="45.0" mnemonicParsing="false" text="Hard" onAction="#handleHardClick"/>
+                  <Button layoutX="16.0" layoutY="45.0" mnemonicParsing="false" text="Easy" />
+                  <Button layoutX="92.0" layoutY="45.0" mnemonicParsing="false" text="Medium" />
+                  <Button layoutX="184.0" layoutY="45.0" mnemonicParsing="false" text="Hard" />
                   <Text layoutX="41.0" layoutY="35.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="How difficult was this question?" />
                </children>
                <GridPane.margin>

@@ -1,5 +1,44 @@
 package utilities.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
+import java.io.IOException;
+
+public class ReviewFlashcardController {
+
+    @FXML
+    private Button showanswerbutton;
+
+    @FXML
+    void handleShowAnswerButton(ActionEvent event) {
+        try {
+            // Load the second FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_2.fxml"));
+            Parent root = loader.load();
+
+            // Get current stage from event
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set new scene
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace(); // You can replace this with custom error handling
+        }
+    }
+}
+
+
+/*package utilities.controllers;
+
 import db.Flashcard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,4 +107,4 @@ public class ReviewFlashcardController {
             e.printStackTrace();
         }
     }
-}
+}*/
