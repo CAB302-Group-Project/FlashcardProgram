@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Deck
 {
-    private int id;
-    private int userId;
-    private String title;
-    private String description;
-    private String createdAt;
+    private final int id;
+    private final int userId;
+    private final String title;
+    private final String description;
+    private final String createdAt;
 
     public Deck(int id, int userId, String title, String description, String createdAt)
     {

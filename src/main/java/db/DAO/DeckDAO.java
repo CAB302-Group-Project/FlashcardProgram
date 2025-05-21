@@ -162,4 +162,59 @@ public class DeckDAO {
         Deck[] decksArray = new Deck[decks.size()];
         return decks.toArray(decksArray);
     }
+
+    public static void insertTestDeckWithCards(int userId) {
+        String insertDeckSQL = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
+        String insertCardSQL = "INSERT INTO flashcards(deck_id, front, back, media_type, difficulty, image_path) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DBConnector.connect()) {
+            conn.setAutoCommit(false);
+
+            // Insert deck
+            int deckId;
+            try (PreparedStatement deckStmt = conn.prepareStatement(insertDeckSQL, Statement.RETURN_GENERATED_KEYS)) {
+                deckStmt.setInt(1, userId);
+                deckStmt.setString(2, "Test Deck");
+                deckStmt.setString(3, "This is a test deck with flashcards.");
+                deckStmt.executeUpdate();
+
+                try (ResultSet keys = deckStmt.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        deckId = keys.getInt(1);
+                    } else {
+                        conn.rollback();
+                        throw new SQLException("Failed to retrieve deck ID.");
+                    }
+                }
+            }
+
+            // Insert test flashcards
+            try (PreparedStatement cardStmt = conn.prepareStatement(insertCardSQL)) {
+                Object[][] testCards = {
+                        {"What is the capital of France?", "Paris", "text", "easy", null},
+                        {"Solve: 9 * 12", "108", "text", "medium", null},
+                        {"Explain polymorphism in OOP", "It allows different objects to respond to the same method in their own way.", "text", "hard", null}
+                };
+
+                for (Object[] card : testCards) {
+                    cardStmt.setInt(1, deckId);
+                    cardStmt.setString(2, (String) card[0]); // front
+                    cardStmt.setString(3, (String) card[1]); // back
+                    cardStmt.setString(4, (String) card[2]); // media_type
+                    cardStmt.setString(5, (String) card[3]); // difficulty
+                    cardStmt.setString(6, (String) card[4]); // image_path (nullable)
+                    cardStmt.addBatch();
+                }
+
+                cardStmt.executeBatch();
+            }
+
+            conn.commit();
+            System.out.println("Test deck and flashcards inserted successfully.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

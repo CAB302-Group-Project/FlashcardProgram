@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 
 public class protoAI {
 
-    private String modelName;
+    private final String modelName;
     private final String endpointUrl = "http://localhost:11434/api/generate";
 
     public protoAI() {

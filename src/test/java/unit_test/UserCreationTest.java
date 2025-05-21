@@ -24,7 +24,7 @@ public class UserCreationTest {
 
     @Test
     public void testInsertUser() {
-        boolean result = UserDAO.insertUser(TEST_EMAIL, TEST_NAME, TEST_PASSWORD);
+        boolean result = UserDAO.insertUser(TEST_NAME, TEST_EMAIL, TEST_PASSWORD);
         assertTrue(result, "User should be inserted successfully");
 
         try (Connection conn = DBConnector.connect();
@@ -45,13 +45,12 @@ public class UserCreationTest {
     @Test
     public void testDuplicateEmailFails() {
         // First insert should succeed
-        assertTrue(UserDAO.insertUser(TEST_EMAIL, TEST_NAME, TEST_PASSWORD));
+        assertTrue(UserDAO.insertUser(TEST_NAME, TEST_EMAIL, TEST_PASSWORD));
 
         // Second insert should fail due to UNIQUE constraint
-        boolean secondInsert = UserDAO.insertUser(TEST_EMAIL, "Another Name", "anotherhash");
+        boolean secondInsert = UserDAO.insertUser("Another Name", TEST_EMAIL, "anotherhash"); // ✅ fixed order
         assertFalse(secondInsert, "Duplicate email insert should fail");
     }
-
 
     @AfterEach
     public void cleanAfter() throws Exception {

@@ -4,30 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConnector
-{
+public class DBConnector {
 
-    private static final String DB_PATH = "data/flashcards.db"; // Will be created automatically
-
-    public static Connection connect()
-    {
-        Connection conn = null;
-        try
-        {
-            String url = "jdbc:sqlite:" + DB_PATH;
-            conn = DriverManager.getConnection(url);
-            System.out.println("Connected to SQLite.");
-        }
-        catch (SQLException e)
-        {
-            System.err.println("Connection failed: " + e.getMessage());
-        }
+    public static Connection connect() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            System.out.println("Driver manually loaded!");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Driver NOT found: " + e.getMessage());
+            // Use test DB if specified, otherwise default to production DB
+            String dbName = System.getProperty("db.name", "flashcards.db");
+            String url = "jdbc:sqlite:" + dbName;
+
+            Connection conn = DriverManager.getConnection(url);
+            System.out.println("Connected to SQLite: " + dbName);
+            return conn;
+
+        } catch (SQLException e) {
+            System.err.println("Connection failed: " + e.getMessage());
+            return null;
         }
-        return conn;
     }
 }

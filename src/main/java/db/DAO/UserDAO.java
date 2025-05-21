@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class UserDAO
 {
     // Insert a new user
-    public static boolean insertUser(String email, String name, String passwordHash) {
+    public static boolean insertUser(String name, String email, String passwordHash) {
         String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect();
@@ -80,16 +80,16 @@ public class UserDAO
     }
 
     public static db.User getUserById(int userId) {
-        String sql = "SELECT email FROM users WHERE id = ?";
+        String sql = "SELECT name, email FROM users WHERE id = ?";
         try {
             Connection conn = FlashcardApp.getInstance().getDBConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                String email = rs.getString("email");
                 String name = rs.getString("name");
-                return new User(userId, name, email);
+                String email = rs.getString("email");
+                return new User(userId, email, name);
             }
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
@@ -103,7 +103,7 @@ public class UserDAO
     }
 
     public static User getUser(String email) {
-        String sql = "SELECT id FROM users WHERE email=? LIMIT 1";
+        String sql = "SELECT id, name FROM users WHERE email=? LIMIT 1";
         try {
             Connection conn = DBConnector.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class UserDAO
             if (rs.next()) {
                 final int id = rs.getInt("id");
                 final String name = rs.getString("name");
-                return new User(id, name, email);
+                return new User(id, email, name);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -134,8 +134,8 @@ public class UserDAO
         }
     }
 
-    public static boolean registerUser(String email, String name, String password) {
-        return insertUser(email, name, password);
+    public static boolean registerUser(String name, String email, String password) {
+        return insertUser(name, email, password);
     }
 
     public static User authUser(String email, String password) {
@@ -154,7 +154,7 @@ public class UserDAO
 
                 if (password.equals(storedPassword)) {
                     logLogin(conn, id);
-                    return new User(id, name, email);
+                    return new User(id, email, name);
                 }
             }
 
@@ -171,7 +171,7 @@ public class UserDAO
         String password = "test123";
 
         String deleteSQL = "DELETE FROM users WHERE email = ?";
-        String insertSQL = "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)";
+        String insertSQL = "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnector.connect()) {
             try (PreparedStatement del = conn.prepareStatement(deleteSQL)) {
@@ -180,13 +180,14 @@ public class UserDAO
             }
 
             try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
-                ins.setString(1, email);
-                ins.setString(2, name);
+                ins.setString(1, name);
+                ins.setString(2, email);
                 ins.setString(3, password);
                 ins.executeUpdate();
             }
 
             System.out.println("Test user recreated: " + email + " / " + password);
+            System.out.println("DB PATH = " + DBConnector.connect().getMetaData().getURL());
 
         } catch (SQLException e) {
             System.err.println("Failed to recreate test user: " + e.getMessage());
