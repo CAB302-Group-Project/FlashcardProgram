@@ -33,6 +33,10 @@ public class Flashcard
     public String getCreatedAt() { return createdAt; }
     public String getImagePath() { return imagePath; }
 
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
     @Override
     public String toString()
     {

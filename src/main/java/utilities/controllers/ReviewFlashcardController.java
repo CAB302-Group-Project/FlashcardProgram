@@ -1,5 +1,7 @@
 package utilities.controllers;
 
+import db.DAO.FlashcardDAO;
+import db.Flashcard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +18,52 @@ public class ReviewFlashcardController {
     @FXML
     private Button showanswerbutton;
 
+    private Flashcard flashcard;
+
+    public void setFlashcard(Flashcard flashcard) {
+        this.flashcard = flashcard;
+        System.out.println("Flashcard received: " + flashcard);
+    }
+
+    @FXML
+    private void handleEasyClick(ActionEvent event) {
+        updateDifficulty("Easy");
+    }
+
+    @FXML
+    private void handleMediumClick(ActionEvent event) {
+        updateDifficulty("Medium");
+    }
+
+    @FXML
+    private void handleHardClick(ActionEvent event) {
+        updateDifficulty("Hard");
+    }
+
+    private void updateDifficulty(String difficulty) {
+        System.out.println("Flashcard when clicking: " + flashcard);
+        if (flashcard == null) {
+            System.out.println("No flashcard selected.");
+            return;
+        }
+
+        try {
+            flashcard.setDifficulty(difficulty); // Update in-memory
+            FlashcardDAO.updateFlashcardDifficulty(flashcard.getId(), difficulty); // Persist to DB
+            System.out.println("Difficulty updated to: " + difficulty);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void handleShowAnswerButton(ActionEvent event) {
         try {
             // Load the second FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_2.fxml"));
             Parent root = loader.load();
+            ReviewFlashcardController controller = loader.getController();
+            controller.setFlashcard(flashcard);
 
             // Get current stage from event
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

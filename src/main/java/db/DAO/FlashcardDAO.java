@@ -167,27 +167,14 @@ public class FlashcardDAO
         }
     }
 
-    public static boolean updateDifficulty(int flashcardId, String difficulty) {
+    public static void updateFlashcardDifficulty(int flashcardId, String difficulty) throws SQLException {
         String sql = "UPDATE flashcards SET difficulty = ? WHERE id = ?";
 
-        try (Connection conn = DBConnector.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (Connection conn = DBConnector.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, difficulty);
             stmt.setInt(2, flashcardId);
-
-            int rowsUpdated = stmt.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Difficulty updated to '" + difficulty + "' for flashcard ID: " + flashcardId);
-                return true;
-            } else {
-                System.out.println("No flashcard found with ID: " + flashcardId);
-                return false;
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Update difficulty failed: " + e.getMessage());
-            return false;
+            stmt.executeUpdate();
         }
     }
+
 }
