@@ -1,7 +1,6 @@
 package utilities.controllers;
 
 import db.User;
-import utilities.controllers.DashboardController;
 import app.FlashcardApp;
 import db.DAO.UserDAO;
 import javafx.fxml.FXML;
@@ -14,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
+import utilities.models.Session;
 
 import java.io.IOException;
 
@@ -44,6 +43,7 @@ public class LoginController {
 
         if (user != null) {
             try {
+                Session.setCurrentUser(user);
                 FlashcardApp.getInstance().setUserId(user.getId());
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
