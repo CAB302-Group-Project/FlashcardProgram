@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizLog {
-    private List<QuizSession> sessions = new ArrayList<>();
+    private final List<QuizSession> sessions = new ArrayList<>();
 
     public void addSession(QuizSession session) {
         sessions.add(session);

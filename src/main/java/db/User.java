@@ -1,9 +1,9 @@
 package db;
 
 public class User {
-    private int id;
-    private String email;
-    private String name;
+    private final int id;
+    private final String email;
+    private final String name;
 
     public User(int id, String email, String name) {
         this.id = id;
