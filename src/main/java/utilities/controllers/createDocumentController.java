@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ai.prompt.flashcardTitle;
+
 public class createDocumentController {
 
     @FXML
@@ -35,10 +37,16 @@ public class createDocumentController {
         String document = pdfReader.pdfExtract(); // Opening a file and getting the text from it
         // YOU CAN SAVE THIS DOCUMENT STRING IF YOU WANT UNDER THE DECK------------------
 
-        FlashcardResult deck = prompt.flashcardPrompt(document); // SAVE THIS TO DB UNDER THE DECK--------------
+        FlashcardResult deck = prompt.flashcardPrompt(document); // The questions
 
-        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
-        List<String> deckAnswers = deck.answers; // This is the A's
+
+        List<String> deckQuestions = deck.questions; // Questions
+        System.out.println(deckQuestions);
+        List<String> deckAnswers = deck.answers; // Answers
+        System.out.println(deckAnswers);
+
+        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
+        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");

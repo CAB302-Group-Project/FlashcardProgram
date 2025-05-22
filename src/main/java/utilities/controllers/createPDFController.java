@@ -40,8 +40,13 @@ public class createPDFController {
 
         FlashcardResult deck = prompt.flashcardPrompt(document); // SAVE THIS TO DB UNDER THE DECK---------------
 
-        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
-        List<String> deckAnswers = deck.answers; // This is the A's
+        List<String> deckQuestions = deck.questions; // Questions
+        System.out.println(deckQuestions);
+        List<String> deckAnswers = deck.answers; // Answers
+        System.out.println(deckAnswers);
+
+        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
+        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
