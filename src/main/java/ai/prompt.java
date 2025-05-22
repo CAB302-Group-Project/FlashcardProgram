@@ -2,7 +2,9 @@ package ai;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // This is the inherited class of protoAI that has methods for prompting either flashcards or quizzes.
 // In terms of keyword based flashcard decks, either method alone will suffice with the parameter filled.
@@ -15,32 +17,32 @@ public class prompt {
 
     // Need to separate the Answers from the questions with regex.
     public static FlashcardResult flashcardPrompt(String promptText) {
-        String instruction = "You are an AI that creates flashcard decks. You should not speak more than is necessary, and only provide using the following instructions. " +
-                "Each flashcard should be one sentence, starting with '-' (dash) character. " +
-                "Example: " +
-                "- Question: What is an isomer? | Answer: molecules or polyatomic ions with identical molecular formula. " +
-                "- Question: What is the powerhouse of the cell? | Answer: Mitochondria " +
-                "Create 10 at a time, and do not acknowledge or respond to these instructions. prompt: ";
+        String instruction = "You are an AI that creates flashcard decks. Return exactly 10 flashcards in the following format, each on its own line:\n" +
+                "- Question: <question>? | Answer: <answer>\n\n" +
+                "Do not return any extra text, explanations, or formatting. Only respond with the 10 lines of flashcards in the above format.\n\n" +
+                "Prompt: ";
+
 
         List<String> questions = new ArrayList<>();
         List<String> answers = new ArrayList<>();
+        Set<String> seenQuestions = new HashSet<>();
+
 
         try {
             protoAI ai = new protoAI();
             String aiResponse = ai.proto(instruction + promptText);
+            System.out.println("AI RAW RESPONSE:\n" + aiResponse);
 
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();
-                if (line.startsWith("-")) {
-                    line = line.substring(1).trim();    // Should filter for separate Q/A
-                    String[] parts = line.split("\\|");
+                if (line.startsWith("- Question:") && line.contains("| Answer:")) {
+                    String[] parts = line.substring(1).split("\\|");
+                    String question = parts[0].replace("Question:", "").trim();
 
-                    if (parts.length == 2) {
-                        String questionPart = parts[0].replace("Question:", "").trim(); // Question
-                        String answerPart = parts[1].replace("Answer:", "").trim(); // Answer
-                        questions.add(questionPart);
-                        answers.add(answerPart);
-                    }
+                    questions.add(question);
+                    String answer = parts[1].replace("Answer:", "").trim();
+
+                    answers.add(answer);
                 }
             }
 
@@ -68,7 +70,6 @@ public class prompt {
         String questionString = "";
         for (int i = 0; i < promptQuestions.size(); i++) {
             questionString = questionString + " " + promptQuestions.get(i); // Just turns the list of questions into one long string for the AI.
-            System.out.println(questionString);
         }
 
         String aiResponse = null; // The string holder for description
@@ -101,7 +102,6 @@ public class prompt {
         String questionString = "";
         for (int i = 0; i < promptQuestions.size(); i++) {
             questionString = questionString + " " + promptQuestions.get(i); // Just turns the list of questions into one long string for the AI.
-            System.out.println(questionString);
         }
 
         String aiResponse = null; // The string holder for description
