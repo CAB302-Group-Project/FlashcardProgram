@@ -30,8 +30,9 @@
       </Text>
       <TableView fx:id="tableDecks" layoutX="76.0" layoutY="152.0" prefHeight="200.0" prefWidth="477.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
          <columns>
-            <TableColumn fx:id="dateColumn" text="Creation Date" />
             <TableColumn fx:id="nameColumn" text="Name" />
+            <TableColumn fx:id="descriptionColumn" text="Description" />
+            <TableColumn fx:id="deleteColumn" text="Delete" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
