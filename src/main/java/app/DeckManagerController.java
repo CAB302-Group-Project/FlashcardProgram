@@ -143,7 +143,7 @@ public class DeckManagerController implements Initializable {
     // ✅ This opens DeckView.fxml and passes deck name + date
     // In your DeckManagerController, modify the openDeckView method:
     private void openDeckView(DeckCell deck) {
-        /*try {
+        try {
             // Get DUE flashcards for this deck
             List<Flashcard> flashcards = FlashcardDAO.getDueFlashcards(deck.getDeckId());
 
@@ -164,8 +164,8 @@ public class DeckManagerController implements Initializable {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
-        try {
+        }
+        /*try {
             List<Flashcard> flashcards = FlashcardDAO.getFlashcardsByDeckId(deck.getDeckId());
 
             if (flashcards.isEmpty()) {
@@ -185,7 +185,7 @@ public class DeckManagerController implements Initializable {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void handleDashboard(ActionEvent event) {

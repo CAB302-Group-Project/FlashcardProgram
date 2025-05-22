@@ -57,11 +57,11 @@ public class FlashcardDAO
                         rs.getString("media_type"),
                         rs.getString("difficulty"),
                         rs.getString("created_at"),
-                        rs.getString("image_path")
-                        /*rs.getInt("repetitions"),
+                        rs.getString("image_path"),
+                        rs.getInt("repetitions"),
                         rs.getDouble("easiness_factor"),
                         rs.getString("last_reviewed_at"),
-                        rs.getString("next_review_at")*/
+                        rs.getString("next_review_at")
                 );
                 flashcards.add(card);
             }
@@ -96,11 +96,11 @@ public class FlashcardDAO
                         rs.getString("media_type"),
                         rs.getString("difficulty"),
                         rs.getString("created_at"),
-                        rs.getString("image_path")
-                        /*rs.getInt("repetitions"),
+                        rs.getString("image_path"),
+                        rs.getInt("repetitions"),
                         rs.getDouble("easiness_factor"),
                         rs.getString("last_reviewed_at"),
-                        rs.getString("next_review_at")*/
+                        rs.getString("next_review_at")
                 );
             }
 
@@ -184,7 +184,7 @@ public class FlashcardDAO
             stmt.executeUpdate();
         }
     }
-    /*public static void updateSpacedRepetitionData(int flashcardId, int repetitions,
+    public static void updateSpacedRepetitionData(int flashcardId, int repetitions,
                                                   double easinessFactor, String lastReviewedAt, String nextReviewAt) throws SQLException {
         String sql = "UPDATE flashcards SET repetitions = ?, easiness_factor = ?, " +
                 "last_reviewed_at = ?, next_review_at = ? WHERE id = ?";
@@ -198,9 +198,9 @@ public class FlashcardDAO
             stmt.setInt(5, flashcardId);
             stmt.executeUpdate();
         }
-    }*/
+    }
 
-    /*public static List<Flashcard> getDueFlashcards(int deckId) {
+    public static List<Flashcard> getDueFlashcards(int deckId) {
         List<Flashcard> flashcards = new ArrayList<>();
         String sql = "SELECT * FROM flashcards WHERE deck_id = ? AND " +
                 "(next_review_at IS NULL OR next_review_at <= date('now'))";
@@ -231,6 +231,6 @@ public class FlashcardDAO
             System.err.println("Fetch due flashcards failed: " + e.getMessage());
         }
         return flashcards;
-    }*/
+    }
 
 }

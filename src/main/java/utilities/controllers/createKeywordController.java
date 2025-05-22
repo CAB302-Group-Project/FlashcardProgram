@@ -45,13 +45,8 @@ public class createKeywordController {
 
         FlashcardResult deck = prompt.flashcardPrompt(userInput); // SAVE THIS TO DB UNDER THE DECK-------------
 
-        List<String> deckQuestions = deck.questions; // Questions
-
-        List<String> deckAnswers = deck.answers; // Answers
-
-
-        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
-        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
+        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
+        List<String> deckAnswers = deck.answers; // This is the A's
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
@@ -62,10 +57,10 @@ public class createKeywordController {
         // Go back to create deck
         try {
             FlashcardApp.getInstance().setSessionToken(null);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Set_Deck_Information.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Deck Created!");
+            stage.setTitle("Set_Deck_Information");
             stage.show();
 
         } catch (Exception e) {

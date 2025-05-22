@@ -1,4 +1,4 @@
-/*package utilities.utils;
+package utilities.utils;
 
 import db.DBConnector;
 import db.Flashcard;
@@ -48,4 +48,4 @@ public class SpacedRepetitionScheduler {
         flashcard.setLastReviewedAt(LocalDate.now().toString());
         flashcard.setNextReviewAt(LocalDate.now().plusDays(interval).toString());
     }
-}*/
+}

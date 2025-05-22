@@ -14,7 +14,7 @@ import javafx.scene.Node;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.List;
-//import utilities.utils.SpacedRepetitionScheduler;
+import utilities.utils.SpacedRepetitionScheduler;
 public class ReviewFlashcardController {
 
     @FXML
@@ -120,7 +120,7 @@ public class ReviewFlashcardController {
             FlashcardDAO.updateFlashcardDifficulty(currentFlashcard.getId(), difficulty);
             System.out.println("Difficulty updated to: " + difficulty);
             // Apply spaced repetition algorithm
-            /*SpacedRepetitionScheduler.scheduleNextReview(currentFlashcard, difficulty);
+            SpacedRepetitionScheduler.scheduleNextReview(currentFlashcard, difficulty);
 
             // Save spaced repetition data
             FlashcardDAO.updateSpacedRepetitionData(
@@ -129,10 +129,10 @@ public class ReviewFlashcardController {
                     currentFlashcard.getEasinessFactor(),
                     currentFlashcard.getLastReviewedAt(),
                     currentFlashcard.getNextReviewAt()
-            );*/
+            );
 
-            //System.out.println("Difficulty updated to: " + difficulty);
-            //System.out.println("Next review scheduled for: " + currentFlashcard.getNextReviewAt());
+            System.out.println("Difficulty updated to: " + difficulty);
+            System.out.println("Next review scheduled for: " + currentFlashcard.getNextReviewAt());
         } catch (Exception e) {
             e.printStackTrace();
         }
