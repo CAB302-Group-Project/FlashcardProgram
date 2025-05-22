@@ -11,6 +11,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
+import javax.swing.*;
+
+/**
+ * fhgfhghgf
+ */
 public class DashboardController {
     private User currentUser;
 
@@ -81,6 +86,21 @@ public class DashboardController {
 
     @FXML
     private Text emailText;
+
+    @FXML
+    private void securityDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Security.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Security Dashboard");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     private void updateUI() {
         if (currentUser != null && emailText != null) {

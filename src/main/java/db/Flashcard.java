@@ -2,14 +2,14 @@ package db;
 
 public class Flashcard
 {
-    private int id;
-    private int deckId;
-    private String front;
-    private String back;
-    private String mediaType;
-    private String difficulty;
-    private String createdAt;
-    private String imagePath;
+    private final int id;
+    private final int deckId;
+    private final String front;
+    private final String back;
+    private final String mediaType;
+    private final String difficulty;
+    private final String createdAt;
+    private final String imagePath;
 
     public Flashcard(int id, int deckId, String front, String back, String mediaType, String difficulty, String createdAt, String imagePath)
     {

@@ -3,11 +3,11 @@ package utilities.models;
 import java.time.LocalDateTime;
 
 public class QuizSession {
-    private String deckId;
-    private LocalDateTime timestamp;
-    private int correctAnswers;
-    private int totalQuestions;
-    private long durationMillis;
+    private final String deckId;
+    private final LocalDateTime timestamp;
+    private final int correctAnswers;
+    private final int totalQuestions;
+    private final long durationMillis;
 
     // Constructor
     public QuizSession(String deckId, int correctAnswers, int totalQuestions, long durationMillis) {

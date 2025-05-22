@@ -1,16 +1,21 @@
 package db;
 
 public class User {
-    private int id;
-    private String email;
-    private String name;
+    private final int id;
+    private final String email;
+    private final String name;
 
-    public User(int id, String email, String name) {
+    public User(int id, String name, String email) {
         this.id = id;
         this.email = email;
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
+    
     public int getId() {
         return id;
     }
