@@ -55,6 +55,10 @@ public class DBInit
                     media_type TEXT DEFAULT 'text',
                     difficulty TEXT DEFAULT 'medium',
                     image_path TEXT,
+                    repetitions INTEGER DEFAULT 0,
+                    easiness_factor REAL DEFAULT 2.5,
+                    last_reviewed_at TEXT,
+                    next_review_at TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (deck_id) REFERENCES decks(id) ON DELETE CASCADE
                 );
