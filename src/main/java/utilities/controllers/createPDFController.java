@@ -68,7 +68,7 @@ public class createPDFController {
         // Go back to create deck
         try {
             FlashcardApp.getInstance().setSessionToken(null);
-            Parent root = FXMLLoader.load(getClass().getResource("fxml/Set_Deck_Information.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Set_Deck_Information.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Set_Deck_Information");
