@@ -8,8 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+/**
+ * A class to handle the create deck page in the app, fit with a back button and links to create different deck types.
+ */
 
 public class createDeckController {
+
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
 
     @FXML
     private void handleBack(ActionEvent event) {
@@ -27,6 +35,11 @@ public class createDeckController {
         }
     }
 
+    /**
+     * handles the execution of the keywords button. Leads to a page where keywords can be input to create AI decks.
+     * @param event event activation upon button press.
+     */
+
     @FXML
     private void handleKeywords(ActionEvent event) {
         try {
@@ -41,6 +54,11 @@ public class createDeckController {
         }
     }
 
+    /**
+     * handles the execution of the Document button. Leads to a page where files can be uploaded to create AI decks.
+     * @param event event activation upon button press.
+     */
+
     @FXML
     private void handleDocument(ActionEvent event) {
         try {
@@ -54,6 +72,11 @@ public class createDeckController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * handles the execution of the PDF button. Leads to a page where files can be uploaded to create AI decks.
+     * @param event event activation upon button press.
+     */
 
     @FXML
     private void handlePDF(ActionEvent event) {

@@ -16,7 +16,16 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * A class to handle the create PDF page in the app, fit with a back button and an open file button for deck creation.
+ */
+
 public class createPDFController {
+
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
 
     @FXML
     private void handleBack(ActionEvent event) {
@@ -32,6 +41,12 @@ public class createPDFController {
         }
     }
 
+    /**
+     * handles the execution of the open file button. Opens a file explorer to choose a pdf.
+     * After which it creates a deck.
+     * @param event event activation upon button press.
+     * @throws IOException Checks for mishaps trying to go back to the create deck screen.
+     */
 
     @FXML
     private void handleFile(ActionEvent event) throws IOException {

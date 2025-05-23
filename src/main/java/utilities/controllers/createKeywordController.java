@@ -19,6 +19,11 @@ import java.util.List;
 
 public class createKeywordController {
 
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
+
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -33,10 +38,24 @@ public class createKeywordController {
         }
     }
 
+    /**
+     * just a declaration to identify a text field.
+     */
+
     @FXML
     private TextArea inputField;
 
+    /**
+     * Just a declaration to get the contents of the text field.
+     */
+
     private String userInput;
+
+    /**
+     * handles the execution of the submit button. Takes the contents of the text area and submits it for deck creation.
+     * @param event event activation upon button press.
+     * @throws IOException Checks for mishaps trying to go back to the create deck screen.
+     */
 
     @FXML
     private void handleSubmit(ActionEvent event) throws IOException {

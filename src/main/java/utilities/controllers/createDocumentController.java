@@ -18,6 +18,11 @@ import static ai.prompt.flashcardTitle;
 
 public class createDocumentController {
 
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
+
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -31,6 +36,13 @@ public class createDocumentController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * handles the execution of the open file button. Opens a file explorer to choose a document (still pdf).
+     * After which it creates a deck.
+     * @param event event activation upon button press.
+     * @throws IOException Checks for mishaps trying to go back to the create deck screen.
+     */
 
     @FXML
     private void handleFile(ActionEvent event) throws IOException {
