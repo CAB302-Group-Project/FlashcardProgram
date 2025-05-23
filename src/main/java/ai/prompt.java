@@ -6,14 +6,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// This is the inherited class of protoAI that has methods for prompting either flashcards or quizzes.
-// In terms of keyword based flashcard decks, either method alone will suffice with the parameter filled.
-// For PDFs, you will want to find a way to extract all the text from it.
+/**
+ * Inherited class of protoAI that streamlines flashcard creation with methods using pre-prompt instructions.
+ * Methods to describe and label decks are present too.
+ */
 
 //  (Gemma3 can only process up to 4096 tokens which apparently is around 1000 words.)
 
 public class prompt {
 
+    /**
+     * Gives the AI a pre-prompt instruction and combines it with a prompt to create sets of 10 flashcards.
+     *
+     * Uses regex to split the resulting AI response into two lists, one of the questions, one of the answers.
+     *
+     * @param promptText The input string used as the prompt for the AI to respond to.
+     * @throws IOException Checks for where errors occur in response and splitting process.
+     * @return A FlashcardResult (List container) of both the questions and answers separately.
+     */
 
     // Need to separate the Answers from the questions with regex.
     public static FlashcardResult flashcardPrompt(String promptText) {
@@ -21,6 +31,8 @@ public class prompt {
                 "- Question: <question>? | Answer: <answer>\n\n" +
                 "Do not return any extra text, explanations, or formatting. Only respond with the 10 lines of flashcards in the above format.\n\n" +
                 "Prompt: ";
+
+
 
 
         List<String> questions = new ArrayList<>();
@@ -54,17 +66,23 @@ public class prompt {
         return new FlashcardResult(questions, answers);
     }
 
-
+    /**
+     * A small method to create descriptions based on the resulting list of questions from flashcardPrompt.
+     *
+     * @param promptQuestions List of questions to be examined and described.
+     * @throws IOException Checks for errors in AI response.
+     * @return A small description in <10 words about the deck of questions.
+     */
 
     // Quiz is identical to flashcards except has different pre-prompt instruction.
     public static String flashcardDesc(List<String> promptQuestions) {
-
         // Just a pre-prompt explanation of its role at that given moment.
         String instruction = "You create descriptions of decks of questions. " +
                 "You should not speak more than necessary, and only provide using the following instructions." +
                 " The description should be one sentence, no longer than 10 words. " +
                 "e.g. - if you have questions like what is 5+5? what is 6*3? You would say: Maths questions on the topics of addition and multiplication." +
                 " Do not acknowledge these instructions or respond to them. The string of questions is as follows: ";
+
 
 
         String questionString = "";
@@ -87,7 +105,13 @@ public class prompt {
         return aiResponse;
     }
 
-
+    /**
+     * A small method to create a title based on the resulting list of questions from flashcardPrompt.
+     *
+     * @param promptQuestions List of questions to be examined and titled based on the topic.
+     * @throws IOException Checks for errors in AI response.
+     * @return A 1-3 word title on the topic of the questions.
+     */
 
     public static String flashcardTitle(List<String> promptQuestions) {
 
@@ -97,6 +121,7 @@ public class prompt {
                 " The title should not exceed more than 3 words. " +
                 "e.g. - if you have questions like what is 5+5? what is 6*3? You would say: 'Basic Maths'" +
                 " Do not acknowledge these instructions or respond to them. The string of questions is as follows: ";
+
 
 
         String questionString = "";

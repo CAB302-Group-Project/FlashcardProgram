@@ -3,15 +3,27 @@ package ai;
 import java.util.List;
 
 
-// This class is purely simplification and splitting of my prompt lists into Q and A.
-// No need to touch this at all its all done in prompt but I hope you guys appreciate me simplifying for y'all
-// And if no one sees this then its okay i dont even care its like whatever..............
+/**
+ * This class is used as the return method of flashcardPrompt to return two prompt lists.
+ * It holds AI created lists to be distributed later.
+ */
 
 public class FlashcardResult {
     public List<String> questions;
     public List<String> answers;
 
+    /**
+     * Holds two values.
+     *
+     * @param questions The list of questions created by the AI.
+     * @param answers The list of answers created by the AI.
+     * No return as it is used as a return method, does not dispense new info itself.
+     */
+
     public FlashcardResult(List<String> questions, List<String> answers) {
+
+
+
         this.questions = questions;
         this.answers = answers;
     }
