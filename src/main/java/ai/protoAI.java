@@ -11,9 +11,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 
-    // THIS CLASS IS A CONSTRUCTOR FOR SIMPLE AI FUNCTION AND DOES NOT NEED TO BE MODIFIED UNLESS BROKEN
-    // Using gemma3:latest for the model, if it needs to change then modify all instances of 'gemma3:latest' to preferred model.
-    //
+// THIS CLASS IS A CONSTRUCTOR FOR SIMPLE AI FUNCTION AND DOES NOT NEED TO BE MODIFIED UNLESS BROKEN
+// Using gemma3:latest for the model, if it needs to change then modify all instances of 'gemma3:latest' to preferred model.
+//
 
 /**
  * This is a base class for simple AI interaction.

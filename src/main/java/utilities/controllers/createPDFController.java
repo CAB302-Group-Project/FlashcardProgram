@@ -52,28 +52,12 @@ public class createPDFController {
     private void handleFile(ActionEvent event) throws IOException {
 
         String document = pdfReader.pdfExtract(); // Opening a file and getting the text from it
-        // YOU CAN SAVE THIS DOCUMENT STRING IF YOU WANT UNDER THE DECK------------------
+        // YOU CAN SAVE THIS DOCUMENT STRING IF YOU WANT UNDER THE DECK---------------------
 
-        FlashcardResult deck = prompt.flashcardPrompt(document); // The questions
+        FlashcardResult deck = prompt.flashcardPrompt(document); // SAVE THIS TO DB UNDER THE DECK---------------
 
-
-        List<String> deckQuestions = deck.questions; // Questions
-
-        List<String> deckAnswers = deck.answers; // Answers
-
-        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
-        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
-
-        /*System.out.println(flashcardTitle);
-        System.out.println(flashcardDesc);
-
-        for (int i = 0; i < deckQuestions.size(); i++) {
-            System.out.println("Q" + (i+1) + ": " + deckQuestions.get(i));
-            System.out.println("A" + (i+1) + ": " + deckAnswers.get(i));
-        }*/
-
-
-
+        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
+        List<String> deckAnswers = deck.answers; // This is the A's
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
@@ -84,15 +68,14 @@ public class createPDFController {
         // Go back to create deck
         try {
             FlashcardApp.getInstance().setSessionToken(null);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Set_Deck_Information.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Deck Created!");
+            stage.setTitle("Set_Deck_Information");
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

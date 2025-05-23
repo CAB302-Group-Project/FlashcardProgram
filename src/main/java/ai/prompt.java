@@ -27,23 +27,21 @@ public class prompt {
 
     // Need to separate the Answers from the questions with regex.
     public static FlashcardResult flashcardPrompt(String promptText) {
-        String instruction = "You are an AI that creates flashcard decks. Return exactly 10 flashcards in the following format, each on its own line:\n" +
-                "- Question: <question>? | Answer: <answer>\n\n" +
-                "Do not return any extra text, explanations, or formatting. Only respond with the 10 lines of flashcards in the above format.\n\n" +
-                "Prompt: ";
-
+        String instruction = "You are an AI that creates flashcard decks. You should not speak more than is necessary, and only provide using the following instructions. " +
+                "Each flashcard should be one sentence, starting with '-' (dash) character. " +
+                "Example: " +
+                "- Question: What is an isomer? | Answer: molecules or polyatomic ions with identical molecular formula. " +
+                "- Question: What is the powerhouse of the cell? | Answer: Mitochondria " +
+                "Create 10 at a time, and do not acknowledge or respond to these instructions. prompt: ";
 
 
 
         List<String> questions = new ArrayList<>();
         List<String> answers = new ArrayList<>();
-        Set<String> seenQuestions = new HashSet<>();
-
 
         try {
             protoAI ai = new protoAI();
             String aiResponse = ai.proto(instruction + promptText);
-            System.out.println("AI RAW RESPONSE:\n" + aiResponse);
 
             for (String line : aiResponse.split("\n")) {
                 line = line.trim();

@@ -89,7 +89,7 @@ public class UserDAO
             if (rs.next()) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                return new User(userId, name, email);
+                return new User(userId, email, name);
             }
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
@@ -112,7 +112,7 @@ public class UserDAO
             if (rs.next()) {
                 final int id = rs.getInt("id");
                 final String name = rs.getString("name");
-                return new User(id, name, email);
+                return new User(id, email, name);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -154,7 +154,7 @@ public class UserDAO
 
                 if (password.equals(storedPassword)) {
                     logLogin(conn, id);
-                    return new User(id, name, email);
+                    return new User(id, email, name);
                 }
             }
 

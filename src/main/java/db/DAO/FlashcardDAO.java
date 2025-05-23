@@ -57,7 +57,11 @@ public class FlashcardDAO
                         rs.getString("media_type"),
                         rs.getString("difficulty"),
                         rs.getString("created_at"),
-                        rs.getString("image_path")
+                        rs.getString("image_path"),
+                        rs.getInt("repetitions"),
+                        rs.getDouble("easiness_factor"),
+                        rs.getString("last_reviewed_at"),
+                        rs.getString("next_review_at")
                 );
                 flashcards.add(card);
             }
@@ -92,7 +96,11 @@ public class FlashcardDAO
                         rs.getString("media_type"),
                         rs.getString("difficulty"),
                         rs.getString("created_at"),
-                        rs.getString("image_path")
+                        rs.getString("image_path"),
+                        rs.getInt("repetitions"),
+                        rs.getDouble("easiness_factor"),
+                        rs.getString("last_reviewed_at"),
+                        rs.getString("next_review_at")
                 );
             }
 
@@ -166,4 +174,63 @@ public class FlashcardDAO
             return false;
         }
     }
+
+    public static void updateFlashcardDifficulty(int flashcardId, String difficulty) throws SQLException {
+        String sql = "UPDATE flashcards SET difficulty = ? WHERE id = ?";
+
+        try (Connection conn = DBConnector.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, difficulty);
+            stmt.setInt(2, flashcardId);
+            stmt.executeUpdate();
+        }
+    }
+    public static void updateSpacedRepetitionData(int flashcardId, int repetitions,
+                                                  double easinessFactor, String lastReviewedAt, String nextReviewAt) throws SQLException {
+        String sql = "UPDATE flashcards SET repetitions = ?, easiness_factor = ?, " +
+                "last_reviewed_at = ?, next_review_at = ? WHERE id = ?";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, repetitions);
+            stmt.setDouble(2, easinessFactor);
+            stmt.setString(3, lastReviewedAt);
+            stmt.setString(4, nextReviewAt);
+            stmt.setInt(5, flashcardId);
+            stmt.executeUpdate();
+        }
+    }
+
+    public static List<Flashcard> getDueFlashcards(int deckId) {
+        List<Flashcard> flashcards = new ArrayList<>();
+        String sql = "SELECT * FROM flashcards WHERE deck_id = ? AND " +
+                "(next_review_at IS NULL OR next_review_at <= date('now'))";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, deckId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Flashcard card = new Flashcard(
+                        rs.getInt("id"),
+                        rs.getInt("deck_id"),
+                        rs.getString("front"),
+                        rs.getString("back"),
+                        rs.getString("media_type"),
+                        rs.getString("difficulty"),
+                        rs.getString("created_at"),
+                        rs.getString("image_path"),
+                        rs.getInt("repetitions"),
+                        rs.getDouble("easiness_factor"),
+                        rs.getString("last_reviewed_at"),
+                        rs.getString("next_review_at")
+                );
+                flashcards.add(card);
+            }
+        } catch (SQLException e) {
+            System.err.println("Fetch due flashcards failed: " + e.getMessage());
+        }
+        return flashcards;
+    }
+
 }
