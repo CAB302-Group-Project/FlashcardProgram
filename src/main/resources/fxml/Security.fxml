@@ -88,7 +88,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Group>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{name}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -96,7 +96,7 @@
                   <Insets bottom="40.0" />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{email}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text fx:id="emailText" strokeType="OUTSIDE" strokeWidth="0.0" text="{email}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
@@ -108,7 +108,7 @@
                <children>
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1d254000" height="25.0" stroke="#1d244000" strokeType="INSIDE" width="132.0" />
                   <Text layoutX="9.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
-                  <Button fx:id="accountbutton" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+                  <Button onAction="#accountbutton" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
                <GridPane.margin>
                   <Insets />

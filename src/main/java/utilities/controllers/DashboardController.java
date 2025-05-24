@@ -85,7 +85,7 @@ public class DashboardController {
     }
 
     @FXML
-    private Text emailText;
+    private Text nameText;
 
     @FXML
     private void securityDashboard(ActionEvent event) {
@@ -103,8 +103,8 @@ public class DashboardController {
     }
 
     private void updateUI() {
-        if (currentUser != null && emailText != null) {
-            emailText.setText(currentUser.getEmail());
+        if (currentUser != null && nameText != null) {
+            nameText.setText(currentUser.getName());
         }
     }
 
