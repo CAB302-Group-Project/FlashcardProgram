@@ -24,6 +24,11 @@ public class SignUpController {
     @FXML
     private TextField nameField;
 
+    /**
+     * Handles the sign-up button click event.
+     * Validates user input and registers a new account.
+     * @param event click event thrown
+     */
     @FXML
     private void handleSignUp(ActionEvent event) {
         String email = emailField.getText();
@@ -55,6 +60,10 @@ public class SignUpController {
         }
     }
 
+    /**
+     * Redirects to the login page.
+     * @param event click event thrown
+     */
     @FXML
     private void handleLogin(ActionEvent event) {
         try {
