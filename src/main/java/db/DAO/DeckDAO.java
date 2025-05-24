@@ -217,4 +217,39 @@ public class DeckDAO {
         }
     }
 
+    public static boolean deleteDeckById(int deckId) {
+        String deleteCardsSQL = "DELETE FROM flashcards WHERE deck_id = ?";
+        String deleteDeckSQL = "DELETE FROM decks WHERE id = ?";
+
+        try (Connection conn = DBConnector.connect()) {
+            conn.setAutoCommit(false); // Start transaction
+
+            // Delete flashcards first
+            try (PreparedStatement deleteCardsStmt = conn.prepareStatement(deleteCardsSQL)) {
+                deleteCardsStmt.setInt(1, deckId);
+                deleteCardsStmt.executeUpdate();
+            }
+
+            // Delete the deck
+            try (PreparedStatement deleteDeckStmt = conn.prepareStatement(deleteDeckSQL)) {
+                deleteDeckStmt.setInt(1, deckId);
+                int affectedRows = deleteDeckStmt.executeUpdate();
+                if (affectedRows > 0) {
+                    conn.commit(); // Commit both deletes
+                    System.out.println("Deck deleted successfully.");
+                    return true;
+                } else {
+                    conn.rollback(); // No deck deleted
+                    System.out.println("Deck not found. Nothing was deleted.");
+                    return false;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Failed to delete deck: " + e.getMessage());
+            return false;
+        }
+    }
+
+
 }

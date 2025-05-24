@@ -11,23 +11,48 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 
-    // THIS CLASS IS A CONSTRUCTOR FOR SIMPLE AI FUNCTION AND DOES NOT NEED TO BE MODIFIED UNLESS BROKEN
-    // Using gemma3:latest for the model, if it needs to change then modify all instances of 'gemma3:latest' to preferred model.
-    //
+// THIS CLASS IS A CONSTRUCTOR FOR SIMPLE AI FUNCTION AND DOES NOT NEED TO BE MODIFIED UNLESS BROKEN
+// Using gemma3:latest for the model, if it needs to change then modify all instances of 'gemma3:latest' to preferred model.
+//
+
+/**
+ * This is a base class for simple AI interaction.
+ * It sends a prompt and then receives and converts a json response into usable text.
+ */
 
 public class protoAI {
 
     private final String modelName;
     private final String endpointUrl = "http://localhost:11434/api/generate";
 
+    /**
+     * Declares the default Ollama model as a parameter.
+     */
+
     public protoAI() {
         this.modelName = "gemma3:latest"; // default model parameter
     }
+
+    /**
+     * Allows the choosing of a custom model in the case of needing images. This was out of scope and is
+     * largely unused.
+     * @param modelName Given string to declare a model not given by the default method.
+     */
 
     public protoAI(String modelName) {
         this.modelName = modelName; // if custom model is to be used
     }
 
+    /**
+     * Sets up a HTTP connection with the local Ollama setup. Feeds inserted string and then converts
+     * the received json response into usable text.
+     * Do not be deceived by its name protoAI. This is the final product. I will not be redoing this.
+     *
+     * @param promptText The input given to the AI as a prompt.
+     * @return A usable AI response in the form of a string.
+     * @throws IOException Checks for the line and error type if Ollama fails to respond. Gives HTTP code for pinpointing errors.
+     * 400 - Prompt too long/bad input, 500 - Ollama server issue/timeout, 404 - cannot find API. Worst case scenario.
+     */
 
     public String proto(String promptText) throws IOException {
 

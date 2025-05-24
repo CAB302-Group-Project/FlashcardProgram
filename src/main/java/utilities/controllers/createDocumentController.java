@@ -14,9 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ai.prompt.flashcardTitle;
-
 public class createDocumentController {
+
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
 
     @FXML
     private void handleBack(ActionEvent event) {
@@ -32,32 +35,23 @@ public class createDocumentController {
         }
     }
 
+    /**
+     * handles the execution of the open file button. Opens a file explorer to choose a document (still pdf).
+     * After which it creates a deck.
+     * @param event event activation upon button press.
+     * @throws IOException Checks for mishaps trying to go back to the create deck screen.
+     */
+
     @FXML
     private void handleFile(ActionEvent event) throws IOException {
 
         String document = pdfReader.pdfExtract(); // Opening a file and getting the text from it
         // YOU CAN SAVE THIS DOCUMENT STRING IF YOU WANT UNDER THE DECK------------------
 
-        FlashcardResult deck = prompt.flashcardPrompt(document); // The questions
+        FlashcardResult deck = prompt.flashcardPrompt(document); // SAVE THIS TO DB UNDER THE DECK--------------
 
-
-        List<String> deckQuestions = deck.questions; // Questions
-
-        List<String> deckAnswers = deck.answers; // Answers
-
-        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
-        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
-
-        /*System.out.println(flashcardTitle);
-        System.out.println(flashcardDesc);
-
-        for (int i = 0; i < deckQuestions.size(); i++) {
-            System.out.println("Q" + (i+1) + ": " + deckQuestions.get(i));
-            System.out.println("A" + (i+1) + ": " + deckAnswers.get(i));
-        }*/
-
-
-
+        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
+        List<String> deckAnswers = deck.answers; // This is the A's
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
@@ -71,7 +65,7 @@ public class createDocumentController {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Deck Created!");
+            stage.setTitle("Deck created!");
             stage.show();
 
         } catch (Exception e) {

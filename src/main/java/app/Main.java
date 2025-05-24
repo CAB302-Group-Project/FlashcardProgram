@@ -7,7 +7,6 @@ import db.DAO.UserDAO;
 import db.DBConnector;
 
 import java.sql.Connection;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,12 +18,6 @@ public class Main {
         UserDAO.insertTestUser();
 
         DeckDAO.insertTestDeckWithCards(1);
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter prompt: ");
-        String userPrompt = scanner.nextLine();
-
-        FlashcardResult aiRespone = prompt.flashcardPrompt(userPrompt);
 
 
 

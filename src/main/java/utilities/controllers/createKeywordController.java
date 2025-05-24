@@ -19,6 +19,11 @@ import java.util.List;
 
 public class createKeywordController {
 
+    /**
+     * handles the execution of the back button. Sends back to the dashboard.
+     * @param event event activation upon button press.
+     */
+
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -33,10 +38,24 @@ public class createKeywordController {
         }
     }
 
+    /**
+     * just a declaration to identify a text field.
+     */
+
     @FXML
     private TextArea inputField;
 
+    /**
+     * Just a declaration to get the contents of the text field.
+     */
+
     private String userInput;
+
+    /**
+     * handles the execution of the submit button. Takes the contents of the text area and submits it for deck creation.
+     * @param event event activation upon button press.
+     * @throws IOException Checks for mishaps trying to go back to the create deck screen.
+     */
 
     @FXML
     private void handleSubmit(ActionEvent event) throws IOException {
@@ -45,13 +64,8 @@ public class createKeywordController {
 
         FlashcardResult deck = prompt.flashcardPrompt(userInput); // SAVE THIS TO DB UNDER THE DECK-------------
 
-        List<String> deckQuestions = deck.questions; // Questions
-
-        List<String> deckAnswers = deck.answers; // Answers
-
-
-        String flashcardTitle = prompt.flashcardTitle(deckQuestions); // String for the title
-        String flashcardDesc = prompt.flashcardDesc(deckQuestions); // string for the description
+        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
+        List<String> deckAnswers = deck.answers; // This is the A's
 
         if(deck != null) {
             System.out.println("Prompt successfully created.");
@@ -65,7 +79,7 @@ public class createKeywordController {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Deck Created!");
+            stage.setTitle("Deck created!");
             stage.show();
 
         } catch (Exception e) {
