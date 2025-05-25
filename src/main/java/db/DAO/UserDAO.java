@@ -79,6 +79,12 @@ public class UserDAO
         return null;
     }
 
+    /**
+     * Returns user class given userId
+     * @param userId User unique identification
+     * @return user
+     * @see User
+     */
     public static db.User getUserById(int userId) {
         String sql = "SELECT name, email FROM users WHERE id = ?";
         try {

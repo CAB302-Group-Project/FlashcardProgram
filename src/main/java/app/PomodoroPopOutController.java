@@ -19,10 +19,17 @@ public class PomodoroPopOutController {
     private int seconds;
     private boolean paused;
 
+    /**
+     * PomodoroPopOutController class constructor
+     */
     public PomodoroPopOutController() {
         this(0);
     }
 
+    /**
+     * PomodoroPopOutController class constructor with seconds set
+     * @param seconds number of seconds to set
+     */
     public PomodoroPopOutController(int seconds) {
         PomodoroPopOutController instance = this;
         this.seconds = seconds;
@@ -44,6 +51,9 @@ public class PomodoroPopOutController {
         }, 1000, 1000);
     }
 
+    /**
+     * Toggles timer
+     */
     public void handlePopoutToggle() {
         paused = !paused;
     }

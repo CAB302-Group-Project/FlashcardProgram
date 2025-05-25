@@ -31,6 +31,11 @@ public class LoginController {
     @FXML
     private Button signUpButton;
 
+    /**
+     * Login user with email and password.
+     * If successful, redirects to the dashboard.
+     * If unsuccessful, displays an error message.
+     */
     @FXML
     private void handleLogin() {
         String email = emailField.getText().trim();
@@ -66,7 +71,9 @@ public class LoginController {
         }
     }
 
-
+    /**
+     * Redirects to the sign-up page.
+     */
     @FXML
     private void handleSignUp(ActionEvent event) {
         try {

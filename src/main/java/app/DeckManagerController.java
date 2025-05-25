@@ -44,6 +44,12 @@ public class DeckManagerController implements Initializable {
         private final SimpleStringProperty description;
         private final int deckId;
 
+        /**
+         * Class Constructor for DeckCell
+         * @param name The name of the deck.
+         * @param description The description of the deck.
+         * @param deckId The unique identifier for the deck.
+         */
         public DeckCell(String name, String description, int deckId) {
             //this.date = new SimpleStringProperty(date);
             this.name = new SimpleStringProperty(name);
@@ -55,14 +61,26 @@ public class DeckManagerController implements Initializable {
             return date.get();
         }*/
 
+        /**
+         * Returns the deck cell name
+         * @return deck cell name
+         */
         public String getName() {
             return name.get();
         }
 
+        /**
+         * Returns the deck cell description
+         * @return deck cell description
+         */
         public String getDescription() {
             return description.get();
         }
 
+        /**
+         * Returns the deck cell unique identifier
+         * @return deck cell identifier
+         */
         public int getDeckId() {
             return deckId;
         }
@@ -141,8 +159,11 @@ public class DeckManagerController implements Initializable {
 
     }
 
-    // ✅ This opens DeckView.fxml and passes deck name + date
-    // In your DeckManagerController, modify the openDeckView method:
+    /**
+     * This opens DeckView.fxml and passes deck name + date
+     * In your DeckManagerController, modify the openDeckView method:
+     * @param deck deck cell to open
+     */
     private void openDeckView(DeckCell deck) {
         try {
             // Get DUE flashcards for this deck
@@ -189,6 +210,11 @@ public class DeckManagerController implements Initializable {
         }*/
     }
 
+    /**
+     * This method is called when the user clicks on the dashboard button.
+     * It redirects the user back to the dashboard page.
+     * @param event click event thrown
+     */
     public void handleDashboard(ActionEvent event) {
         try {
             int currentUserId = FlashcardApp.getInstance().getUserId();
@@ -219,6 +245,10 @@ public class DeckManagerController implements Initializable {
         }
     }
 
+    /**
+     * Redirects the user to the login page.
+     * @param event action event thrown
+     */
     public void handleLogin(ActionEvent event) {
         try {
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
