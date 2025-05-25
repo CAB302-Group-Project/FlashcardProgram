@@ -11,6 +11,14 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 
 public class AuthService {
+    /**
+     * Registers a new user with the provided name, email, and password.
+     * If the user already exists, registration fails.
+     * @param name the name of the user
+     * @param email the email of the user
+     * @param password the password of the user
+     * @return true if registration is successful, false if the user already exists
+     */
     public static boolean register(String name, String email, String password) {
         db.User user = UserDAO.getUser(email);
         if (user == null) {
@@ -24,6 +32,13 @@ public class AuthService {
 
     public static Algorithm algo = Algorithm.HMAC256("secret");
 
+    /**
+     * Authenticates a user with the provided username and password.
+     * If authentication is successful, a JWT token is generated.
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return a JWT token if authentication is successful, null otherwise
+     */
     public static String login(String username, String password) {
         User user = UserDAO.authUser(username, password);
         if (user != null) {

@@ -1,6 +1,7 @@
 package utilities.controllers;
 
 import db.User;
+import utilities.controllers.DashboardController;
 import app.FlashcardApp;
 import db.DAO.UserDAO;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import utilities.services.UserSession;
 
 import java.io.IOException;

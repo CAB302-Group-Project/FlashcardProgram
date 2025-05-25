@@ -28,10 +28,17 @@ public class PomodoroTimerController {
     private int seconds;
     private boolean paused;
 
+    /**
+     * PomodoroTimerController class constructor
+     */
     public PomodoroTimerController() {
         this(0);
     }
 
+    /**
+     * PomodoroTimerController class constructor with seconds set
+     * @param seconds number of seconds to set
+     */
     public PomodoroTimerController(int seconds) {
         PomodoroTimerController instance = this;
         this.seconds = seconds;
@@ -52,27 +59,46 @@ public class PomodoroTimerController {
         }, 1000, 1000);
     }
 
+    /**
+     * Handles the focus button click event
+     * Resets the timer to 25 minutes (1500 seconds)
+     */
     public void handleFocus() {
         seconds = 1500;
         handleToggle();
     }
 
+    /**
+     * Handles the short break button click event
+     * Resets the timer to 5 minutes (300 seconds)
+     */
     public void handleShort() {
         seconds = 300;
         handleToggle();
     }
 
+    /**
+     * Handles the long break button click event
+     * Resets the timer to 30 minutes (1800 seconds)
+     */
     public void handleLong() {
         seconds = 1800;
         handleToggle();
     }
 
+    /**
+     * Toggles timer
+     */
     public void handleToggle() {
         paused = !paused;
         if (paused) textPause.setText("START");
         else textPause.setText("PAUSE");
     }
 
+    /**
+     * Opens the pop-out window for the Pomodoro timer
+     * @param event the mouse event that triggered the action
+     */
     public void handlePopout(MouseEvent event) {
         try {
             handleToggle();
@@ -93,6 +119,11 @@ public class PomodoroTimerController {
         }
     }
 
+    /**
+     * This method is called when the user clicks on the dashboard button.
+     * It redirects the user back to the dashboard page.
+     * @param event click event thrown
+     */
     public void handleDashboard(ActionEvent event) {
         try {
             handleToggle();
@@ -127,6 +158,10 @@ public class PomodoroTimerController {
         }
     }
 
+    /**
+     * Redirects the user to the login page.
+     * @param event action event thrown
+     */
     public void handleLogin (ActionEvent event) {
         try {
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
