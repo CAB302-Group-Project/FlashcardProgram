@@ -7,12 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class createDocumentController {
 
@@ -44,33 +46,61 @@ public class createDocumentController {
 
     @FXML
     private void handleFile(ActionEvent event) throws IOException {
+        String document = pdfReader.pdfExtract();
+        FlashcardResult deck = prompt.flashcardPrompt(document);
 
-        String document = pdfReader.pdfExtract(); // Opening a file and getting the text from it
-        // YOU CAN SAVE THIS DOCUMENT STRING IF YOU WANT UNDER THE DECK------------------
-
-        FlashcardResult deck = prompt.flashcardPrompt(document); // SAVE THIS TO DB UNDER THE DECK--------------
-
-        List<String> deckQuestions = deck.questions; // I think this might be easier for you, so this is the Qs
-        List<String> deckAnswers = deck.answers; // This is the A's
-
-        if(deck != null) {
-            System.out.println("Prompt successfully created.");
-            Deck.DeckDataHolder.questions = deck.questions;
-            Deck.DeckDataHolder.answers = deck.answers;
+        if (deck == null || deck.questions == null || deck.answers == null) {
+            System.err.println("Flashcard generation failed.");
+            return;
         }
 
-        // Go back to create deck
-        try {
-            FlashcardApp.getInstance().setSessionToken(null);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Deck created!");
-            stage.show();
+        openDeckInfoPopup((title, description) -> {
+            int userId = utilities.services.UserSession.getInstance().getCurrentUser().getId();
+            int deckId = db.DAO.DeckDAO.insertDeck(userId, title, description);
 
-        } catch (Exception e) {
+            if (deckId != -1) {
+                for (int i = 0; i < deck.questions.size(); i++) {
+                    String front = deck.questions.get(i);
+                    String back = deck.answers.get(i);
+                    db.DAO.FlashcardDAO.insertFlashcard(deckId, front, back, "text", "medium", null);
+                }
+
+                Deck.DeckDataHolder.questions = deck.questions;
+                Deck.DeckDataHolder.answers = deck.answers;
+            }
+
+            // Return to deck screen
+            try {
+                FlashcardApp.getInstance().setSessionToken(null);
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Create_Deck.fxml"));
+                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Deck Created");
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void openDeckInfoPopup(BiConsumer<String, String> callback) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DeckInfoPopup.fxml"));
+            Parent root = loader.load();
+
+            DeckInfoPopupController controller = loader.getController();
+            controller.init(callback::accept);
+
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Deck Details");
+            popupStage.setScene(new Scene(root));
+            popupStage.setResizable(false);
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
 }
