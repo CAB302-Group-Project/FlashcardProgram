@@ -7,10 +7,30 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) for managing flashcards in the database.
+ * Provides methods to insert, retrieve, update, and delete flashcards,
+ * as well as manage spaced repetition metadata.
+ *
+ * <p>Flashcards are linked to decks via a foreign key relationship.</p>
+ *
+ * @author YourName
+ */
+
 public class FlashcardDAO
 {
 
-    // Insert a flashcard (with optional image)
+    /**
+     * Inserts a flashcard into a specified deck with full details including optional image.
+     *
+     * @param deckId     the ID of the deck
+     * @param front      the front content of the flashcard
+     * @param back       the back content of the flashcard
+     * @param mediaType  the media type (e.g., "text", "image")
+     * @param difficulty the difficulty level (e.g., "easy", "medium", "hard")
+     * @param imagePath  the image path (nullable)
+     * @return true if the insert was successful, false otherwise
+     */
     public static boolean insertFlashcard(int deckId, String front, String back, String mediaType, String difficulty, String imagePath)
     {
         String sql = "INSERT INTO flashcards(deck_id, front, back, media_type, difficulty, image_path) VALUES (?, ?, ?, ?, ?, ?)";
@@ -35,7 +55,12 @@ public class FlashcardDAO
         }
     }
 
-    // Get all flashcards for a deck
+    /**
+     * Retrieves all flashcards for a specific deck.
+     *
+     * @param deckId the ID of the deck
+     * @return a list of Flashcard objects
+     */
     public static List<Flashcard> getFlashcardsByDeckId(int deckId)
     {
         List<Flashcard> flashcards = new ArrayList<>();
@@ -74,7 +99,12 @@ public class FlashcardDAO
         return flashcards;
     }
 
-    // Get a single flashcard by ID
+    /**
+     * Retrieves a single flashcard by its ID.
+     *
+     * @param id the ID of the flashcard
+     * @return the Flashcard object if found, or null if not found
+     */
     public static Flashcard getFlashcardById(int id)
     {
         String sql = "SELECT * FROM flashcards WHERE id = ?";
@@ -112,7 +142,17 @@ public class FlashcardDAO
         return null;
     }
 
-    // Update flashcard
+    /**
+     * Updates the content and metadata of a flashcard.
+     *
+     * @param id         the ID of the flashcard
+     * @param front      the new front content
+     * @param back       the new back content
+     * @param difficulty the new difficulty level
+     * @param mediaType  the new media type
+     * @param imagePath  the new image path (nullable)
+     * @return true if updated successfully, false otherwise
+     */
     public static boolean updateFlashcard(int id, String front, String back, String difficulty, String mediaType, String imagePath)
     {
         String sql = "UPDATE flashcards SET front = ?, back = ?, difficulty = ?, media_type = ?, image_path = ? WHERE id = ?";
@@ -137,7 +177,12 @@ public class FlashcardDAO
         }
     }
 
-    // Delete a flashcard
+    /**
+     * Deletes a flashcard from the database.
+     *
+     * @param cardId the ID of the flashcard to delete
+     * @return true if deleted successfully, false otherwise
+     */
     public static boolean deleteFlashcard(int cardId) {
         String sql = "DELETE FROM flashcards WHERE id = ?";
 
@@ -156,6 +201,14 @@ public class FlashcardDAO
         }
     }
 
+    /**
+     * Inserts a flashcard with only front and back text (simplified overload).
+     *
+     * @param deckId the ID of the deck
+     * @param front  the front content
+     * @param back   the back content
+     * @return true if inserted successfully, false otherwise
+     */
     public static boolean insertFlashcard(int deckId, String front, String back) {
         String sql = "INSERT INTO flashcards(deck_id, front, back) VALUES (?, ?, ?)";
 
@@ -175,6 +228,13 @@ public class FlashcardDAO
         }
     }
 
+    /**
+     * Updates the difficulty of a flashcard.
+     *
+     * @param flashcardId the ID of the flashcard
+     * @param difficulty  the new difficulty level
+     * @throws SQLException if the update fails
+     */
     public static void updateFlashcardDifficulty(int flashcardId, String difficulty) throws SQLException {
         String sql = "UPDATE flashcards SET difficulty = ? WHERE id = ?";
 
@@ -184,6 +244,18 @@ public class FlashcardDAO
             stmt.executeUpdate();
         }
     }
+
+
+    /**
+     * Updates spaced repetition parameters for a flashcard.
+     *
+     * @param flashcardId     the ID of the flashcard
+     * @param repetitions     the new repetition count
+     * @param easinessFactor  the updated easiness factor
+     * @param lastReviewedAt  the timestamp of last review
+     * @param nextReviewAt    the next scheduled review timestamp
+     * @throws SQLException if the update fails
+     */
     public static void updateSpacedRepetitionData(int flashcardId, int repetitions,
                                                   double easinessFactor, String lastReviewedAt, String nextReviewAt) throws SQLException {
         String sql = "UPDATE flashcards SET repetitions = ?, easiness_factor = ?, " +
@@ -200,6 +272,12 @@ public class FlashcardDAO
         }
     }
 
+    /**
+     * Retrieves flashcards from a deck that are due for review.
+     *
+     * @param deckId the ID of the deck
+     * @return a list of due Flashcard objects
+     */
     public static List<Flashcard> getDueFlashcards(int deckId) {
         List<Flashcard> flashcards = new ArrayList<>();
         String sql = "SELECT * FROM flashcards WHERE deck_id = ? AND " +

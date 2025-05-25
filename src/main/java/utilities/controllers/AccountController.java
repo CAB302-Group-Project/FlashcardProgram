@@ -1,16 +1,12 @@
 package utilities.controllers;
 
-import db.DBConnector;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.cell.PropertyValueFactory;
 import db.User;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -19,10 +15,12 @@ import utilities.services.UserSession;
 
 import java.io.IOException;
 import db.DAO.UserDAO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
+/**
+ * JavaFX controller for the Account screen.
+ * Manages display and editing of user account information like name and email.
+ * Includes navigation to the security dashboard.
+ */
 public class AccountController {
     @FXML
     private Text nameText;
@@ -36,11 +34,18 @@ public class AccountController {
     @FXML
     private Text emailTextsml;
 
+
+    /**
+     * Initializes the UI and loads current user data once the platform is ready.
+     */
     @FXML
     public void initialize() {
         Platform.runLater(this::updateUI);
     }
 
+    /**
+     * Populates name and email labels with the current user's data.
+     */
     private void updateUI() {
         User currentUser = UserSession.getInstance().getCurrentUser();
 
@@ -54,6 +59,11 @@ public class AccountController {
         }
     }
 
+    /**
+     * Handles transition to the security dashboard scene.
+     *
+     * @param event the originating action event
+     */
     @FXML
     private void securityDashboard(ActionEvent event) {
         try {
@@ -69,6 +79,9 @@ public class AccountController {
         }
     }
 
+    /**
+     * Opens a popup to edit the user's name.
+     */
     @FXML
     private void handleEditName() {
         openEditPopup("Username", nameText.getText(), newValue -> {
@@ -78,6 +91,10 @@ public class AccountController {
         });
     }
 
+    /**
+     * Opens a popup to edit the user's email.
+     * Performs validation and duplicate checks.
+     */
     @FXML
     private void handleEditEmail() {
         openEditPopup("Email", emailText.getText(), newValue -> {
@@ -103,10 +120,22 @@ public class AccountController {
         });
     }
 
+    /**
+     * Validates the format of an email address.
+     *
+     * @param email the email string to validate
+     * @return true if valid, false otherwise
+     */
     private boolean isValidEmail(String email) {
         return email != null && email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
 
+    /**
+     * Shows a warning alert with the given title and content.
+     *
+     * @param title   the title of the alert
+     * @param content the body content of the alert
+     */
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -115,6 +144,13 @@ public class AccountController {
         alert.showAndWait();
     }
 
+    /**
+     * Opens the edit popup window for a specific field.
+     *
+     * @param field        the name of the field (e.g. Email or Username)
+     * @param currentValue the current value to pre-fill
+     * @param callback     the callback to handle submitted value
+     */
     private void openEditPopup(String field, String currentValue, EditFieldPopupController.Callback callback) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EditFieldPopup.fxml"));
@@ -134,6 +170,12 @@ public class AccountController {
         }
     }
 
+
+    /**
+     * Updates the name in both the database and in-memory session.
+     *
+     * @param newName the new name to save
+     */
     private void persistNameToDatabase(String newName) {
         User user = UserSession.getInstance().getCurrentUser();
         if (user != null) {
@@ -145,6 +187,11 @@ public class AccountController {
         }
     }
 
+    /**
+     * Updates the email in both the database and in-memory session.
+     *
+     * @param newEmail the new email to save
+     */
     private void persistEmailToDatabase(String newEmail) {
         User user = UserSession.getInstance().getCurrentUser();
         if (user != null) {

@@ -10,9 +10,16 @@ import db.DBConnector;
 import db.Deck;
 import db.Flashcard;
 
+/**
+ * Utility class for performing database debugging operations.
+ * Includes methods to clear all data and print contents for testing.
+ */
 public class DBDebug
 {
-
+    /**
+     * Clears all data from the database.
+     * Disables foreign key constraints to safely delete dependent rows.
+     */
     public static void clearDatabase()
     {
         try (Connection conn = DBConnector.connect();
@@ -39,12 +46,21 @@ public class DBDebug
         }
     }
 
+    /**
+     * Prints all decks for a test user (user ID 1).
+     * Replace with desired user ID as needed.
+     */
     public static void printAllDecks()
     {
         List<Deck> decks = DeckDAO.getDecksByUserId(1); // replace with any test user
         decks.forEach(System.out::println);
     }
 
+    /**
+     * Prints all flashcards for a given deck ID.
+     *
+     * @param deckId the ID of the deck
+     */
     public static void printAllFlashcards(int deckId)
     {
         List<Flashcard> cards = FlashcardDAO.getFlashcardsByDeckId(deckId);

@@ -6,9 +6,29 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object for managing study metrics related to flashcard reviews.
+ * Tracks user performance on each flashcard and supports spaced repetition strategies.
+ *
+ * <p>This class supports recording review attempts, identifying difficult cards,
+ * and resetting all metrics for a given user. It aligns with spaced repetition
+ * functionality described in the project’s user stories.</p>
+ *
+ *
+ */
 public class StudyMetricsDAO
 {
 
+    /**
+     * Records a user's review result for a specific flashcard.
+     * If the record exists, it updates it; otherwise, it inserts a new entry.
+     *
+     * @param userId      the ID of the user
+     * @param flashcardId the ID of the reviewed flashcard
+     * @param result      the result of the review ("easy", "hard", or "incorrect")
+     * @return true if the operation was successful; false otherwise
+     * @throws IllegalArgumentException if result is not one of the allowed values
+     */
     public static boolean recordReview(int userId, int flashcardId, String result)
     {
         if (!result.equals("easy") && !result.equals("hard") && !result.equals("incorrect"))
@@ -72,6 +92,14 @@ public class StudyMetricsDAO
         }
     }
 
+    /**
+     * Retrieves a list of flashcard IDs that the user has most difficulty with.
+     * The difficulty score is calculated as: (hard + 2 × incorrect) / total attempts.
+     *
+     * @param userId the ID of the user
+     * @param limit  the maximum number of flashcard IDs to return
+     * @return a list of flashcard IDs sorted by difficulty score (descending)
+     */
     public static List<Integer> getChallengingCardIds(int userId, int limit)
     {
         String sql = """
@@ -109,6 +137,13 @@ public class StudyMetricsDAO
         return cardIds;
     }
 
+    /**
+     * Deletes all study metrics for a given user, effectively resetting their learning history.
+     * This supports the user story: “I want a way to reset my metrics so I can start fresh.”
+     *
+     * @param userId the ID of the user whose metrics are to be cleared
+     * @return true if the reset operation was successful; false otherwise
+     */
     public static boolean resetMetricsForUser(int userId)
     {
         String sql = "DELETE FROM study_metrics WHERE user_id = ?";

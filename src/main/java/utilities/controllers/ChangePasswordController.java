@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import utilities.services.AuthService;
 import utilities.services.UserSession;
 
+/**
+ * JavaFX controller for handling user password changes.
+ * Validates password input, updates user password, and returns to the security dashboard.
+ */
 public class ChangePasswordController {
     @FXML
     private PasswordField oldPasswordField;
@@ -23,6 +27,9 @@ public class ChangePasswordController {
     @FXML
     private Label errorLabel;
 
+    /**
+     * Navigates the user back to the security dashboard.
+     */
     private void goToSecurityDashboard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Security.fxml"));
@@ -37,6 +44,12 @@ public class ChangePasswordController {
         }
     }
 
+    /**
+     * Handles the logic for confirming and processing the password change.
+     * Validates user input and updates password via the AuthService.
+     *
+     * @param event the button click event triggering this action
+     */
     @FXML
     private void ConfirmPasswordChange(ActionEvent event) {
         String oldPassword = oldPasswordField.getText();
@@ -77,6 +90,12 @@ public class ChangePasswordController {
         goToSecurityDashboard();
     }
 
+    /**
+     * Displays a message box with a given title and message.
+     *
+     * @param title   the dialog title
+     * @param message the dialog message
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(title);

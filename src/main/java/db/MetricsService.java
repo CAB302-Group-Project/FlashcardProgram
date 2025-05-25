@@ -2,6 +2,10 @@ package db;
 
 import db.DAO.StudyMetricsDAO;
 
+/**
+ * Service class that provides higher-level operations on study metrics.
+ * Acts as a wrapper around {@link StudyMetricsDAO} for easier external access.
+ */
 public class MetricsService
 {
 

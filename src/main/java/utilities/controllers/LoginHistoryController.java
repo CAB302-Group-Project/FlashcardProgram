@@ -15,12 +15,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * JavaFX controller for displaying the login history of a user.
+ * Retrieves login timestamps from the database and shows them in a table.
+ */
 public class LoginHistoryController {
 
     @FXML private TableView<LoginHistory> loginTable;
     @FXML private TableColumn<LoginHistory, String> dateColumn;
     @FXML private TableColumn<LoginHistory, String> timeColumn;
 
+    /**
+     * Initializes the login history table with date and time columns.
+     * Automatically loads the current user's login history.
+     */
     @FXML
     public void initialize() {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -34,6 +42,11 @@ public class LoginHistoryController {
         }
     }
 
+    /**
+     * Loads the login history entries from the database for the given user.
+     *
+     * @param userId the ID of the user whose login history should be loaded
+     */
     public void loadLoginHistory(int userId) {
         ObservableList<LoginHistory> history = FXCollections.observableArrayList();
 

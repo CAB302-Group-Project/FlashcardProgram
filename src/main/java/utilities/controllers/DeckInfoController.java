@@ -6,7 +6,6 @@ import db.Deck;
 import db.User;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
@@ -16,11 +15,19 @@ import javafx.scene.Parent;
 import app.FlashcardApp;
 import javafx.util.Duration;
 
+/**
+ * JavaFX controller for handling deck information submission.
+ * Collects title and description and saves a new deck along with its flashcards.
+ */
 public class DeckInfoController {
     @FXML private TextField Prompt_Deck_Disc;
     @FXML private TextField Prompt_Deck_Title;
     @FXML private Label errorLabel;
 
+    /**
+     * Handles saving a new deck and its associated flashcards to the database.
+     * Validates input and redirects to the Dashboard upon success.
+     */
     @FXML private void handleSave() {
         String title = Prompt_Deck_Title.getText();
         String description = Prompt_Deck_Disc.getText();

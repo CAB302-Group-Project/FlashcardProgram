@@ -5,8 +5,18 @@ import db.DBConnector;
 import java.sql.Connection;
 import java.sql.Statement;
 
+/**
+ * Initializes the database schema by creating all required tables.
+ * This includes users, login logs, decks, flashcards, and study metrics.
+ */
 public class DBInit
 {
+    /**
+     * Entry point that creates all tables in the SQLite database if they do not exist.
+     * Ensures foreign keys and constraints are respected.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
         try (Connection conn = DBConnector.connect();
              Statement stmt = conn.createStatement())

@@ -10,9 +10,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Data Access Object (DAO) for managing user-related operations in the database.
+ * Supports user registration, authentication, information retrieval, profile updates,
+ * and account management.
+ *
+ * <p>This class underpins the authentication and user management features of the app,
+ * such as login, signup, profile editing, and account initialization.</p>
+ *
+ *
+ */
 public class UserDAO
 {
-    // Insert a new user
+    /**
+     * Inserts a new user and creates a default deck for them.
+     *
+     * @param name         the user's full name
+     * @param email        the user's email
+     * @param passwordHash the hashed password
+     * @return true if insertion succeeded, false otherwise
+     */
     public static boolean insertUser(String name, String email, String passwordHash) {
         String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES (?, ?, ?)";
 
@@ -45,7 +62,10 @@ public class UserDAO
         return false;
     }
 
-    // Fetch all users
+    /**
+     * Displays all registered users in the database.
+     * Intended for admin/debug use only.
+     */
     public static void getAllUsers()
     {
         String sql = "SELECT id, email, created_at FROM users";
@@ -65,6 +85,12 @@ public class UserDAO
         }
     }
 
+    /**
+     * Retrieves a user's ID by their email address.
+     *
+     * @param email the user's email
+     * @return the user's ID, or null if not found
+     */
     public static Integer getUserIdByEmail(String email)
     {
         String sql = "SELECT id FROM users WHERE email = ?";
@@ -79,6 +105,12 @@ public class UserDAO
         return null;
     }
 
+    /**
+     * Retrieves a user object based on their user ID.
+     *
+     * @param userId the user's ID
+     * @return the User object, or null if not found
+     */
     public static db.User getUserById(int userId) {
         String sql = "SELECT name, email FROM users WHERE id = ?";
         try {
@@ -98,10 +130,22 @@ public class UserDAO
         return null;
     }
 
+    /**
+     * Checks whether a user exists by email.
+     *
+     * @param email the email to check
+     * @return true if the user exists, false otherwise
+     */
     public static boolean userExists(String email) {
         return getUserIdByEmail(email) != null;
     }
 
+    /**
+     * Retrieves a user by their email.
+     *
+     * @param email the user's email
+     * @return the User object, or null if not found
+     */
     public static User getUser(String email) {
         String sql = "SELECT id, name FROM users WHERE email=? LIMIT 1";
         try {
@@ -121,6 +165,12 @@ public class UserDAO
         return null;
     }
 
+    /**
+     * Logs a successful login for a user.
+     *
+     * @param conn   the database connection
+     * @param userId the user's ID
+     */
     private static void logLogin(Connection conn, int userId) {
         String sql = "INSERT INTO login_log (user_id) VALUES (?)";
 
@@ -134,10 +184,25 @@ public class UserDAO
         }
     }
 
+    /**
+     * Registers a user by calling insertUser.
+     *
+     * @param name     the name of the user
+     * @param email    the email of the user
+     * @param password the hashed password
+     * @return true if registration succeeded
+     */
     public static boolean registerUser(String name, String email, String password) {
         return insertUser(name, email, password);
     }
 
+    /**
+     * Authenticates a user with email and plaintext password.
+     *
+     * @param email    the user's email
+     * @param password the password to compare (plaintext for now)
+     * @return the authenticated User object, or null if invalid
+     */
     public static User authUser(String email, String password) {
         String sql = "SELECT id, name, email, password_hash FROM users WHERE email=? LIMIT 1";
 
@@ -166,6 +231,10 @@ public class UserDAO
         return null;
     }
 
+    /**
+     * Inserts a test user into the database.
+     * Used for testing purposes.
+     */
     public static void insertTestUser() {
         String email = "test@example.com";
         String name = "Test Name";
@@ -195,6 +264,13 @@ public class UserDAO
         }
     }
 
+    /**
+     * Updates a user's password with a new hashed value.
+     *
+     * @param userId           the user's ID
+     * @param newHashedPassword the new hashed password
+     * @return true if update was successful
+     */
     public static boolean updateUserPassword(int userId, String newHashedPassword) {
         String sql = "UPDATE users SET password_hash = ? WHERE id = ?";
 
@@ -212,6 +288,12 @@ public class UserDAO
         }
     }
 
+    /**
+     * Updates a user's name.
+     *
+     * @param userId  the user's ID
+     * @param newName the new name
+     */
     public static void updateName(int userId, String newName) {
         String sql = "UPDATE users SET name = ? WHERE id = ?";
         try (Connection conn = DBConnector.connect();
@@ -224,6 +306,12 @@ public class UserDAO
         }
     }
 
+    /**
+     * Updates a user's email.
+     *
+     * @param userId   the user's ID
+     * @param newEmail the new email
+     */
     public static void updateEmail(int userId, String newEmail) {
         String sql = "UPDATE users SET email = ? WHERE id = ?";
         try (Connection conn = DBConnector.connect();
@@ -236,6 +324,12 @@ public class UserDAO
         }
     }
 
+    /**
+     * Checks whether an email already exists in the database.
+     *
+     * @param email the email to check
+     * @return true if the email exists; false if not or if error occurs
+     */
     public static boolean emailExists(String email) {
         String sql = "SELECT id FROM users WHERE email = ?";
         try (Connection conn = DBConnector.connect();

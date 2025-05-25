@@ -1,5 +1,14 @@
 package db;
 
+/**
+ * Model class representing a flashcard.
+ * Flashcards belong to a deck and include learning content along with spaced repetition metadata.
+ *
+ * <p>Supports both text and media formats, and stores difficulty and usage metrics
+ * to enable adaptive learning via spaced repetition.</p>
+ *
+ *
+ */
 public class Flashcard
 {
     private final int id;
@@ -15,6 +24,22 @@ public class Flashcard
     private String lastReviewedAt;
     private String nextReviewAt;
 
+    /**
+     * Constructs a Flashcard with all properties.
+     *
+     * @param id              the ID of the flashcard
+     * @param deckId          the ID of the associated deck
+     * @param front           the front (question/prompt) text
+     * @param back            the back (answer/explanation) text
+     * @param mediaType       the type of media used ("text", "image", etc.)
+     * @param difficulty      the difficulty level of the flashcard
+     * @param createdAt       timestamp of when the flashcard was created
+     * @param imagePath       path to the image file, if applicable
+     * @param repetitions     how many times the card has been reviewed
+     * @param easinessFactor  SuperMemo easiness factor used in spaced repetition
+     * @param lastReviewedAt  timestamp of last review
+     * @param nextReviewAt    timestamp of next recommended review
+     */
     public Flashcard(int id, int deckId, String front, String back, String mediaType, String difficulty, String createdAt, String imagePath, int repetitions, double easinessFactor,
                      String lastReviewedAt, String nextReviewAt)
     {
@@ -50,11 +75,17 @@ public class Flashcard
         //this.difficulty = difficulty;
     }
 
+    // Setters for spaced repitition tracking
     public void setRepetitions(int repetitions) { this.repetitions = repetitions; }
     public void setEasinessFactor(double easinessFactor) { this.easinessFactor = easinessFactor; }
     public void setLastReviewedAt(String lastReviewedAt) { this.lastReviewedAt = lastReviewedAt; }
     public void setNextReviewAt(String nextReviewAt) { this.nextReviewAt = nextReviewAt; }
 
+    /**
+     * Returns a string representation of the flashcard including its difficulty and image reference.
+     *
+     * @return a formatted string summarizing the flashcard
+     */
     @Override
     public String toString()
     {

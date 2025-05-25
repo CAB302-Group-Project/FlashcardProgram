@@ -4,14 +4,30 @@ import app.FlashcardApp;
 import db.DBConnector;
 import db.Deck;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) class for performing CRUD operations on the 'decks' table.
+ * Provides methods for inserting, retrieving, updating, and deleting flashcard decks.
+ * Also supports creating test decks and retrieving decks with flashcards for test data purposes.
+ *
+ * <p>This class relies on {@link DBConnector} for database connections and operates on {@link Deck} objects.</p>
+ *
+ *
+ */
+
 public class DeckDAO {
 
-    // Insert a new deck
+    /**
+     * Inserts a new deck for a specified user.
+     *
+     * @param userId     the ID of the user creating the deck
+     * @param title      the title of the deck
+     * @param description a brief description of the deck
+     * @return the generated deck ID if successful; -1 otherwise
+     */
     public static int insertDeck(int userId, String title, String description)
     {
         String sql = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
@@ -38,7 +54,12 @@ public class DeckDAO {
         return -1;
     }
 
-    // Get all decks for a user
+    /**
+     * Retrieves all decks belonging to a specific user.
+     *
+     * @param userId the ID of the user
+     * @return a list of {@link Deck} objects associated with the user
+     */
     public static List<Deck> getDecksByUserId(int userId)
     {
         List<Deck> decks = new ArrayList<>();
@@ -68,7 +89,12 @@ public class DeckDAO {
         return decks;
     }
 
-    // Get deck by ID
+    /**
+     * Retrieves a single deck by its ID.
+     *
+     * @param deckId the ID of the deck
+     * @return a {@link Deck} object if found; null otherwise
+     */
     public static Deck getDeckById(int deckId)
     {
         String sql = "SELECT * FROM decks WHERE id = ?";
@@ -98,7 +124,15 @@ public class DeckDAO {
         return null;
     }
 
-    // Rename deck
+    /**
+     * Renames an existing deck and updates its description.
+     *
+     * @param deckId   the ID of the deck to update
+     * @param newTitle the new title for the deck
+     * @param newDesc  the new description for the deck
+     * @return true if the update was successful; false otherwise
+     */
+
     public static boolean renameDeck(int deckId, String newTitle, String newDesc)
     {
         String sql = "UPDATE decks SET title = ?, description = ? WHERE id = ?";
@@ -119,7 +153,12 @@ public class DeckDAO {
         }
     }
 
-    // Delete deck
+    /**
+     * Deletes a deck by its ID.
+     *
+     * @param deckId the ID of the deck to delete
+     * @return true if the deletion was successful; false otherwise
+     */
     public static boolean deleteDeck(int deckId)
     {
         String sql = "DELETE FROM decks WHERE id = ?";
@@ -139,6 +178,11 @@ public class DeckDAO {
         }
     }
 
+    /**
+     * Retrieves all decks in the system. Intended for administrative or testing purposes.
+     *
+     * @return an array of all {@link Deck} objects in the database
+     */
     public static Deck[] getAllDecks() {
         String sql = "SELECT * FROM decks";
         List<Deck> decks = new ArrayList<>();
@@ -163,6 +207,12 @@ public class DeckDAO {
         return decks.toArray(decksArray);
     }
 
+    /**
+     * Inserts a test deck and pre-defined flashcards for a given user.
+     * This is useful for populating demo or debug environments.
+     *
+     * @param userId the ID of the user who will own the test deck
+     */
     public static void insertTestDeckWithCards(int userId) {
         String insertDeckSQL = "INSERT INTO decks(user_id, title, description) VALUES (?, ?, ?)";
         String insertCardSQL = "INSERT INTO flashcards(deck_id, front, back, media_type, difficulty, image_path) VALUES (?, ?, ?, ?, ?, ?)";
@@ -217,6 +267,13 @@ public class DeckDAO {
         }
     }
 
+    /**
+     * Deletes a deck and all associated flashcards by the deck's ID.
+     * This operation is transactional to ensure consistency.
+     *
+     * @param deckId the ID of the deck to delete
+     * @return true if the deck and its flashcards were successfully deleted; false otherwise
+     */
     public static boolean deleteDeckById(int deckId) {
         String deleteCardsSQL = "DELETE FROM flashcards WHERE deck_id = ?";
         String deleteDeckSQL = "DELETE FROM decks WHERE id = ?";

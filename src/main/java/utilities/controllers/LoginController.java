@@ -1,7 +1,6 @@
 package utilities.controllers;
 
 import db.User;
-import utilities.controllers.DashboardController;
 import app.FlashcardApp;
 import db.DAO.UserDAO;
 import javafx.fxml.FXML;
@@ -14,11 +13,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import utilities.services.UserSession;
 
 import java.io.IOException;
 
+/**
+ * JavaFX controller responsible for user login.
+ * Handles authentication and transitions to the dashboard or signup page.
+ */
 public class LoginController {
 
     @FXML private TextField emailField;
@@ -31,6 +33,10 @@ public class LoginController {
     @FXML
     private Button signUpButton;
 
+    /**
+     * Attempts to authenticate the user with provided credentials.
+     * On success, transitions to the dashboard. Otherwise, shows error.
+     */
     @FXML
     private void handleLogin() {
         String email = emailField.getText().trim();
@@ -66,7 +72,11 @@ public class LoginController {
         }
     }
 
-
+    /**
+     * Redirects the user to the signup form.
+     *
+     * @param event the trigger event
+     */
     @FXML
     private void handleSignUp(ActionEvent event) {
         try {

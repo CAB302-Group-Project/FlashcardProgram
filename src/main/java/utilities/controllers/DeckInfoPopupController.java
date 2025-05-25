@@ -4,8 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * JavaFX controller for the Deck Info popup dialog.
+ * Allows user to input a deck title and description before deck creation.
+ */
 public class DeckInfoPopupController {
 
+    /**
+     * Callback interface to handle submission of deck info.
+     */
     public interface Callback {
         void onDeckInfoEntered(String title, String description);
     }
@@ -22,6 +29,11 @@ public class DeckInfoPopupController {
     private Callback callback;
 
 
+    /**
+     * Initializes the popup and binds field input validation.
+     *
+     * @param callback the callback function to invoke on confirmation
+     */
     public void init(Callback callback) {
         this.callback = callback;
 
@@ -33,6 +45,9 @@ public class DeckInfoPopupController {
         });
     }
 
+    /**
+     * Handles the confirm action, passing deck info to the callback and closing the popup.
+     */
     @FXML
     private void handleConfirm() {
         if (callback != null) {

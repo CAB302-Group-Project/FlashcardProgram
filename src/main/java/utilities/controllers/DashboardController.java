@@ -16,17 +16,25 @@ import utilities.services.UserSession;
 import javax.swing.*;
 
 /**
- * fhgfhghgf
+ * JavaFX controller for the main Dashboard.
+ * Handles routing to various application features such as deck creation, quizzes,
+ * pomodoro timer, account management, and progress tracking.
  */
 public class DashboardController {
     @FXML
     private Text nameText;
 
+    /**
+     * Initializes the dashboard and displays the current user's name.
+     */
     @FXML
     public void initialize() {
         Platform.runLater(this::updateUI);
     }
 
+    /**
+     * Updates the dashboard UI with the user's display name.
+     */
     private void updateUI() {
         User currentUser = UserSession.getInstance().getCurrentUser();
 
@@ -35,6 +43,11 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Logs the user out and redirects to the login screen.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void handleLogout(ActionEvent event) {
         try {
@@ -51,6 +64,7 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void handleCreateDeck(ActionEvent event) {
@@ -98,6 +112,11 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Opens the Account Dashboard view.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void accountDashboard(ActionEvent event) {
 

@@ -8,7 +8,17 @@ import db.DBConnector;
 
 import java.sql.Connection;
 
+/**
+ * Entry point for the Flashcard application.
+ * Initializes database connection and performs test inserts.
+ */
 public class Main {
+    /**
+     * Main method executed when the application starts.
+     * Establishes a connection and inserts test data.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
         Connection conn = DBConnector.connect();
         if (conn != null) {

@@ -12,6 +12,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utilities.services.UserSession;
 
+/**
+ * JavaFX controller for the Security Dashboard screen.
+ * Provides access to security-related features such as login history,
+ * password changes, and account settings.
+ */
 public class securityDashboardController {
     @FXML
     private Text nameText;
@@ -19,11 +24,17 @@ public class securityDashboardController {
     @FXML
     private Text emailText;
 
+    /**
+     * Initializes the security dashboard and updates the user UI elements.
+     */
     @FXML
     public void initialize() {
         Platform.runLater(this::updateUI);
     }
 
+    /**
+     * Populates the name and email text fields with current user information.
+     */
     private void updateUI() {
         User currentUser = UserSession.getInstance().getCurrentUser();
 
@@ -35,6 +46,11 @@ public class securityDashboardController {
         }
     }
 
+    /**
+     * Opens the login history screen.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void loginHistory(ActionEvent event) {
         try {
@@ -50,6 +66,11 @@ public class securityDashboardController {
         }
     }
 
+    /**
+     * Opens the account settings screen.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void accountbutton(ActionEvent event) {
         try {
@@ -65,12 +86,22 @@ public class securityDashboardController {
         }
     }
 
+    /**
+     * Placeholder for password change functionality.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void changePasswordButton(ActionEvent event) {
         // TODO: Implement password change logic
         System.out.println("Change Password button clicked.");
     }
 
+    /**
+     * Logs out the user and redirects to the login screen.
+     *
+     * @param event the triggering event
+     */
     @FXML
     private void LogoutButton(ActionEvent event) {
         try {
