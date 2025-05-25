@@ -33,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import utilities.services.UserSession;
 
 
 public class DeckManagerController implements Initializable {
@@ -209,7 +210,7 @@ public class DeckManagerController implements Initializable {
                 return;
             }
 
-            controller.setUser(user);
+            UserSession.getInstance().setCurrentUser(user);
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
             stage.show();

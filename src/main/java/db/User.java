@@ -2,13 +2,13 @@ package db;
 
 public class User {
     private final int id;
-    private final String email;
-    private final String name;
+    private String email;
+    private String name;
 
-    public User(int id, String email, String name) {
+    public User(int id, String name, String email) {
         this.id = id;
-        this.email = email;
         this.name = name;
+        this.email = email;
     }
 
     /**
@@ -27,4 +27,13 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

@@ -1,6 +1,7 @@
 package utilities.controllers;
 
 import db.DBConnector;
+import db.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utilities.models.LoginHistory;
+import utilities.services.UserSession;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +25,13 @@ public class LoginHistoryController {
     public void initialize() {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        User currentUser = UserSession.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            loadLoginHistory(currentUser.getId());
+        } else {
+            System.out.println("No user in session – cannot load login history.");
+        }
     }
 
     public void loadLoginHistory(int userId) {

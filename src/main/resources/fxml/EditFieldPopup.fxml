@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.EditFieldPopupController" prefWidth="300.0" prefHeight="150.0">
+    <children>
+        <Label fx:id="labelTitle" layoutX="20.0" layoutY="20.0" text="Edit Field:" />
+        <TextField fx:id="inputField" layoutX="20.0" layoutY="50.0" prefWidth="260.0" />
+        <Button layoutX="100.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+        <Button layoutX="180.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+    </children>
+</AnchorPane>

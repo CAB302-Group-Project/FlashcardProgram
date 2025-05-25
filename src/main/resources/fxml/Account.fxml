@@ -11,14 +11,6 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.AccountController">
    <children>
       <Pane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER" />
-      <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="559.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-         <image>
-            <Image url="@images/user.png" />
-         </image>
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </ImageView>
       <GridPane layoutX="58.0" layoutY="67.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
@@ -38,12 +30,12 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="10.0" layoutY="35.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}">
+                  <Text fx:id="nameTextsml" layoutX="10.0" layoutY="35.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Text>
-                  <Button layoutX="278.0" layoutY="13.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="Edit" textFill="WHITE" />
+                  <Button layoutX="278.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleEditName" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="Edit" textFill="WHITE" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" top="40.0" />
@@ -57,8 +49,8 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button layoutX="277.0" layoutY="13.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="Edit" textFill="WHITE" />
-                  <Text layoutX="8.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{email}">
+                  <Button layoutX="277.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleEditEmail" prefHeight="20.0" prefWidth="52.0" style="-fx-background-color: #687DF7;" text="Edit" textFill="WHITE" />
+                  <Text fx:id="emailTextsml" layoutX="8.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{email}">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -68,7 +60,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Group>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{name}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="{name}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -76,7 +68,7 @@
                   <Insets bottom="40.0" />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{email}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text fx:id="emailText" strokeType="OUTSIDE" strokeWidth="0.0" text="{email}" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

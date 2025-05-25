@@ -44,4 +44,17 @@ public class AuthService {
 
         return null;
     }
+
+    public static boolean changePassword(User user, String oldPassword, String newPassword) {
+        // Re-authenticate the user to validate the old password
+        User verified = UserDAO.authUser(user.getEmail(), oldPassword);
+        if (verified != null) {
+            // Old password is valid — hash new one and update
+            String hashedNewPassword = Hasher.hash(newPassword);
+            return UserDAO.updateUserPassword(user.getId(), hashedNewPassword);
+        }
+
+        // Old password was incorrect
+        return false;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.TimerTask;
 import db.User;
 import db.DAO.UserDAO;
 import utilities.controllers.DashboardController;
+import utilities.services.UserSession;
 
 public class PomodoroTimerController {
     @FXML
@@ -117,7 +118,7 @@ public class PomodoroTimerController {
                 return;
             }
 
-            controller.setUser(user);
+            UserSession.getInstance().setCurrentUser(user);
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
             stage.show();

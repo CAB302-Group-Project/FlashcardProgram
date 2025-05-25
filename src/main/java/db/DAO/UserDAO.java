@@ -89,7 +89,7 @@ public class UserDAO
             if (rs.next()) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                return new User(userId, email, name);
+                return new User(userId, name, email);
             }
         } catch (SQLException e) {
             System.err.println("Get user ID failed: " + e.getMessage());
@@ -112,7 +112,7 @@ public class UserDAO
             if (rs.next()) {
                 final int id = rs.getInt("id");
                 final String name = rs.getString("name");
-                return new User(id, email, name);
+                return new User(id, name, email);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -139,7 +139,7 @@ public class UserDAO
     }
 
     public static User authUser(String email, String password) {
-        String sql = "SELECT id, name, password_hash FROM users WHERE email=? LIMIT 1";
+        String sql = "SELECT id, name, email, password_hash FROM users WHERE email=? LIMIT 1";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -151,10 +151,11 @@ public class UserDAO
                 int id = rs.getInt("id");
                 String storedPassword = rs.getString("password_hash");
                 String name = rs.getString("name");
+                String emailResult = rs.getString("email");
 
                 if (password.equals(storedPassword)) {
                     logLogin(conn, id);
-                    return new User(id, email, name);
+                    return new User(id, name, email);
                 }
             }
 
@@ -193,4 +194,59 @@ public class UserDAO
             System.err.println("Failed to recreate test user: " + e.getMessage());
         }
     }
+
+    public static boolean updateUserPassword(int userId, String newHashedPassword) {
+        String sql = "UPDATE users SET password_hash = ? WHERE id = ?";
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newHashedPassword);
+            stmt.setInt(2, userId);
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Failed to update password: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static void updateName(int userId, String newName) {
+        String sql = "UPDATE users SET name = ? WHERE id = ?";
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newName);
+            stmt.setInt(2, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateEmail(int userId, String newEmail) {
+        String sql = "UPDATE users SET email = ? WHERE id = ?";
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newEmail);
+            stmt.setInt(2, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean emailExists(String email) {
+        String sql = "SELECT id FROM users WHERE email = ?";
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import utilities.services.UserSession;
 
 import java.io.IOException;
 
@@ -45,12 +46,12 @@ public class LoginController {
         if (user != null) {
             try {
                 FlashcardApp.getInstance().setUserId(user.getId());
+                UserSession.getInstance().setCurrentUser(user);
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
                 Parent root = loader.load();
 
-                DashboardController controller = loader.getController();
-                controller.setUser(user);
+
 
                 Stage stage = (Stage) emailField.getScene().getWindow();
                 stage.setScene(new Scene(root));
