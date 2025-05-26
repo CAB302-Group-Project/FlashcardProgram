@@ -63,25 +63,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Group GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <children>
-                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
-                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffc6cf" height="45.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
-                  <Text layoutX="34.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start a Quiz">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jump into a new AI generated quiz" textAlignment="CENTER" wrappingWidth="104.630859375" />
-                  <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="54.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/pencil.png" />
-                     </image>
-                  </ImageView>
-                  <Button prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-               </children>
-            </Group>
-            <Group GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <Group GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutX="1.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#a8cfff" height="45.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
@@ -99,7 +82,7 @@
                   <Button fx:id="createDeckButton" onAction="#handleCreateDeck" prefHeight="107" prefWidth="142" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
                </children>
             </Group>
-            <Group GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <Group GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="100.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#b2fbb7" height="45.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
