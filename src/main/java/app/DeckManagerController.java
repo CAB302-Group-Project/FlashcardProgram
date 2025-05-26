@@ -3,7 +3,6 @@ package app;
 import db.DAO.FlashcardDAO;
 import db.Flashcard;
 import java.util.List;
-import java.util.ArrayList;
 import db.DAO.DeckDAO;
 import db.DAO.UserDAO;
 import db.User;
@@ -22,65 +21,76 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import utilities.controllers.DashboardController;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import db.Deck;
 import utilities.controllers.ReviewFlashcardController;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utilities.services.UserSession;
 
+/**
+ * Controller for managing decks in the flashcard application.
+ * <p>
+ * This JavaFX controller handles:
+ * <ul>
+ *   <li>Displaying all decks in a TableView</li>
+ *   <li>Deck selection and navigation to review sessions</li>
+ *   <li>Deck deletion functionality</li>
+ *   <li>Navigation to dashboard and login screens</li>
+ * </ul>
+ * </p>
+ *
+ * <p><b>UI Components:</b>
+ * <ul>
+ *   <li>TableView showing deck names and descriptions</li>
+ *   <li>Delete buttons for each deck row</li>
+ *   <li>Click handlers for deck selection</li>
+ * </ul>
+ * </p>
+ *
+ * @author Jasmine & Della
+ * @version 1.0
+ * @see Deck
+ * @see DeckDAO
+ * @see Initializable
+ * @since 1.0
+ */
 
 public class DeckManagerController implements Initializable {
-
+    /**
+     * Data model class for representing deck information in the TableView.
+     */
     public static class DeckCell {
-        //private final SimpleStringProperty date;
         private final SimpleStringProperty name;
         private final SimpleStringProperty description;
         private final int deckId;
 
         /**
-         * Class Constructor for DeckCell
-         * @param name The name of the deck.
-         * @param description The description of the deck.
-         * @param deckId The unique identifier for the deck.
+         * Creates a new DeckCell with the specified properties.
+         *
+         * @param name the deck name
+         * @param description the deck description
+         * @param deckId the unique deck identifier
          */
         public DeckCell(String name, String description, int deckId) {
-            //this.date = new SimpleStringProperty(date);
             this.name = new SimpleStringProperty(name);
             this.description = new SimpleStringProperty(description);
             this.deckId = deckId;
         }
 
-        /*public String getDate() {
-            return date.get();
-        }*/
-
         /**
-         * Returns the deck cell name
-         * @return deck cell name
+         * @return the deck name, description and deck id
          */
         public String getName() {
             return name.get();
         }
 
-        /**
-         * Returns the deck cell description
-         * @return deck cell description
-         */
         public String getDescription() {
             return description.get();
         }
 
-        /**
-         * Returns the deck cell unique identifier
-         * @return deck cell identifier
-         */
         public int getDeckId() {
             return deckId;
         }
@@ -88,9 +98,6 @@ public class DeckManagerController implements Initializable {
 
     @FXML
     private TableView<DeckCell> tableDecks;
-
-    //@FXML
-    //private TableColumn<DeckCell, String> dateColumn;
 
     @FXML
     private TableColumn<DeckCell, String> nameColumn;
@@ -101,9 +108,23 @@ public class DeckManagerController implements Initializable {
     @FXML
     private TableColumn<DeckCell, Void> deleteColumn;
 
+    /**
+     * Initializes the controller after FXML loading.
+     * <p>
+     * Sets up:
+     * <ul>
+     *   <li>TableView column bindings</li>
+     *   <li>Deck data loading from database</li>
+     *   <li>Row click handlers</li>
+     *   <li>Delete button configuration</li>
+     * </ul>
+     * </p>
+     *
+     * @param url The location used to resolve relative paths for the root object
+     * @param resourceBundle The resources used to localize the root object
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
@@ -117,7 +138,6 @@ public class DeckManagerController implements Initializable {
 
         tableDecks.setItems(decksList);
 
-        // ✅ Add this to handle double-click on row
         tableDecks.setRowFactory(tv -> {
             TableRow<DeckCell> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -160,9 +180,15 @@ public class DeckManagerController implements Initializable {
     }
 
     /**
-     * This opens DeckView.fxml and passes deck name + date
-     * In your DeckManagerController, modify the openDeckView method:
-     * @param deck deck cell to open
+     * Opens the flashcard review view for the selected deck.
+     * <p>
+     * Loads all due flashcards for the deck and transitions to the review interface.
+     * Only shows flashcards that are due for review based on spaced repetition scheduling.
+     * </p>
+     *
+     * @param deck the deck to review
+     * @see FlashcardDAO#getDueFlashcards(int)
+     * @see ReviewFlashcardController
      */
     private void openDeckView(DeckCell deck) {
         try {
@@ -187,33 +213,18 @@ public class DeckManagerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*try {
-            List<Flashcard> flashcards = FlashcardDAO.getFlashcardsByDeckId(deck.getDeckId());
-
-            if (flashcards.isEmpty()) {
-                System.out.println("No flashcards in this deck");
-                return;
-            }
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_1.fxml"));
-            Parent root = loader.load();
-
-            ReviewFlashcardController controller = loader.getController();
-            controller.setFlashcards(flashcards); // This now sets the static list
-
-            Stage stage = (Stage) tableDecks.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Reviewing: " + deck.getName());
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
     /**
-     * This method is called when the user clicks on the dashboard button.
-     * It redirects the user back to the dashboard page.
-     * @param event click event thrown
+     * Handles navigation to the dashboard view.
+     * <p>
+     * Loads the dashboard for the currently logged-in user.
+     * Falls back to login view if no user is authenticated.
+     * </p>
+     *
+     * @param event the ActionEvent that triggered this navigation
+     * @see DashboardController
+     * @see UserDAO
      */
     public void handleDashboard(ActionEvent event) {
         try {
@@ -236,7 +247,7 @@ public class DeckManagerController implements Initializable {
                 return;
             }
 
-            UserSession.getInstance().setCurrentUser(user);
+            controller.setUser(user);
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
             stage.show();
@@ -246,8 +257,12 @@ public class DeckManagerController implements Initializable {
     }
 
     /**
-     * Redirects the user to the login page.
-     * @param event action event thrown
+     * Handles navigation to the login view.
+     * <p>
+     * Clears any existing user session and returns to the login screen.
+     * </p>
+     *
+     * @param event the ActionEvent that triggered this navigation
      */
     public void handleLogin(ActionEvent event) {
         try {
