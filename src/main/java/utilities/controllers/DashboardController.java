@@ -136,20 +136,6 @@ public class DashboardController {
         }
     }
 
-    @FXML
-    private void handleStartQuiz(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Start_Quiz.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Start Quiz");
-            stage.show();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
 
     @FXML
     private void handleTrackProgress(ActionEvent event) {

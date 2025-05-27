@@ -247,7 +247,6 @@ public class DeckManagerController implements Initializable {
                 return;
             }
 
-            controller.setUser(user);
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
             stage.show();
