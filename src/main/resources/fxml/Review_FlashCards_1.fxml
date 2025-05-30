@@ -26,35 +26,33 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </Text>
-      <Text layoutX="290.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Topic" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Label fx:id="topicLabel" layoutX="290.0" layoutY="99.0" text="Topic" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="14.0" />
          </font>
          <GridPane.margin>
             <Insets top="70.0" />
          </GridPane.margin>
-      </Text>
+      </Label>
       <Button layoutX="524.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #687DF7;" text="Edit Deck" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Button>
       <GridPane layoutX="81.0" layoutY="122.0" maxWidth="1.7976931348623157E308" prefHeight="252.0" prefWidth="440.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
-        <columnConstraints>
+         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Group GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="230.0" layoutX="0.5000152587890625" stroke="BLACK" strokeType="INSIDE" width="300.0" />
                   <Line endX="126.0" layoutX="173.0" layoutY="199.5" startX="-172.0" />
-                  <Text layoutX="145.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of" />
-                  <Text layoutX="120.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text layoutX="159.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Label fx:id="positionLabel" layoutX="90.0" layoutY="203.0" prefWidth="120.0" prefHeight="20.0" style="-fx-font-size: 14px; -fx-alignment: center;" alignment="CENTER"/>
                   <Button fx:id="showanswerbutton" onAction="#handleShowAnswerButton" layoutX="112.50001525878906" layoutY="167.0" mnemonicParsing="false" text="Show Answer" />
                   <Label fx:id="questionlabel" layoutX="15.0" layoutY="14.0" prefHeight="142.0" prefWidth="272.0" style="-fx-font-size: 15px;" alignment="CENTER" wrapText="true" />
                </children>

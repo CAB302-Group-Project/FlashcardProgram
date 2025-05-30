@@ -57,14 +57,22 @@ import javafx.scene.image.ImageView;
  * @see Initializable
  * @since 1.0
  */
-
 public class DeckManagerController implements Initializable {
+
     /**
      * Data model class for representing deck information in the TableView.
+     * <p>
+     * Wraps deck properties for display in the JavaFX TableView columns.
+     * </p>
      */
     public static class DeckCell {
+        /** The name of the deck */
         private final SimpleStringProperty name;
+
+        /** The description of the deck */
         private final SimpleStringProperty description;
+
+        /** The unique identifier of the deck */
         private final int deckId;
 
         /**
@@ -81,30 +89,43 @@ public class DeckManagerController implements Initializable {
         }
 
         /**
-         * @return the deck name, description and deck id
+         * Gets the deck name.
+         * @return the deck name
          */
         public String getName() {
             return name.get();
         }
 
+        /**
+         * Gets the deck description.
+         * @return the deck description
+         */
         public String getDescription() {
             return description.get();
         }
 
+        /**
+         * Gets the deck ID.
+         * @return the deck identifier
+         */
         public int getDeckId() {
             return deckId;
         }
     }
 
+    /** TableView component displaying the list of decks */
     @FXML
     private TableView<DeckCell> tableDecks;
 
+    /** TableColumn for displaying deck names */
     @FXML
     private TableColumn<DeckCell, String> nameColumn;
 
+    /** TableColumn for displaying deck descriptions */
     @FXML
     private TableColumn<DeckCell, String> descriptionColumn;
 
+    /** TableColumn containing delete buttons for each deck */
     @FXML
     private TableColumn<DeckCell, Void> deleteColumn;
 
@@ -125,39 +146,43 @@ public class DeckManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Configure column value factories
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-
+        // Load decks from database
         Deck[] decks = DeckDAO.getAllDecks();
         ObservableList<DeckCell> decksList = FXCollections.observableArrayList();
         for (Deck deck : decks) {
-            DeckCell cell = new DeckCell(deck.getTitle(), deck.getDescription(), deck.getId());
-            decksList.add(cell);
+            decksList.add(new DeckCell(deck.getTitle(), deck.getDescription(), deck.getId()));
         }
-
         tableDecks.setItems(decksList);
 
+        // Configure row click handler
         tableDecks.setRowFactory(tv -> {
             TableRow<DeckCell> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
-                    DeckCell clickedDeck = row.getItem();
-                    openDeckView(clickedDeck);
+                    openDeckView(row.getItem());
                 }
             });
             return row;
         });
 
+        // Configure delete column with buttons
         deleteColumn.setCellFactory(col -> new TableCell<>() {
             private final Button deleteButton = new Button();
 
             {
-                ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/fxml/images/dustbin.jpg")));
+                // Set up delete button with icon
+                ImageView imageView = new ImageView(
+                        new Image(getClass().getResourceAsStream("/fxml/images/dustbin.jpg")));
                 imageView.setFitHeight(16);
                 imageView.setFitWidth(16);
                 deleteButton.setGraphic(imageView);
                 deleteButton.setStyle("-fx-background-color: transparent;");
+
+                // Set delete action
                 deleteButton.setOnAction(event -> {
                     DeckCell cell = getTableView().getItems().get(getIndex());
                     boolean success = DeckDAO.deleteDeckById(cell.getDeckId());
@@ -176,7 +201,6 @@ public class DeckManagerController implements Initializable {
                 setGraphic(empty ? null : deleteButton);
             }
         });
-
     }
 
     /**
@@ -187,7 +211,7 @@ public class DeckManagerController implements Initializable {
      * </p>
      *
      * @param deck the deck to review
-     * @see FlashcardDAO#getDueFlashcards(int)
+     * @see FlashcardDAO#getDueFlashcardsCount(int)
      * @see ReviewFlashcardController
      */
     private void openDeckView(DeckCell deck) {
@@ -205,6 +229,7 @@ public class DeckManagerController implements Initializable {
 
             ReviewFlashcardController controller = loader.getController();
             controller.setFlashcards(flashcards);
+            controller.setDeckName(deck.getName());
 
             Stage stage = (Stage) tableDecks.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -276,4 +301,3 @@ public class DeckManagerController implements Initializable {
         }
     }
 }
-
