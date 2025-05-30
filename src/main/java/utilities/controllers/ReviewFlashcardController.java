@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.util.List;
 import utilities.utils.SpacedRepetitionScheduler;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Controller for managing flashcard review sessions in a JavaFX application.
@@ -38,34 +42,97 @@ import utilities.utils.SpacedRepetitionScheduler;
  */
 public class ReviewFlashcardController {
 
+    /** Button to navigate to the next question or finish review */
+    @FXML
+    private Button showquestionbutton;
+
+    /** Button to show the answer of the current flashcard */
+    @FXML
+    private Button showanswerbutton;
+
+    /** Label displaying the current flashcard question */
+    @FXML
+    private Label questionlabel;
+
+    /** Label displaying the current flashcard answer */
+    @FXML
+    private Label answerlabel;
+
+    /** Button to rate the flashcard as easy */
+    @FXML
+    private Button easyButton;
+
+    /** Button to rate the flashcard as medium */
+    @FXML
+    private Button mediumButton;
+
+    /** Button to rate the flashcard as hard */
+    @FXML
+    private Button hardButton;
+
+    /** Label showing the current position in the deck */
+    @FXML
+    private Label positionLabel;
+
+    /** Label displaying next review information */
+    @FXML
+    private Label reviewLabel;
+
+    /** Label shown when reaching the end of the deck */
+    @FXML
+    private Label endOfDeckLabel;
+
+    /** Label displaying the current deck topic */
+    @FXML
+    private Label topicLabel;
+
+    /** Shared deck name across controller instances */
+    private static String sharedDeckName = "";
+
+    /** Current flashcard being reviewed */
+    private Flashcard currentFlashcard;
+
+    /** List of flashcards in the current review session */
+    private List<Flashcard> flashcards;
+
+    /** Current index in the flashcards list */
+    private int currentIndex = 0;
+
+    /** Shared flashcards list across controller instances */
+    private static List<Flashcard> sharedFlashcards;
+
+    /** Shared current index across controller instances */
+    private static int sharedCurrentIndex;
+
+    /** Flag indicating if current card is the last in the deck */
+    private boolean isLastCard = false;
+
+    /**
+     * Sets the deck name and updates the topic label.
+     *
+     * @param deckName the name of the current deck
+     */
+    public void setDeckName(String deckName) {
+        this.sharedDeckName = deckName;
+        if (topicLabel != null) {
+            topicLabel.setText(deckName);
+        }
+    }
+
+    /**
+     * Handles the "Next Question" or "Finish Review" button action.
+     *
+     * @param event the ActionEvent triggered by the button
+     */
     @FXML
     void handleQuestionButton(ActionEvent event) {
         goToNextFlashcard(event);
     }
 
-    @FXML
-    private Button showanswerbutton;
-    @FXML
-    private Label questionlabel; // For question view
-    @FXML
-    private Label answerlabel;  // For answer view
-    @FXML
-    private Button easyButton;
-    @FXML
-    private Button mediumButton;
-    @FXML
-    private Button hardButton;
-
-    private Flashcard currentFlashcard;
-    private List<Flashcard> flashcards;
-    private int currentIndex = 0;
-    private static List<Flashcard> sharedFlashcards;
-    private static int sharedCurrentIndex;
-
     /**
      * Initializes the flashcard review session with a list of flashcards.
      *
-     * @param flashcards the list of flashcards to review (cannot be null)
+     * @param flashcards the list of flashcards to review
      * @throws IllegalArgumentException if flashcards list is null
      */
     public void setFlashcards(List<Flashcard> flashcards) {
@@ -73,6 +140,19 @@ public class ReviewFlashcardController {
         this.flashcards = sharedFlashcards;
         sharedCurrentIndex = 0;
         currentIndex = sharedCurrentIndex;
+
+        if (reviewLabel != null) {
+            reviewLabel.setText("");
+            reviewLabel.setVisible(false);
+        }
+
+        if (endOfDeckLabel != null) {
+            endOfDeckLabel.setVisible(false);
+        }
+
+        if (showanswerbutton != null) {
+            showanswerbutton.setText("Show Answer");
+        }
 
         if (!flashcards.isEmpty()) {
             currentFlashcard = flashcards.get(0);
@@ -83,7 +163,7 @@ public class ReviewFlashcardController {
     /**
      * Sets the current flashcard and updates the view.
      *
-     * @param flashcard the flashcard to display (cannot be null)
+     * @param flashcard the flashcard to display
      */
     public void setFlashcard(Flashcard flashcard) {
         this.currentFlashcard = flashcard;
@@ -101,6 +181,11 @@ public class ReviewFlashcardController {
     private void displayQuestion() {
         if (currentFlashcard != null && questionlabel != null) {
             questionlabel.setText(currentFlashcard.getFront());
+            if (positionLabel != null && flashcards != null) {
+                positionLabel.setText(String.format("Question %d of %d",
+                        currentIndex + 1,
+                        flashcards.size()));
+            }
         }
     }
 
@@ -114,7 +199,7 @@ public class ReviewFlashcardController {
     }
 
     /**
-     * Handles "Easy" "Medium" "Hard" difficulty rating click.
+     * Handles "Easy" difficulty rating click.
      *
      * @param event the ActionEvent from the button click
      */
@@ -122,18 +207,31 @@ public class ReviewFlashcardController {
     private void handleEasyClick(ActionEvent event) {
         updateDifficulty("Easy");
         disableDifficultyButtons();
+        reviewLabel.setVisible(true);
     }
 
+    /**
+     * Handles "Medium" difficulty rating click.
+     *
+     * @param event the ActionEvent from the button click
+     */
     @FXML
     private void handleMediumClick(ActionEvent event) {
         updateDifficulty("Medium");
         disableDifficultyButtons();
+        reviewLabel.setVisible(true);
     }
 
+    /**
+     * Handles "Hard" difficulty rating click.
+     *
+     * @param event the ActionEvent from the button click
+     */
     @FXML
     private void handleHardClick(ActionEvent event) {
         updateDifficulty("Hard");
         disableDifficultyButtons();
+        reviewLabel.setVisible(true);
     }
 
     /**
@@ -155,31 +253,9 @@ public class ReviewFlashcardController {
     }
 
     /**
-     * Updates the difficulty rating of the current flashcard and persists changes to the database.
-     * <p>
-     * This method performs the following operations:
-     * <ol>
-     *   <li>Updates the difficulty in the current Flashcard object</li>
-     *   <li>Persists the difficulty change to the database via {@link FlashcardDAO#updateFlashcardDifficulty(int, String)}</li>
-     *   <li>Applies spaced repetition algorithm using {@link SpacedRepetitionScheduler#scheduleNextReview(Flashcard, String)}</li>
-     *   <li>Persists the spaced repetition data (repetitions, easiness factor, review dates)
-     *       via {@link FlashcardDAO#updateSpacedRepetitionData(int, int, double, String, String)}</li>
-     * </ol>
-     * </p>
+     * Updates the difficulty rating of the current flashcard and persists changes.
      *
-     * <p><b>Database Operations:</b> This method makes two separate database updates:
-     * <ul>
-     *   <li>Direct difficulty update</li>
-     *   <li>Spaced repetition parameters update</li>
-     * </ul>
-     * Both operations are executed in a single transaction context.
-     * </p>
-     *
-     * @param difficulty the new difficulty rating (case-sensitive, must be "Easy", "Medium", or "Hard")
-     * @throws NullPointerException if currentFlashcard is null
-     * @throws IllegalStateException if not connected to database
-     * @see FlashcardDAO
-     * @see SpacedRepetitionScheduler
+     * @param difficulty the new difficulty rating ("Easy", "Medium", or "Hard")
      */
     private void updateDifficulty(String difficulty) {
         if (currentFlashcard == null) {
@@ -190,11 +266,8 @@ public class ReviewFlashcardController {
         try {
             currentFlashcard.setDifficulty(difficulty);
             FlashcardDAO.updateFlashcardDifficulty(currentFlashcard.getId(), difficulty);
-            //System.out.println("Difficulty updated to: " + difficulty);
-            // Apply spaced repetition algorithm
             SpacedRepetitionScheduler.scheduleNextReview(currentFlashcard, difficulty);
 
-            // Save spaced repetition data
             FlashcardDAO.updateSpacedRepetitionData(
                     currentFlashcard.getId(),
                     currentFlashcard.getRepetitions(),
@@ -202,6 +275,13 @@ public class ReviewFlashcardController {
                     currentFlashcard.getLastReviewedAt(),
                     currentFlashcard.getNextReviewAt()
             );
+
+            if (reviewLabel != null) {
+                String nextReviewText = currentFlashcard.getNextReviewAt() != null ?
+                        "Next Review: " + formatDate(currentFlashcard.getNextReviewAt()) :
+                        "Next Review: Not scheduled";
+                reviewLabel.setText(nextReviewText);
+            }
 
             System.out.println("Difficulty updated to: " + difficulty);
             System.out.println("Next review scheduled for: " + currentFlashcard.getNextReviewAt());
@@ -211,41 +291,95 @@ public class ReviewFlashcardController {
     }
 
     /**
-     * Advances to the next flashcard or returns to deck view when complete.
+     * Formats a date string from yyyy-MM-dd to dd-MM.
+     *
+     * @param dateStr the date string in yyyy-MM-dd format
+     * @return formatted date string in dd-MM format, or original if parsing fails
+     */
+    private String formatDate(String dateStr) {
+        try {
+            LocalDate date = LocalDate.parse(dateStr);
+            return date.format(DateTimeFormatter.ofPattern("dd-MM"));
+        } catch (DateTimeParseException e) {
+            return dateStr;
+        }
+    }
+
+    /**
+     * Sets whether the current card is the last in the deck.
+     *
+     * @param isLastCard true if current card is last, false otherwise
+     */
+    public void setIsLastCard(boolean isLastCard) {
+        this.isLastCard = isLastCard;
+        if (showquestionbutton != null && isLastCard) {
+            showquestionbutton.setText("Finish Review");
+        }
+    }
+
+    /**
+     * Checks if current card is the last in the deck.
+     *
+     * @return true if current card is last, false otherwise
+     */
+    private boolean isLastCard() {
+        return flashcards != null && currentIndex == flashcards.size() - 1;
+    }
+
+    /**
+     * Advances to the next flashcard or returns to deck manager when complete.
      *
      * @param event the ActionEvent that triggered this navigation
      */
     private void goToNextFlashcard(ActionEvent event) {
-        if (flashcards == null || flashcards.isEmpty()) return;
+        if (flashcards == null || flashcards.isEmpty()) {
+            System.out.println("Flashcards list is null or empty");
+            return;
+        }
         enableDifficultyButtons();
 
-        // Move to next flashcard
+        if (isLastCard && showquestionbutton != null &&
+                "Finish Review".equals(showquestionbutton.getText())) {
+            returnToDeckManager(event);
+            return;
+        }
+
         currentIndex++;
+        sharedCurrentIndex = currentIndex;
         debugState();
 
         if (currentIndex >= flashcards.size()) {
-            // All flashcards reviewed
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Deck_Manager.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-                return;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
+            returnToDeckManager(event);
+            return;
         }
 
-        // Load question view for next flashcard
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Review_Flashcards_1.fxml"));
             Parent root = loader.load();
             ReviewFlashcardController controller = loader.getController();
             controller.setFlashcards(flashcards);
             controller.setCurrentIndex(currentIndex);
+            controller.setDeckName(sharedDeckName);
 
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns to the deck manager view.
+     *
+     * @param event the ActionEvent that triggered this navigation
+     */
+    private void returnToDeckManager(ActionEvent event) {
+        System.out.println("\n=== Finished reviewing all flashcards ===");
+        System.out.println("Returning to deck manager");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Deck_Manager.fxml"));
+            Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -267,7 +401,9 @@ public class ReviewFlashcardController {
             ReviewFlashcardController controller = loader.getController();
             controller.setFlashcards(flashcards);
             controller.setCurrentIndex(currentIndex);
+            controller.setDeckName(sharedDeckName);
             controller.displayAnswer();
+            controller.setIsLastCard(currentIndex == flashcards.size() - 1);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -288,19 +424,14 @@ public class ReviewFlashcardController {
         if (sharedFlashcards != null && currentIndex < sharedFlashcards.size()) {
             currentFlashcard = sharedFlashcards.get(currentIndex);
             displayQuestion();
+            if (topicLabel != null && sharedDeckName != null) {
+                topicLabel.setText(sharedDeckName);
+            }
         }
     }
 
     /**
      * Prints debug information about the current controller state.
-     * <p>
-     * Includes:
-     * <ul>
-     *   <li>Current and shared indices</li>
-     *   <li>Current flashcard details</li>
-     *   <li>Sample of flashcards in the list</li>
-     * </ul>
-     * </p>
      */
     private void debugState() {
         System.out.println("--- Current State ---");
