@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserSecurityTest {
 
     private static final String TEST_DB = "test_users.db";
-    private static final String PASSWORD = "testpass123";
+    private static final String PASSWORD = "test123";
+    private static final String PASSWORD_HASHED = "$2a$10$lH0JZWYjqrwP9/GOb06THey9SCa/a5FElyuv9CRl4M4.4l/f3/5oe";
     private String testEmail;
     private String testName;
 
@@ -41,7 +42,7 @@ public class UserSecurityTest {
 
     @Test
     public void testRegisterAndAuthenticateUser() {
-        assertTrue(UserDAO.registerUser(testName, testEmail, PASSWORD), "Registration should succeed");
+        assertTrue(UserDAO.registerUser(testName, testEmail, PASSWORD_HASHED), "Registration should succeed");
 
         User user = UserDAO.authUser(testEmail, PASSWORD);
         assertNotNull(user);
@@ -69,7 +70,7 @@ public class UserSecurityTest {
 
     @Test
     public void testLoginLogWritten() throws SQLException {
-        UserDAO.registerUser(testName, testEmail, PASSWORD);
+        UserDAO.registerUser(testName, testEmail, PASSWORD_HASHED);
         UserDAO.authUser(testEmail, PASSWORD);
 
         try (Connection conn = DBConnector.connect();
