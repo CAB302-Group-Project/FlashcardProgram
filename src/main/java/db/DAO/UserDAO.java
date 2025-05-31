@@ -3,6 +3,7 @@ package db.DAO;
 import app.FlashcardApp;
 import db.DBConnector;
 import db.User;
+import utilities.crypto.Hasher;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -218,7 +219,7 @@ public class UserDAO
                 String name = rs.getString("name");
                 String emailResult = rs.getString("email");
 
-                if (password.equals(storedPassword)) {
+                if (Hasher.verify(password, storedPassword)) {
                     logLogin(conn, id);
                     return new User(id, name, email);
                 }
