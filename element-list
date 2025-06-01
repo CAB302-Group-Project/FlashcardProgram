@@ -1,0 +1,12 @@
+module:com.example.flashcardai
+ai
+app
+db
+db.DAO
+db.utils
+utilities.app
+utilities.controllers
+utilities.crypto
+utilities.models
+utilities.services
+utilities.utils
