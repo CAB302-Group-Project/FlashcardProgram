@@ -68,7 +68,7 @@ public class DBInit
                     repetitions INTEGER DEFAULT 0,
                     easiness_factor REAL DEFAULT 2.5,
                     last_reviewed_at TEXT,
-                    next_review_at TEXT,
+                    next_review_at TEXT DEFAULT (date('now')),
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (deck_id) REFERENCES decks(id) ON DELETE CASCADE
                 );
@@ -89,6 +89,15 @@ public class DBInit
                     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                     FOREIGN KEY (flashcard_id) REFERENCES flashcards(id) ON DELETE CASCADE,
                     UNIQUE(user_id, flashcard_id)
+                );
+            """);
+
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS pomodoro_log (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
                 );
             """);
 

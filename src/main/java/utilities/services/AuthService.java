@@ -3,6 +3,7 @@ package utilities.services;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import utilities.crypto.Hasher;
 import db.User;
 import db.DAO.UserDAO;
@@ -20,13 +21,9 @@ public class AuthService {
      * @return true if registration is successful, false if the user already exists
      */
     public static boolean register(String name, String email, String password) {
-        db.User user = UserDAO.getUser(email);
-        if (user == null) {
-            String hashed = Hasher.hash(password);
-            UserDAO.insertUser(name, email, hashed);
-            return true;
+        if (UserDAO.getUser(email) == null) {
+            return UserDAO.insertUser(name, email, password); // plain password only
         }
-
         return false;
     }
 
@@ -61,15 +58,12 @@ public class AuthService {
     }
 
     public static boolean changePassword(User user, String oldPassword, String newPassword) {
-        // Re-authenticate the user to validate the old password
         User verified = UserDAO.authUser(user.getEmail(), oldPassword);
         if (verified != null) {
-            // Old password is valid — hash new one and update
-            String hashedNewPassword = Hasher.hash(newPassword);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            String hashedNewPassword = encoder.encode(newPassword);
             return UserDAO.updateUserPassword(user.getId(), hashedNewPassword);
         }
-
-        // Old password was incorrect
         return false;
     }
 }

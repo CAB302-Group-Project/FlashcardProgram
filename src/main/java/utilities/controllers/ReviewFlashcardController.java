@@ -388,6 +388,21 @@ public class ReviewFlashcardController {
         }
     }
 
+    @FXML
+    private void handleBacktoDeckView(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Deck_Manager.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Deck Manager");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     /**
      * Handles the "Show Answer" button click.
      *

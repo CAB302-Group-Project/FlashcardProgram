@@ -136,11 +136,10 @@ public class DashboardController {
         }
     }
 
-
     @FXML
     private void handleTrackProgress(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Track_Progress.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TrackProgress.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -148,7 +147,8 @@ public class DashboardController {
             stage.setTitle("Track Progress");
             stage.show();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Failed to load TrackProgress.fxml: " + e.getMessage());
+            e.printStackTrace(); // add this to see the full error trace
         }
     }
 

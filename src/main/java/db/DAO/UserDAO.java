@@ -3,6 +3,7 @@ package db.DAO;
 import app.FlashcardApp;
 import db.DBConnector;
 import db.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,18 +28,21 @@ public class UserDAO
      *
      * @param name         the user's full name
      * @param email        the user's email
-     * @param passwordHash the hashed password
+     * @param plainPassword the hashed password
      * @return true if insertion succeeded, false otherwise
      */
-    public static boolean insertUser(String name, String email, String passwordHash) {
+    public static boolean insertUser(String name, String email, String plainPassword) {
         String userInsertSQL = "INSERT INTO users(name, email, password_hash) VALUES (?, ?, ?)";
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(plainPassword);
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement stmt = conn.prepareStatement(userInsertSQL, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, name);
             stmt.setString(2, email);
-            stmt.setString(3, passwordHash);
+            stmt.setString(3, hashedPassword);
             int affectedRows = stmt.executeUpdate();
 
             if (affectedRows == 0) return false;
@@ -70,7 +74,7 @@ public class UserDAO
     {
         String sql = "SELECT id, email, created_at FROM users";
 
-        try (Connection conn = db.DBConnector.connect();
+        try (Connection conn = DBConnector.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             System.out.println("Users:");
@@ -111,7 +115,7 @@ public class UserDAO
      * @param userId the user's ID
      * @return the User object, or null if not found
      */
-    public static db.User getUserById(int userId) {
+    public static User getUserById(int userId) {
         String sql = "SELECT name, email FROM users WHERE id = ?";
         try {
             Connection conn = FlashcardApp.getInstance().getDBConnection();
@@ -147,7 +151,7 @@ public class UserDAO
      * @return the User object, or null if not found
      */
     public static User getUser(String email) {
-        String sql = "SELECT id, name FROM users WHERE email=? LIMIT 1";
+        String sql = "SELECT id, name, password_hash FROM users WHERE email=? LIMIT 1";
         try {
             Connection conn = DBConnector.connect();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -156,7 +160,8 @@ public class UserDAO
             if (rs.next()) {
                 final int id = rs.getInt("id");
                 final String name = rs.getString("name");
-                return new User(id, name, email);
+                final String hash = rs.getString("password_hash");
+                return new User(id, name, email, hash);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -218,9 +223,10 @@ public class UserDAO
                 String name = rs.getString("name");
                 String emailResult = rs.getString("email");
 
-                if (password.equals(storedPassword)) {
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                if (encoder.matches(password, storedPassword)) {
                     logLogin(conn, id);
-                    return new User(id, name, email);
+                    return new User(id, name, emailResult, storedPassword);
                 }
             }
 
@@ -252,7 +258,8 @@ public class UserDAO
             try (PreparedStatement ins = conn.prepareStatement(insertSQL)) {
                 ins.setString(1, name);
                 ins.setString(2, email);
-                ins.setString(3, password);
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                ins.setString(3, encoder.encode(password));
                 ins.executeUpdate();
             }
 

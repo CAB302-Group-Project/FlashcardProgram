@@ -1,5 +1,6 @@
 package app;
 
+import db.DBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,11 +52,21 @@ public class PomodoroTimerController {
             @Override
             public void run() {
                 if (!instance.paused) {
-                    if (instance.seconds == 0) instance.paused = true;
+                    if (instance.seconds == 0) {
+                        instance.paused = true;
+                        textPause.setText("START");
+
+                        int userId = FlashcardApp.getInstance().getUserId();
+                        if (userId != -1) {
+                            logSession(userId);
+                        }
+
+                        return;
+                    }
 
                     int minutes = instance.seconds / 60;
-                    int seconds = instance.seconds % 60;
-                    textTimer.setText(String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+                    int secs = instance.seconds % 60;
+                    textTimer.setText(String.format("%02d:%02d", minutes, secs));
                     instance.seconds -= 1;
                 }
             }
@@ -172,6 +186,17 @@ public class PomodoroTimerController {
             stage.show();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+    }
+
+    public static void logSession(int userId) {
+        String sql = "INSERT INTO pomodoro_log (user_id) VALUES (?)";
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Failed to log Pomodoro session: " + e.getMessage());
         }
     }
 }

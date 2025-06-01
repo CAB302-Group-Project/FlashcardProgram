@@ -1,82 +1,111 @@
 package utilities.controllers;
 
+import app.FlashcardApp;
+import db.DAO.FlashcardDAO;
+import db.DAO.PomoDao;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import javafx.event.ActionEvent;
+import java.io.IOException;
 
 public class TrackProgressController {
 
-    @FXML private BarChart<?, ?> QuizPerformance;
-    @FXML private StackedBarChart<?, ?> FlashcardMemory;
-    @FXML private Button dashboardbutton;
-    @FXML private Button profilebutton;
+    @FXML
+    private BarChart<String, Number> QuizPerformance;
+
+    @FXML
+    private StackedBarChart<Number, String> FlashcardMemory;
+
+    @FXML
+    private Button dashboardbutton;
+
+    @FXML
+    private Button profilebutton;
+
+    @FXML
+    private Text quizCountText;
+
+    @FXML
+    private Text pomodoroSessionCount;
 
     @FXML
     public void initialize() {
-        // populate charts, attach listeners, etc.
+        populateQuizPerformance();
+        populateFlashcardMemory();
+        updateStats();
     }
 
-    // UI Components from FXML
-    /*@FXML private Button dashboardButton;
-    @FXML private Button profileButton;
+    private void populateQuizPerformance() {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Correct");
 
-    @FXML private BarChart<String, Number> quizPerformance;
-    @FXML private CategoryAxis quizCategoryAxis;
-    @FXML private NumberAxis quizQuestionsAxis;
+        // Sample data, replace with DB values
+        series.getData().add(new XYChart.Data<>("Math", 8));
+        series.getData().add(new XYChart.Data<>("History", 6));
+        series.getData().add(new XYChart.Data<>("Science", 7));
 
-    @FXML private Text pomodoroSessionsText;
-    @FXML private Text completedQuizzesText;
-    @FXML private Text completedQuizzesCount;
-
-    @FXML private StackedBarChart<Number, String> flashcardMemory;
-    @FXML private NumberAxis memoryXAxis;
-    @FXML private CategoryAxis memoryYAxis;
-
-    @FXML private Circle easyCircle;
-    @FXML private Circle mediumCircle;
-    @FXML private Circle hardCircle;
-
-    @FXML
-    public void initialize() {
-        // Initialize chart data and other components
-        setupQuizPerformanceChart();
-        setupFlashcardMemoryChart();
-        updateProgressStats();
+        QuizPerformance.getData().clear();
+        QuizPerformance.getData().add(series);
     }
 
-    private void setupQuizPerformanceChart() {
-        quizCategoryAxis.setLabel("Category");
-        quizQuestionsAxis.setLabel("Questions");
-        // Add sample data or load from your data source
+    private void populateFlashcardMemory() {
+        FlashcardMemory.getData().clear();
+
+        XYChart.Series<Number, String> easySeries = new XYChart.Series<>();
+        easySeries.setName("Easy");
+        easySeries.getData().add(new XYChart.Data<>(15, "Memory"));
+
+        XYChart.Series<Number, String> mediumSeries = new XYChart.Series<>();
+        mediumSeries.setName("Medium");
+        mediumSeries.getData().add(new XYChart.Data<>(10, "Memory"));
+
+        XYChart.Series<Number, String> hardSeries = new XYChart.Series<>();
+        hardSeries.setName("Hard");
+        hardSeries.getData().add(new XYChart.Data<>(5, "Memory"));
+
+        FlashcardMemory.getData().addAll(easySeries, mediumSeries, hardSeries);
     }
 
-    private void setupFlashcardMemoryChart() {
-        memoryXAxis.setLabel("Count");
-        memoryYAxis.setLabel("Difficulty Level");
-        // Add sample data or load from your data source
-    }
+    private void updateStats() {
+        int userId = FlashcardApp.getInstance().getUserId();
+        int reviewedFlashcards = FlashcardDAO.countReviewedFlashcards(userId);
+        int pomodorosThisWeek = PomoDao.countSessionsThisWeek(userId);
 
-    private void updateProgressStats() {
-        // Update the text fields with actual data
-        // These would typically come from your service layer
-        pomodoroSessionsText.setText("5"); // Example value
-        completedQuizzesCount.setText("12"); // Example value
+        quizCountText.setText(String.valueOf(reviewedFlashcards));
+        pomodoroSessionCount.setText(String.valueOf(pomodorosThisWeek));
     }
 
     @FXML
-    private void handleDashboardButton() {
-        // Handle navigation back to dashboard
-        // Example: FlashcardApp.getInstance().showDashboard();
+    private void handleDashboard(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    private void handleProfileButton() {
-        // Handle profile button click
-        // Example: FlashcardApp.getInstance().showProfile();
-    }*/
+    private void handleProfile(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Account.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

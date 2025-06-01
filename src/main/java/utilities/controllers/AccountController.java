@@ -1,5 +1,6 @@
 package utilities.controllers;
 
+import app.FlashcardApp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,6 +119,22 @@ public class AccountController {
             emailTextsml.setText(newValue);
             persistEmailToDatabase(newValue);
         });
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            FlashcardApp.getInstance().setSessionToken(null);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -86,6 +86,22 @@ public class securityDashboardController {
         }
     }
 
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            FlashcardApp.getInstance().setSessionToken(null);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Placeholder for password change functionality.
      *

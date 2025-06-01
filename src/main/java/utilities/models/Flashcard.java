@@ -36,6 +36,9 @@ public class Flashcard {
         this.id = id;
         this.question = question;
         this.answer = answer;
+        this.repetitions = 0;
+        this.easeFactor = 2.5;
+        this.nextReviewDate = LocalDate.now();
     }
 
     // Getters (MUST HAVE THESE EXACT METHODS)

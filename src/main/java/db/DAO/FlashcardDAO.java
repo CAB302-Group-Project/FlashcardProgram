@@ -33,7 +33,10 @@ public class FlashcardDAO
      */
     public static boolean insertFlashcard(int deckId, String front, String back, String mediaType, String difficulty, String imagePath)
     {
-        String sql = "INSERT INTO flashcards(deck_id, front, back, media_type, difficulty, image_path) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO flashcards (\n" +
+                "    deck_id, front, back, media_type, difficulty, image_path, \n" +
+                "    repetitions, easiness_factor, last_reviewed_at, next_review_at\n" +
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, date('now'))";
 
         try (Connection conn = DBConnector.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -43,7 +46,9 @@ public class FlashcardDAO
             pstmt.setString(3, back);
             pstmt.setString(4, mediaType);
             pstmt.setString(5, difficulty);
-            pstmt.setString(6, imagePath); // can be null or relative path
+            pstmt.setString(6, imagePath);
+            pstmt.setInt(7, 0);                      // repetitions
+            pstmt.setDouble(8, 2.5);                 // ease factor
             pstmt.executeUpdate();
             return true;
 
@@ -210,22 +215,7 @@ public class FlashcardDAO
      * @return true if inserted successfully, false otherwise
      */
     public static boolean insertFlashcard(int deckId, String front, String back) {
-        String sql = "INSERT INTO flashcards(deck_id, front, back) VALUES (?, ?, ?)";
-
-        try (Connection conn = DBConnector.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, deckId);
-            stmt.setString(2, front);
-            stmt.setString(3, back);
-
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return insertFlashcard(deckId, front, back, "text", "medium", null);
     }
 
     /**
@@ -309,6 +299,26 @@ public class FlashcardDAO
             System.err.println("Fetch due flashcards failed: " + e.getMessage());
         }
         return flashcards;
+    }
+
+    public static int countReviewedFlashcards(int userId) {
+        String sql = """
+        SELECT COUNT(*) FROM flashcards f
+        JOIN decks d ON f.deck_id = d.id
+        WHERE d.user_id = ? AND f.last_reviewed_at IS NOT NULL
+    """;
+
+        try (Connection conn = DBConnector.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to count reviewed flashcards: " + e.getMessage());
+        }
+        return 0;
     }
 
 }

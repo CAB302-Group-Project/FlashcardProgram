@@ -116,7 +116,7 @@
                   <Image url="@images/Small_Logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
+            <Button fx:id="dashboardbutton" onAction="#handleBack" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
          </children>
       </Group>
    </children>

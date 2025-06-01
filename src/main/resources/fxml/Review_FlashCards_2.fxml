@@ -3,14 +3,16 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C1DFEC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utilities.controllers.ReviewFlashcardController">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d2440;" GridPane.columnSpan="3">
+         <children>
+            <Button fx:id="BacktoDeckView" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleBacktoDeckView" style="-fx-background-color: #687DF7;" text="Back to Deck Manager" textFill="WHITE" />
+         </children></Pane>
       <Text layoutX="188.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Flashcards" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="30.0" />
@@ -27,11 +29,6 @@
             <Insets top="70.0" />
          </GridPane.margin>
       </Label>
-      <Button layoutX="524.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #687DF7;" text="Edit Deck" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Button>
       <Group layoutX="10.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets right="10.0" />
@@ -68,7 +65,7 @@
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f6faff" height="216.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
                   <Line endX="126.0" layoutX="173.0" layoutY="199.5" startX="-172.0" />
-                  <Label fx:id="reviewLabel" layoutX="90.0" layoutY="203.0" prefWidth="120.0" prefHeight="20.0" style="-fx-font-size: 14px; -fx-alignment: center;" alignment="CENTER"/>
+                  <Label fx:id="reviewLabel" alignment="CENTER" layoutX="90.0" layoutY="203.0" prefHeight="20.0" prefWidth="120.0" style="-fx-font-size: 14px; -fx-alignment: center;" />
                   <Button fx:id="showquestionbutton" layoutX="104.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleQuestionButton" text="Next Question" />
                   <Label fx:id="endOfDeckLabel" />
                   <Label fx:id="answerlabel" alignment="CENTER" layoutX="14.0" layoutY="24.0" prefHeight="142.0" prefWidth="272.0" style="-fx-font-size: 15px;" wrapText="true" />
@@ -80,25 +77,8 @@
          </GridPane.margin>
       </GridPane>
       <Button fx:id="profilebutton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Group>
-         <children>
-            <ImageView fitHeight="32.0" fitWidth="142.0" layoutX="10.399999618530273">
-               <image>
-                  <Image url="@images/Small_Logo.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="dashboardbutton" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-         </children>
-      </Group>
+      <Group />
       <Group GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-         <children>
-            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="9.5999755859375" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/user.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="profilebutton1" layoutX="10.0" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-font-weight: bold;" text="" />
-         </children>
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>

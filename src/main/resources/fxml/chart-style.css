@@ -1,0 +1,11 @@
+.chart-bar.series0 {
+    -fx-bar-fill: #c9d8f2; /* Light blue (Easy) */
+}
+
+.chart-bar.series1 {
+    -fx-bar-fill: #d9c9f2; /* Lavender (Medium) */
+}
+
+.chart-bar.series2 {
+    -fx-bar-fill: #f2c9d9; /* Pink (Hard) */
+}

@@ -29,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import utilities.services.UserSession;
 
 /**
  * Controller for managing decks in the flashcard application.
@@ -211,7 +212,6 @@ public class DeckManagerController implements Initializable {
      * </p>
      *
      * @param deck the deck to review
-     * @see FlashcardDAO#getDueFlashcardsCount(int)
      * @see ReviewFlashcardController
      */
     private void openDeckView(DeckCell deck) {
@@ -274,6 +274,25 @@ public class DeckManagerController implements Initializable {
 
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleProfile(ActionEvent event) {
+
+        try {
+            System.out.println("From Dashboard → Current user: " + UserSession.getInstance().getCurrentUser());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Account.fxml"));
+            Parent root = loader.load();
+
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Account Dashboard");
             stage.show();
         } catch (Exception e) {
             System.err.println(e.getMessage());
