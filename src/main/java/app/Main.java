@@ -1,14 +1,24 @@
 package app;
 
+import ai.FlashcardResult;
+import ai.prompt;
+import db.DAO.DeckDAO;
+import db.DAO.UserDAO;
 import db.DBConnector;
-import db.UserDAO;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+/**
+ * Entry point for the Flashcard application.
+ * Initializes database connection and performs test inserts.
+ */
 public class Main {
+    /**
+     * Main method executed when the application starts.
+     * Establishes a connection and inserts test data.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
         Connection conn = DBConnector.connect();
         if (conn != null) {
@@ -16,6 +26,10 @@ public class Main {
         }
 
         UserDAO.insertTestUser();
+
+        DeckDAO.insertTestDeckWithCards(1);
+
+
 
        /*// Debug testing for AI. Feel free to remove if bothersome.
         Scanner scanner = new Scanner(System.in);

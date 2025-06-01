@@ -14,6 +14,12 @@ module com.example.flashcardai {
 
     exports app;
     exports db;
-    exports com.example.flashcardai.models;
-    opens com.example.flashcardai.models to javafx.fxml;
+    exports utilities.models;
+    exports utilities.controllers;
+    opens utilities.controllers to javafx.fxml, javafx.graphics;
+    opens utilities.models to javafx.fxml, javafx.graphics;
+    exports db.DAO;
+    opens db.DAO to javafx.fxml;
+    exports db.utils;
+    opens db.utils to javafx.fxml;
 }
